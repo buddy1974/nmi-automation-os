@@ -1,6 +1,28 @@
-import { products } from "@/lib/products"
+"use client"
+
+import { useState } from "react"
+import { products as initialProducts } from "@/lib/products"
 
 export default function StockPage() {
+
+  const [items, setItems] = useState(initialProducts)
+
+  function addStock(id: string) {
+    setItems((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, stock: p.stock + 10 } : p
+      )
+    )
+  }
+
+  function removeStock(id: string) {
+    setItems((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, stock: p.stock - 10 } : p
+      )
+    )
+  }
+
   return (
     <div>
 
@@ -12,22 +34,37 @@ export default function StockPage() {
           <tr>
             <th>Code</th>
             <th>Title</th>
-            <th>Class</th>
-            <th>Subject</th>
             <th>Stock</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          {products.map((p) => (
+
+          {items.map((p) => (
+
             <tr key={p.id}>
+
               <td>{p.code}</td>
               <td>{p.title}</td>
-              <td>{p.class}</td>
-              <td>{p.subject}</td>
               <td>{p.stock}</td>
+
+              <td>
+
+                <button onClick={() => addStock(p.id)}>
+                  +10
+                </button>
+
+                <button onClick={() => removeStock(p.id)}>
+                  -10
+                </button>
+
+              </td>
+
             </tr>
+
           ))}
+
         </tbody>
 
       </table>
