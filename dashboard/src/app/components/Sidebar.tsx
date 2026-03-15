@@ -1,4 +1,6 @@
 // static logo fix
+import Link from "next/link"
+
 export default function Sidebar() {
   return (
     <div
@@ -36,6 +38,7 @@ export default function Sidebar() {
       <div>HR</div>
       <div>Editorial</div>
       <div>System</div>
+      <div><Link href="/catalogue" style={{ color: "#fff" }}>Catalogue</Link></div>
     </div>
   );
 }
