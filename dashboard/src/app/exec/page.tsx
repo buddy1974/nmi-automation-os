@@ -1,24 +1,8 @@
 import styles from "./page.module.css";
+import { getExecMetrics } from "@/lib/exec-metrics";
 
-interface ExecData {
-  ordersToday: number;
-  openInvoices: number;
-  stockAlerts: number;
-  receivables: number;
-  printJobs: number;
-  branchStatus: string;
-}
-
-async function getExecData(): Promise<ExecData> {
-  const base = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const res = await fetch(`${base}/api/exec`, {
-    cache: "no-store",
-  });
-  return res.json();
-}
-
-export default async function ExecPage() {
-  const data = await getExecData();
+export default function ExecPage() {
+  const data = getExecMetrics();
 
   const cards = [
     {

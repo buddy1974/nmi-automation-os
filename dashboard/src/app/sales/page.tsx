@@ -1,23 +1,12 @@
 import styles from "./page.module.css";
+import { orders, customers, branches } from "@/lib/data";
 
-interface Order {
-  id: number;
-  customer: string;
-  branch: string;
-  date: string;
-  status: string;
-  total: number;
-}
-
-async function getOrders(): Promise<Order[]> {
-  const res = await fetch("/api/orders", {
-    cache: "no-store",
-  });
-  return res.json();
-}
-
-export default async function SalesPage() {
-  const orders = await getOrders();
+export default function SalesPage() {
+  const enriched = orders.map((order) => ({
+    ...order,
+    customer: customers.find((c) => c.id === order.customer_id)?.name ?? "Unknown",
+    branch:   branches.find((b) => b.id === order.branch_id)?.name   ?? "Unknown",
+  }));
 
   return (
     <div className={styles.page}>
@@ -35,7 +24,7 @@ export default async function SalesPage() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {enriched.map((order) => (
               <tr key={order.id}>
                 <td>#{order.id}</td>
                 <td>{order.customer}</td>
