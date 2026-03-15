@@ -17,7 +17,10 @@
 }
 
 .brand img {
+  max-width: 140px;
+  height: auto;
   display: block;
+  margin-bottom: 10px;
 }
 
 .brandTitle {

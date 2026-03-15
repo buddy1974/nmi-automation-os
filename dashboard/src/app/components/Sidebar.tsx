@@ -20,7 +20,8 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.brand}>
-        <img src="/logo.png" width="120" alt="NMI Logo" />
+        {/* logo debug */}
+        <img src="/logo.png" width="120" alt="NMI Logo" style={{ display: "block" }} />
         <span className={styles.brandTitle}>NMI Automation OS</span>
       </div>
       <nav>
