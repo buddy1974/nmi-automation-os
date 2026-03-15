@@ -1,3 +1,6 @@
+// logo render fix
+import Image from "next/image";
+
 export default function Sidebar() {
   return (
     <div
@@ -6,9 +9,23 @@ export default function Sidebar() {
         background: "#111",
         color: "#fff",
         padding: 20,
+        minHeight: "100vh"
       }}
     >
-      <img src="/logo.png" width="140" />
+      <div
+        style={{
+          background: "#fff",
+          padding: 6,
+          marginBottom: 10
+        }}
+      >
+        <Image
+          src="/logo.png"
+          alt="logo"
+          width={140}
+          height={140}
+        />
+      </div>
 
       <hr />
 
