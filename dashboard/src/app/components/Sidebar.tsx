@@ -1,6 +1,4 @@
-// logo render fix
-import Image from "next/image";
-
+// static logo fix
 export default function Sidebar() {
   return (
     <div
@@ -19,11 +17,14 @@ export default function Sidebar() {
           marginBottom: 10
         }}
       >
-        <Image
+        <img
           src="/logo.png"
           alt="logo"
-          width={140}
-          height={140}
+          style={{
+            width: 140,
+            height: "auto",
+            display: "block"
+          }}
         />
       </div>
 
