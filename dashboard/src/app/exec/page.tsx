@@ -10,7 +10,8 @@ interface ExecData {
 }
 
 async function getExecData(): Promise<ExecData> {
-  const res = await fetch("http://localhost:3000/api/exec", {
+  const base = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const res = await fetch(`${base}/api/exec`, {
     cache: "no-store",
   });
   return res.json();
