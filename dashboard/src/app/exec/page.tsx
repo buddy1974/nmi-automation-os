@@ -1,39 +1,57 @@
 import styles from "./page.module.css";
 
-const cards = [
-  {
-    title: "Orders Today",
-    value: 12,
-    description: "New orders received today",
-  },
-  {
-    title: "Open Invoices",
-    value: 34,
-    description: "Invoices pending payment",
-  },
-  {
-    title: "Stock Alerts",
-    value: 5,
-    description: "Items below minimum threshold",
-  },
-  {
-    title: "Receivables Overdue",
-    value: 8,
-    description: "Payments past due date",
-  },
-  {
-    title: "Print Jobs",
-    value: 3,
-    description: "Jobs queued for printing",
-  },
-  {
-    title: "Branch Status",
-    value: "OK",
-    description: "All branches operational",
-  },
-];
+interface ExecData {
+  ordersToday: number;
+  openInvoices: number;
+  stockAlerts: number;
+  receivables: number;
+  printJobs: number;
+  branchStatus: string;
+}
 
-export default function ExecPage() {
+async function getExecData(): Promise<ExecData> {
+  const res = await fetch("http://localhost:3000/api/exec", {
+    cache: "no-store",
+  });
+  return res.json();
+}
+
+export default async function ExecPage() {
+  const data = await getExecData();
+
+  const cards = [
+    {
+      title: "Orders Today",
+      value: data.ordersToday,
+      description: "New orders received today",
+    },
+    {
+      title: "Open Invoices",
+      value: data.openInvoices,
+      description: "Invoices pending payment",
+    },
+    {
+      title: "Stock Alerts",
+      value: data.stockAlerts,
+      description: "Items below minimum threshold",
+    },
+    {
+      title: "Receivables Overdue",
+      value: data.receivables,
+      description: "Payments past due date",
+    },
+    {
+      title: "Print Jobs",
+      value: data.printJobs,
+      description: "Jobs queued for printing",
+    },
+    {
+      title: "Branch Status",
+      value: data.branchStatus,
+      description: "All branches operational",
+    },
+  ];
+
   return (
     <div className={styles.page}>
       <h1 className={styles.heading}>Exec Dashboard</h1>
