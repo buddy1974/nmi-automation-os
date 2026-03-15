@@ -7,8 +7,9 @@ export default function CataloguePage() {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Code</th>
             <th>Title</th>
+            <th>Level</th>
             <th>Class</th>
             <th>Subject</th>
             <th>Price</th>
@@ -18,8 +19,9 @@ export default function CataloguePage() {
         <tbody>
           {products.map((p) => (
             <tr key={p.id}>
-              <td>{p.id}</td>
+              <td>{p.code}</td>
               <td>{p.title}</td>
+              <td>{p.level}</td>
               <td>{p.class}</td>
               <td>{p.subject}</td>
               <td>{p.price}</td>
