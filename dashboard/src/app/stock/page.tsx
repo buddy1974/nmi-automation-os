@@ -3,9 +3,17 @@
 import { useState } from "react"
 import { products as initialProducts } from "@/lib/products"
 
+type LogEntry = {
+  id: string
+  action: string
+  qty: number
+  time: string
+}
+
 export default function StockPage() {
 
   const [items, setItems] = useState(initialProducts)
+  const [log, setLog] = useState<LogEntry[]>([])
 
   function addStock(id: string) {
     setItems((prev) =>
@@ -13,6 +21,10 @@ export default function StockPage() {
         p.id === id ? { ...p, stock: p.stock + 10 } : p
       )
     )
+    setLog((prev) => [
+      { id, action: "add", qty: 10, time: new Date().toISOString() },
+      ...prev,
+    ])
   }
 
   function removeStock(id: string) {
@@ -21,6 +33,10 @@ export default function StockPage() {
         p.id === id ? { ...p, stock: p.stock - 10 } : p
       )
     )
+    setLog((prev) => [
+      { id, action: "remove", qty: 10, time: new Date().toISOString() },
+      ...prev,
+    ])
   }
 
   return (
@@ -68,6 +84,22 @@ export default function StockPage() {
         </tbody>
 
       </table>
+
+      <h2>Stock Log</h2>
+
+      <ul>
+
+        {log.map((l, i) => (
+
+          <li key={i}>
+
+            {l.time} — {l.id} — {l.action} — {l.qty}
+
+          </li>
+
+        ))}
+
+      </ul>
 
     </div>
   )
