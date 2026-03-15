@@ -10,20 +10,19 @@ export default function Sidebar() {
         minHeight: "100vh"
       }}
     >
-      <div
-        style={{
-          background: "#fff",
-          padding: 6,
-          marginBottom: 10
-        }}
-      >
+      <div style={{
+        padding: "10px",
+        textAlign: "center"
+      }}>
         <img
           src="/logo-nmi.png"
           alt="logo"
           style={{
-            width: 140,
+            width: 90,
             height: "auto",
-            display: "block"
+            objectFit: "contain",
+            display: "block",
+            margin: "0 auto"
           }}
         />
       </div>
