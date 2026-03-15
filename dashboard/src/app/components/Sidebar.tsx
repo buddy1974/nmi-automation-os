@@ -19,7 +19,10 @@ export default function Sidebar() {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.brand}>NMI OS</div>
+      <div className={styles.brand}>
+        <img src="/logo.png" width="120" alt="NMI Logo" />
+        <span className={styles.brandTitle}>NMI Automation OS</span>
+      </div>
       <nav>
         <ul className={styles.nav}>
           {links.map(({ href, label }) => (
