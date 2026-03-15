@@ -1,21 +1,33 @@
-# NMI Automation OS
+# PROJECT HEADER — SOURCE OF TRUTH
 
-**Project:** nmi-automation-os
-**Created:** 2026-03-15
-**Status:** Active Development
+PROJECT_NAME: NMI_AUTOMATION_OS
 
-## Overview
+CLIENT: NMI Education SARL
+WEBSITE: https://www.nmieducation.com
 
-NMI Automation OS is a centralized automation operating system for managing workflows, integrations, dashboards, and configuration — designed to scale with AI-assisted tooling and n8n automation pipelines.
+PURPOSE
 
-## Stack
+Build a full enterprise automation system for a publishing company
+using n8n v2.4.8 as the automation engine.
 
-- Workflows: n8n (pending install)
-- Dashboard: TBD (pending framework selection)
-- Database: TBD
-- Hosting: Vercel (pending connection)
-- Version Control: GitHub (pending connection)
+This project must stay structured, modular, and step-by-step.
 
-## Maintainer
+This header file is the source of truth.
+All responses must follow it.
 
-NMI Team
+GLOBAL RULES
+
+1. Never jump steps
+2. Never build giant workflow
+3. Always design first
+4. Always list nodes before building
+5. Always explain logic before JSON
+6. Use n8n v2.4.8 interface logic
+7. Keep modules separated
+8. No hardcoded values
+9. All workflows must be reusable
+10. Always follow project modules
+
+SYSTEM NAME
+
+NMI Automation OS
