@@ -18,7 +18,7 @@ export default function Sidebar() {
         }}
       >
         <img
-          src="/logo.png"
+          src="/logo-nmi.png"
           alt="logo"
           style={{
             width: 140,
