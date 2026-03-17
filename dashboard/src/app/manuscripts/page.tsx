@@ -82,6 +82,36 @@ export default function ManuscriptsPage() {
   }
 
 
+
+  function analyse(id: number) {
+
+    setManuscripts(
+
+      manuscripts.map(m => {
+
+        if (m.id !== id) return m
+
+        const report =
+          "Level: Primary\n" +
+          "Quality: Good\n" +
+          "Grammar: OK\n" +
+          "Subject detected: " + m.subject + "\n" +
+          "Suggested class: " + m.class
+
+        return {
+          ...m,
+          aiReport: report,
+          status: "reviewing" as ManuscriptStatus
+        }
+
+      })
+
+    )
+
+  }
+
+
+
   return (
 
     <div>
@@ -132,11 +162,17 @@ export default function ManuscriptsPage() {
 
         <div key={m.id}>
 
-          {m.title} —
+          <b>{m.title}</b> —
           {m.author} —
           {m.subject} —
           {m.class} —
           {m.status}
+
+          <button onClick={() => analyse(m.id)}>
+            Analyse AI
+          </button>
+
+          <pre>{m.aiReport}</pre>
 
         </div>
 
