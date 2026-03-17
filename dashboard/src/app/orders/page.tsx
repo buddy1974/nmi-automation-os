@@ -12,6 +12,9 @@ type OrderItem = {
 
 type SavedOrder = {
   id: number
+  number: string
+  customer: string
+  date: string
   items: OrderItem[]
   total: number
 }
@@ -23,6 +26,8 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<OrderItem[]>([])
 
   const [savedOrders, setSavedOrders] = useState<SavedOrder[]>([])
+
+  const [customer, setCustomer] = useState("")
 
 
 
@@ -127,17 +132,29 @@ export default function OrdersPage() {
     if (orders.length === 0) return
 
     const newOrder: SavedOrder = {
+
       id: Date.now(),
+
+      number: "ORD-" + Date.now(),
+
+      customer: customer,
+
+      date: new Date().toLocaleDateString(),
+
       items: orders,
+
       total: orders.reduce(
         (sum, o) => sum + o.qty * o.price,
         0
       )
+
     }
 
     setSavedOrders([...savedOrders, newOrder])
 
     setOrders([])
+
+    setCustomer("")
 
   }
 
@@ -154,6 +171,15 @@ export default function OrdersPage() {
     <div>
 
       <h1>Orders</h1>
+
+
+      <h2>Customer</h2>
+
+      <input
+        value={customer}
+        onChange={(e) => setCustomer(e.target.value)}
+        placeholder="Customer name"
+      />
 
 
       <h2>Add item</h2>
@@ -202,13 +228,9 @@ export default function OrdersPage() {
 
               <td>
 
-                <button onClick={() => increase(o.code)}>
-                  +
-                </button>
+                <button onClick={() => increase(o.code)}>+</button>
 
-                <button onClick={() => decrease(o.code)}>
-                  -
-                </button>
+                <button onClick={() => decrease(o.code)}>-</button>
 
               </td>
 
@@ -236,7 +258,7 @@ export default function OrdersPage() {
 
         <div key={o.id}>
 
-          Order #{o.id} — Total: {o.total}
+          {o.number} — {o.customer} — {o.date} — Total: {o.total}
 
         </div>
 
