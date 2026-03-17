@@ -24,6 +24,32 @@ type Manuscript = {
   aiReport: string
   approved: boolean
   readyForPrint: boolean
+  suggestedLevel: string
+  suggestedClass: string
+  suggestedSubject: string
+  suggestedCode: string
+}
+
+function classifySubject(subject: string): { name: string; code: string } {
+  const s = subject.toLowerCase()
+  if (s.includes("english"))  return { name: "English",                  code: "ENG"  }
+  if (s.includes("math"))     return { name: "Mathematics",              code: "MATH" }
+  if (s.includes("science"))  return { name: "Sciences and Technology",  code: "SCI"  }
+  if (s.includes("french"))   return { name: "French",                   code: "FR"   }
+  if (s.includes("social"))   return { name: "Social Studies",           code: "SOC"  }
+  if (s.includes("ict"))      return { name: "ICT",                      code: "ICT"  }
+  if (s.includes("handwrit")) return { name: "Handwriting",              code: "HW"   }
+  return { name: subject, code: "GEN" }
+}
+
+function classifyClass(cls: string): string {
+  if (cls.includes("1")) return "Primary 1"
+  if (cls.includes("2")) return "Primary 2"
+  if (cls.includes("3")) return "Primary 3"
+  if (cls.includes("4")) return "Primary 4"
+  if (cls.includes("5")) return "Primary 5"
+  if (cls.includes("6")) return "Primary 6"
+  return cls
 }
 
 export default function ManuscriptsPage() {
@@ -64,14 +90,16 @@ export default function ManuscriptsPage() {
 
       approved: false,
 
-      readyForPrint: false
+      readyForPrint: false,
+
+      suggestedLevel: "",
+      suggestedClass: "",
+      suggestedSubject: "",
+      suggestedCode: ""
 
     }
 
-    setManuscripts([
-      ...manuscripts,
-      newManuscript
-    ])
+    setManuscripts([...manuscripts, newManuscript])
 
     setTitle("")
     setAuthor("")
@@ -91,17 +119,31 @@ export default function ManuscriptsPage() {
 
         if (m.id !== id) return m
 
+        const { name: suggestedSubject, code: subjectCode } = classifySubject(m.subject)
+
+        const suggestedClass = classifyClass(m.class)
+
+        const classNo = suggestedClass.replace("Primary ", "")
+
+        const suggestedCode = `P-${subjectCode}-${classNo}`
+
+        const suggestedLevel = "Primary"
+
         const report =
           "Level: Primary\n" +
           "Quality: Good\n" +
           "Grammar: OK\n" +
-          "Subject detected: " + m.subject + "\n" +
-          "Suggested class: " + m.class
+          "Subject detected: " + suggestedSubject + "\n" +
+          "Suggested class: " + suggestedClass
 
         return {
           ...m,
           aiReport: report,
-          status: "reviewing" as ManuscriptStatus
+          status: "reviewing" as ManuscriptStatus,
+          suggestedLevel,
+          suggestedClass,
+          suggestedSubject,
+          suggestedCode
         }
 
       })
@@ -173,6 +215,15 @@ export default function ManuscriptsPage() {
           </button>
 
           <pre>{m.aiReport}</pre>
+
+          {m.suggestedCode && (
+            <div>
+              Suggested Level: {m.suggestedLevel}<br />
+              Suggested Class: {m.suggestedClass}<br />
+              Suggested Subject: {m.suggestedSubject}<br />
+              Suggested Code: {m.suggestedCode}
+            </div>
+          )}
 
         </div>
 
