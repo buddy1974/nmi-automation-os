@@ -28,6 +28,8 @@ type Manuscript = {
   suggestedClass: string
   suggestedSubject: string
   suggestedCode: string
+  editor: string
+  editorNotes: string
 }
 
 function classifySubject(subject: string): { name: string; code: string } {
@@ -95,7 +97,10 @@ export default function ManuscriptsPage() {
       suggestedLevel: "",
       suggestedClass: "",
       suggestedSubject: "",
-      suggestedCode: ""
+      suggestedCode: "",
+
+      editor: "",
+      editorNotes: ""
 
     }
 
@@ -148,6 +153,49 @@ export default function ManuscriptsPage() {
 
       })
 
+    )
+
+  }
+
+
+
+  function setStatus(id: number, status: ManuscriptStatus) {
+
+    setManuscripts(
+      manuscripts.map(m =>
+        m.id === id
+          ? {
+              ...m,
+              status,
+              approved: status === "approved",
+              readyForPrint: status === "ready_for_print"
+            }
+          : m
+      )
+    )
+
+  }
+
+
+
+  function updateEditor(id: number, editor: string) {
+
+    setManuscripts(
+      manuscripts.map(m =>
+        m.id === id ? { ...m, editor } : m
+      )
+    )
+
+  }
+
+
+
+  function updateEditorNotes(id: number, editorNotes: string) {
+
+    setManuscripts(
+      manuscripts.map(m =>
+        m.id === id ? { ...m, editorNotes } : m
+      )
     )
 
   }
@@ -208,11 +256,51 @@ export default function ManuscriptsPage() {
           {m.author} —
           {m.subject} —
           {m.class} —
-          {m.status}
+          <b>{m.status}</b>
 
-          <button onClick={() => analyse(m.id)}>
-            Analyse AI
-          </button>
+          <div>
+
+            <button onClick={() => analyse(m.id)}>
+              Analyse AI
+            </button>
+
+            <button onClick={() => setStatus(m.id, "reviewing")}>
+              Review
+            </button>
+
+            <button onClick={() => setStatus(m.id, "editing")}>
+              Edit
+            </button>
+
+            <button onClick={() => setStatus(m.id, "approved")}>
+              Approve
+            </button>
+
+            <button onClick={() => setStatus(m.id, "rejected")}>
+              Reject
+            </button>
+
+            <button onClick={() => setStatus(m.id, "ready_for_print")}>
+              Ready for Print
+            </button>
+
+          </div>
+
+          <div>
+
+            <input
+              placeholder="Assign editor"
+              value={m.editor}
+              onChange={(e) => updateEditor(m.id, e.target.value)}
+            />
+
+            <input
+              placeholder="Editor notes"
+              value={m.editorNotes}
+              onChange={(e) => updateEditorNotes(m.id, e.target.value)}
+            />
+
+          </div>
 
           <pre>{m.aiReport}</pre>
 
