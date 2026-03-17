@@ -10,11 +10,20 @@ type OrderItem = {
   price: number
 }
 
+type SavedOrder = {
+  id: number
+  items: OrderItem[]
+  total: number
+}
+
 export default function OrdersPage() {
 
   const [products, setProducts] = useState<Product[]>(initialProducts)
 
   const [orders, setOrders] = useState<OrderItem[]>([])
+
+  const [savedOrders, setSavedOrders] = useState<SavedOrder[]>([])
+
 
 
   function addOrder(code: string) {
@@ -22,12 +31,9 @@ export default function OrdersPage() {
     const product = products.find(p => p.code === code)
 
     if (!product) return
-
     if (product.stock <= 0) return
 
-
     const existing = orders.find(o => o.code === code)
-
 
     setProducts(
       products.map(p =>
@@ -36,7 +42,6 @@ export default function OrdersPage() {
           : p
       )
     )
-
 
     if (existing) {
 
@@ -73,7 +78,6 @@ export default function OrdersPage() {
     if (!product) return
     if (product.stock <= 0) return
 
-
     setProducts(
       products.map(p =>
         p.code === code
@@ -81,7 +85,6 @@ export default function OrdersPage() {
           : p
       )
     )
-
 
     setOrders(
       orders.map(o =>
@@ -107,7 +110,6 @@ export default function OrdersPage() {
         .filter(o => o.qty > 0)
     )
 
-
     setProducts(
       products.map(p =>
         p.code === code
@@ -115,6 +117,27 @@ export default function OrdersPage() {
           : p
       )
     )
+
+  }
+
+
+
+  function saveOrder() {
+
+    if (orders.length === 0) return
+
+    const newOrder: SavedOrder = {
+      id: Date.now(),
+      items: orders,
+      total: orders.reduce(
+        (sum, o) => sum + o.qty * o.price,
+        0
+      )
+    }
+
+    setSavedOrders([...savedOrders, newOrder])
+
+    setOrders([])
 
   }
 
@@ -199,6 +222,26 @@ export default function OrdersPage() {
 
 
       <h2>Total: {total}</h2>
+
+
+      <button onClick={saveOrder}>
+        Save Order
+      </button>
+
+
+
+      <h2>Saved Orders</h2>
+
+      {savedOrders.map(o => (
+
+        <div key={o.id}>
+
+          Order #{o.id} — Total: {o.total}
+
+        </div>
+
+      ))}
+
 
     </div>
 
