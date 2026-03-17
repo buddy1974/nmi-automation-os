@@ -24,6 +24,14 @@ type SavedOrder = {
   total: number
 }
 
+type RoyaltyRecord = {
+  id: number
+  book: string
+  author: string
+  amount: number
+  date: string
+}
+
 export default function OrdersPage() {
 
   const [products, setProducts] = useState<Product[]>(initialProducts)
@@ -32,10 +40,11 @@ export default function OrdersPage() {
 
   const [savedOrders, setSavedOrders] = useState<SavedOrder[]>([])
 
+  const [royaltyRecords, setRoyaltyRecords] = useState<RoyaltyRecord[]>([])
+
   const [customers] = useState<Customer[]>([
     { id: 1, name: "School A" },
-    { id: 2, name: "Bookshop B" },
-    { id: 3, name: "Parent C" }
+    { id: 2, name: "Bookshop B" }
   ])
 
   const [customerId, setCustomerId] = useState<number>(1)
@@ -163,6 +172,55 @@ export default function OrdersPage() {
 
     }
 
+
+    // ===== ROYALTY CALCULATION =====
+
+    const newRoyalties: RoyaltyRecord[] = []
+
+    orders.forEach(o => {
+
+      const product = products.find(p => p.code === o.code)
+
+      if (!product) return
+
+      let royalty = 0
+
+      if (product.royaltyType === "percent") {
+
+        royalty =
+          o.price *
+          o.qty *
+          product.royaltyValue /
+          100
+
+      }
+
+      if (product.royaltyType === "fixed") {
+
+        royalty =
+          product.royaltyValue *
+          o.qty
+
+      }
+
+      newRoyalties.push({
+
+        id: Date.now() + Math.random(),
+
+        book: product.title,
+
+        author: product.author,
+
+        amount: royalty,
+
+        date: new Date().toLocaleDateString()
+
+      })
+
+    })
+
+    setRoyaltyRecords([...royaltyRecords, ...newRoyalties])
+
     setSavedOrders([...savedOrders, newOrder])
 
     setOrders([])
@@ -223,50 +281,22 @@ export default function OrdersPage() {
 
       <h2>Order</h2>
 
-      <table>
+      {orders.map(o => (
 
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Title</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Total</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        <div key={o.code}>
 
-        <tbody>
+          {o.title} — {o.qty}
 
-          {orders.map(o => (
+          <button onClick={() => increase(o.code)}>+</button>
 
-            <tr key={o.code}>
+          <button onClick={() => decrease(o.code)}>-</button>
 
-              <td>{o.code}</td>
-              <td>{o.title}</td>
-              <td>{o.qty}</td>
-              <td>{o.price}</td>
-              <td>{o.qty * o.price}</td>
+        </div>
 
-              <td>
-
-                <button onClick={() => increase(o.code)}>+</button>
-
-                <button onClick={() => decrease(o.code)}>-</button>
-
-              </td>
-
-            </tr>
-
-          ))}
-
-        </tbody>
-
-      </table>
+      ))}
 
 
       <h2>Total: {total}</h2>
-
 
       <button onClick={saveOrder}>
         Save Order
@@ -274,13 +304,13 @@ export default function OrdersPage() {
 
 
 
-      <h2>Saved Orders</h2>
+      <h2>Royalty Records</h2>
 
-      {savedOrders.map(o => (
+      {royaltyRecords.map(r => (
 
-        <div key={o.id}>
+        <div key={r.id}>
 
-          {o.number} — {o.customer} — {o.date} — Total: {o.total}
+          {r.book} — {r.author} — {r.amount}
 
         </div>
 
