@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { products } from "@/lib/products"
+import { products as initialProducts, type Product } from "@/lib/products"
 
 type OrderItem = {
   code: string
@@ -12,7 +12,10 @@ type OrderItem = {
 
 export default function OrdersPage() {
 
+  const [products, setProducts] = useState<Product[]>(initialProducts)
+
   const [orders, setOrders] = useState<OrderItem[]>([])
+
 
   function addOrder(code: string) {
 
@@ -20,7 +23,20 @@ export default function OrdersPage() {
 
     if (!product) return
 
+    if (product.stock <= 0) return
+
+
     const existing = orders.find(o => o.code === code)
+
+
+    setProducts(
+      products.map(p =>
+        p.code === code
+          ? { ...p, stock: p.stock - 1 }
+          : p
+      )
+    )
+
 
     if (existing) {
 
@@ -49,7 +65,23 @@ export default function OrdersPage() {
   }
 
 
+
   function increase(code: string) {
+
+    const product = products.find(p => p.code === code)
+
+    if (!product) return
+    if (product.stock <= 0) return
+
+
+    setProducts(
+      products.map(p =>
+        p.code === code
+          ? { ...p, stock: p.stock - 1 }
+          : p
+      )
+    )
+
 
     setOrders(
       orders.map(o =>
@@ -62,17 +94,30 @@ export default function OrdersPage() {
   }
 
 
+
   function decrease(code: string) {
 
     setOrders(
-      orders.map(o =>
-        o.code === code
-          ? { ...o, qty: o.qty - 1 }
-          : o
-      ).filter(o => o.qty > 0)
+      orders
+        .map(o =>
+          o.code === code
+            ? { ...o, qty: o.qty - 1 }
+            : o
+        )
+        .filter(o => o.qty > 0)
+    )
+
+
+    setProducts(
+      products.map(p =>
+        p.code === code
+          ? { ...p, stock: p.stock + 1 }
+          : p
+      )
     )
 
   }
+
 
 
   const total = orders.reduce(
@@ -94,7 +139,7 @@ export default function OrdersPage() {
 
         <div key={p.id}>
 
-          {p.code} — {p.title}
+          {p.code} — {p.title} — stock: {p.stock}
 
           <button onClick={() => addOrder(p.code)}>
             Add
