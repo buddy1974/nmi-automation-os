@@ -20,17 +20,66 @@ export default function OrdersPage() {
 
     if (!product) return
 
-    setOrders([
-      ...orders,
-      {
-        code: product.code,
-        title: product.title,
-        qty: 1,
-        price: product.price
-      }
-    ])
+    const existing = orders.find(o => o.code === code)
+
+    if (existing) {
+
+      setOrders(
+        orders.map(o =>
+          o.code === code
+            ? { ...o, qty: o.qty + 1 }
+            : o
+        )
+      )
+
+    } else {
+
+      setOrders([
+        ...orders,
+        {
+          code: product.code,
+          title: product.title,
+          price: product.price,
+          qty: 1
+        }
+      ])
+
+    }
 
   }
+
+
+  function increase(code: string) {
+
+    setOrders(
+      orders.map(o =>
+        o.code === code
+          ? { ...o, qty: o.qty + 1 }
+          : o
+      )
+    )
+
+  }
+
+
+  function decrease(code: string) {
+
+    setOrders(
+      orders.map(o =>
+        o.code === code
+          ? { ...o, qty: o.qty - 1 }
+          : o
+      ).filter(o => o.qty > 0)
+    )
+
+  }
+
+
+  const total = orders.reduce(
+    (sum, o) => sum + o.qty * o.price,
+    0
+  )
+
 
   return (
 
@@ -56,21 +105,55 @@ export default function OrdersPage() {
       ))}
 
 
-      <h2>Order list</h2>
+      <h2>Order</h2>
 
-      <ul>
+      <table>
 
-        {orders.map((o, i) => (
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-          <li key={i}>
+        <tbody>
 
-            {o.code} — {o.title} — {o.qty} — {o.price}
+          {orders.map(o => (
 
-          </li>
+            <tr key={o.code}>
 
-        ))}
+              <td>{o.code}</td>
+              <td>{o.title}</td>
+              <td>{o.qty}</td>
+              <td>{o.price}</td>
+              <td>{o.qty * o.price}</td>
 
-      </ul>
+              <td>
+
+                <button onClick={() => increase(o.code)}>
+                  +
+                </button>
+
+                <button onClick={() => decrease(o.code)}>
+                  -
+                </button>
+
+              </td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
+
+      <h2>Total: {total}</h2>
 
     </div>
 
