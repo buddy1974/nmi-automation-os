@@ -10,10 +10,15 @@ type OrderItem = {
   price: number
 }
 
+type Customer = {
+  id: number
+  name: string
+}
+
 type SavedOrder = {
   id: number
   number: string
-  customer: string
+  customer: string | undefined
   date: string
   items: OrderItem[]
   total: number
@@ -27,7 +32,13 @@ export default function OrdersPage() {
 
   const [savedOrders, setSavedOrders] = useState<SavedOrder[]>([])
 
-  const [customer, setCustomer] = useState("")
+  const [customers] = useState<Customer[]>([
+    { id: 1, name: "School A" },
+    { id: 2, name: "Bookshop B" },
+    { id: 3, name: "Parent C" }
+  ])
+
+  const [customerId, setCustomerId] = useState<number>(1)
 
 
 
@@ -131,13 +142,15 @@ export default function OrdersPage() {
 
     if (orders.length === 0) return
 
+    const customer = customers.find(c => c.id === customerId)
+
     const newOrder: SavedOrder = {
 
       id: Date.now(),
 
       number: "ORD-" + Date.now(),
 
-      customer: customer,
+      customer: customer?.name,
 
       date: new Date().toLocaleDateString(),
 
@@ -153,8 +166,6 @@ export default function OrdersPage() {
     setSavedOrders([...savedOrders, newOrder])
 
     setOrders([])
-
-    setCustomer("")
 
   }
 
@@ -175,11 +186,21 @@ export default function OrdersPage() {
 
       <h2>Customer</h2>
 
-      <input
-        value={customer}
-        onChange={(e) => setCustomer(e.target.value)}
-        placeholder="Customer name"
-      />
+      <select
+        value={customerId}
+        onChange={(e) => setCustomerId(Number(e.target.value))}
+      >
+
+        {customers.map(c => (
+
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
+
+        ))}
+
+      </select>
+
 
 
       <h2>Add item</h2>
@@ -197,6 +218,7 @@ export default function OrdersPage() {
         </div>
 
       ))}
+
 
 
       <h2>Order</h2>
