@@ -32,7 +32,11 @@ export default async function InvoicesPage() {
           <tbody>
             {invoices.map((inv) => (
               <tr key={inv.id}>
-                <td>{inv.number}</td>
+                <td>
+                  <a href={`/invoices/${inv.id}`} style={{ color: "#1a1a2e", textDecoration: "underline" }}>
+                    {inv.number}
+                  </a>
+                </td>
                 <td>{inv.customerName}</td>
                 <td>{Number(inv.amount).toLocaleString()}</td>
                 <td>{new Date(inv.dueDate).toLocaleDateString()}</td>
