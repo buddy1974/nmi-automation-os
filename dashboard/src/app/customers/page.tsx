@@ -1,94 +1,39 @@
-"use client"
+import { prisma } from "@/lib/db"
 
-import { useState } from "react"
-
-type Customer = {
-  id: number
-  name: string
-  phone: string
-  address: string
-}
-
-export default function CustomersPage() {
-
-  const [customers, setCustomers] = useState<Customer[]>([])
-
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
-
-
-  function addCustomer() {
-
-    if (!name) return
-
-    const newCustomer: Customer = {
-
-      id: Date.now(),
-
-      name,
-      phone,
-      address
-
-    }
-
-    setCustomers([...customers, newCustomer])
-
-    setName("")
-    setPhone("")
-    setAddress("")
-
-  }
-
+export default async function CustomersPage() {
+  const customers = await prisma.customer.findMany()
 
   return (
-
     <div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1>Customers</h1>
+        <button>Add Customer</button>
+      </div>
 
-      <h1>Customers</h1>
-
-
-      <h2>Add customer</h2>
-
-      <input
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-
-      <input
-        placeholder="Phone"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-      />
-
-      <input
-        placeholder="Address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-
-      <button onClick={addCustomer}>
-        Add
-      </button>
-
-
-
-      <h2>List</h2>
-
-      {customers.map(c => (
-
-        <div key={c.id}>
-
-          {c.name} — {c.phone} — {c.address}
-
-        </div>
-
-      ))}
-
-
+      {customers.length === 0 ? (
+        <p>No customers found</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {customers.map((c) => (
+              <tr key={c.id}>
+                <td>{c.name}</td>
+                <td>{c.phone}</td>
+                <td>{c.address}</td>
+                <td>{c.type}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
-
   )
-
 }
