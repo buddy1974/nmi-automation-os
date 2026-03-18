@@ -25,7 +25,7 @@ export async function saveOrder(data: {
     }
 
     // Create the order with its items
-    await tx.order.create({
+    const order = await tx.order.create({
       data: {
         number: "ORD-" + Date.now(),
         customerId: data.customerId || null,
@@ -40,6 +40,21 @@ export async function saveOrder(data: {
             lineTotal: i.qty * i.price,
           })),
         },
+      },
+    })
+
+    // Create invoice for this order
+    const dueDate = new Date()
+    dueDate.setDate(dueDate.getDate() + 30)
+
+    await tx.invoice.create({
+      data: {
+        number: "INV-" + Date.now(),
+        orderId: order.id,
+        customerName: data.customerName,
+        amount: total,
+        dueDate,
+        status: "issued",
       },
     })
 

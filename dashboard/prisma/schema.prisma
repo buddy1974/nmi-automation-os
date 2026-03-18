@@ -96,11 +96,14 @@ model OrderItem {
 // ── Invoices ──────────────────────────────────────────────────────────────────
 
 model Invoice {
-  id      Int      @id @default(autoincrement())
-  orderId Int      @unique @map("order_id")
-  amount  Decimal  @default(0)
-  dueDate DateTime @map("due_date") @db.Date
-  status  String   @default("unpaid")
+  id           Int      @id @default(autoincrement())
+  number       String   @unique @default("")
+  orderId      Int      @unique @map("order_id")
+  customerName String   @default("") @map("customer_name")
+  amount       Decimal  @default(0)
+  dueDate      DateTime @map("due_date") @db.Date
+  status       String   @default("draft")
+  createdAt    DateTime @default(now()) @map("created_at")
 
   order Order @relation(fields: [orderId], references: [id])
 
