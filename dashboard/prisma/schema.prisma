@@ -265,6 +265,20 @@ model StockHistory {
   @@map("stock_history")
 }
 
+// ── Automation jobs ───────────────────────────────────────────────────────────
+
+model AutomationJob {
+  id        Int      @id @default(autoincrement())
+  type      String
+  payload   Json
+  status    String   @default("pending")
+  result    Json?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt      @map("updated_at")
+
+  @@map("automation_jobs")
+}
+
 // ── Users ─────────────────────────────────────────────────────────────────────
 
 model User {
