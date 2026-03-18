@@ -1,33 +1,62 @@
 import { NextRequest, NextResponse } from "next/server"
 import { jwtVerify } from "jose"
 
-// Edge-compatible: jose works on Edge, bcryptjs does not — so no import from auth.ts here
+// Edge-compatible — jose only (no bcryptjs, no Prisma, no auth.ts import)
 const secret = new TextEncoder().encode(process.env.JWT_SECRET!)
 
-// Routes that do NOT require authentication
+// ── Public routes (no auth required) ─────────────────────────────────────────
 const PUBLIC = ["/login"]
+
+// ── Role → allowed path prefixes ─────────────────────────────────────────────
+// Keep in sync with ROLE_ACCESS in src/lib/auth.ts
+const ROLE_ACCESS: Record<string, string[]> = {
+  admin:      ["*"],
+  manager:    ["/", "/dashboard", "/orders", "/invoices", "/finance", "/customers", "/stock", "/catalogue", "/sales", "/exec"],
+  accountant: ["/", "/dashboard", "/finance", "/invoices", "/royalties", "/accounting"],
+  editor:     ["/", "/dashboard", "/manuscripts", "/authors", "/editorial"],
+  printer:    ["/", "/dashboard", "/printing", "/stock"],
+  hr:         ["/", "/dashboard", "/hr", "/users"],
+  viewer:     ["/", "/dashboard"],
+}
+
+function canAccess(role: string, pathname: string): boolean {
+  if (role === "admin") return true
+  const allowed = ROLE_ACCESS[role] ?? []
+  return allowed.some((path) =>
+    path === "/" ? pathname === "/" : pathname.startsWith(path)
+  )
+}
+
+// ── Middleware ────────────────────────────────────────────────────────────────
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
-  // Always allow public routes
+  // Always pass public routes
   if (PUBLIC.some((p) => pathname.startsWith(p))) {
     return NextResponse.next()
   }
 
   const token = req.cookies.get("nmi_session")?.value
 
-  // No cookie → redirect to login
+  // Not logged in → login page
   if (!token) {
     return NextResponse.redirect(new URL("/login", req.url))
   }
 
-  // Verify JWT
   try {
-    await jwtVerify(token, secret)
+    const { payload } = await jwtVerify(token, secret)
+    const role = (payload.role as string) ?? "viewer"
+
+    // Logged in but role not allowed → back to dashboard
+    if (!canAccess(role, pathname)) {
+      return NextResponse.redirect(new URL("/dashboard", req.url))
+    }
+
     return NextResponse.next()
+
   } catch {
-    // Token expired or tampered → clear cookie and redirect
+    // Token expired or tampered → clear + redirect to login
     const res = NextResponse.redirect(new URL("/login", req.url))
     res.cookies.delete("nmi_session")
     return res
@@ -36,7 +65,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    // Run on all routes except Next.js internals and static files
     "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 }

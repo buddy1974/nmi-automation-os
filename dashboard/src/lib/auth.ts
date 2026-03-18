@@ -45,3 +45,24 @@ export async function getSession(token?: string): Promise<SessionPayload | null>
   if (!token) return null
   return verifyToken(token)
 }
+
+// ── Role permissions ──────────────────────────────────────────────────────────
+// Used in middleware (duplicated there for Edge compatibility) and in pages.
+
+export const ROLE_ACCESS: Record<string, string[]> = {
+  admin:      ["*"],
+  manager:    ["/", "/dashboard", "/orders", "/invoices", "/finance", "/customers", "/stock", "/catalogue", "/sales", "/exec"],
+  accountant: ["/", "/dashboard", "/finance", "/invoices", "/royalties", "/accounting"],
+  editor:     ["/", "/dashboard", "/manuscripts", "/authors", "/editorial"],
+  printer:    ["/", "/dashboard", "/printing", "/stock"],
+  hr:         ["/", "/dashboard", "/hr", "/users"],
+  viewer:     ["/", "/dashboard"],
+}
+
+export function canAccess(role: string, pathname: string): boolean {
+  if (role === "admin") return true
+  const allowed = ROLE_ACCESS[role] ?? []
+  return allowed.some((path) =>
+    path === "/" ? pathname === "/" : pathname.startsWith(path)
+  )
+}
