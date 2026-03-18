@@ -1,5 +1,6 @@
-import { prisma } from "./db"
-import type { AutomationJob } from "@prisma/client"
+import { prisma }                    from "./db"
+import type { AutomationJob }        from "@prisma/client"
+import { runAIAction, AI_JOB_TYPES } from "./ai-actions"
 
 // ── Job result type ───────────────────────────────────────────────────────────
 
@@ -56,6 +57,11 @@ async function handleStockCheck(): Promise<JobResult> {
 // ── Main runner ───────────────────────────────────────────────────────────────
 
 export async function runJob(job: AutomationJob): Promise<JobResult> {
+  // Route AI-specific job types to the AI action handler
+  if (AI_JOB_TYPES.includes(job.type)) {
+    return runAIAction(job)
+  }
+
   switch (job.type) {
     case "ping":             return handlePing()
     case "invoice_summary":  return handleInvoiceSummary()
