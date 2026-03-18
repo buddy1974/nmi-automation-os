@@ -38,3 +38,10 @@ export async function verifyToken(token: string): Promise<SessionPayload | null>
     return null
   }
 }
+
+// ── Session helper (for server components + actions) ──────────────────────────
+
+export async function getSession(token?: string): Promise<SessionPayload | null> {
+  if (!token) return null
+  return verifyToken(token)
+}
