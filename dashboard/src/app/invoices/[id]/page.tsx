@@ -1,10 +1,19 @@
 import { prisma } from "@/lib/db"
 import { notFound } from "next/navigation"
+import InvoiceActions from "./InvoiceActions"
 
 export const dynamic = "force-dynamic"
 
 interface Props {
   params: { id: string }
+}
+
+const STATUS_COLOR: Record<string, string> = {
+  draft:     "#888",
+  issued:    "#2563eb",
+  partial:   "#d97706",
+  paid:      "#16a34a",
+  cancelled: "#dc2626",
 }
 
 export default async function InvoiceDetailPage({ params }: Props) {
@@ -22,7 +31,10 @@ export default async function InvoiceDetailPage({ params }: Props) {
 
   if (!invoice) notFound()
 
-  const items = invoice.order?.items ?? []
+  const items   = invoice.order?.items ?? []
+  const total   = Number(invoice.amount)
+  const paid    = Number(invoice.paid)
+  const balance = total - paid
 
   return (
     <>
@@ -78,7 +90,7 @@ export default async function InvoiceDetailPage({ params }: Props) {
           font-size: 13px;
         }
 
-        .invoice-meta .status-badge {
+        .status-badge {
           display: inline-block;
           margin-top: 8px;
           padding: 3px 10px;
@@ -86,9 +98,7 @@ export default async function InvoiceDetailPage({ params }: Props) {
           font-size: 12px;
           font-weight: 600;
           text-transform: uppercase;
-          background: #f0f4ff;
-          color: #1a1a2e;
-          border: 1px solid #c7d2fe;
+          border: 1px solid currentColor;
         }
 
         .bill-to {
@@ -147,15 +157,16 @@ export default async function InvoiceDetailPage({ params }: Props) {
         }
 
         .totals-table {
-          width: 260px;
+          width: 280px;
+          border-collapse: collapse;
         }
 
-        .totals-table tr td {
-          padding: 6px 0;
+        .totals-table td {
+          padding: 7px 0;
           font-size: 13px;
         }
 
-        .totals-table tr td:last-child {
+        .totals-table td:last-child {
           text-align: right;
           font-weight: 600;
         }
@@ -167,6 +178,15 @@ export default async function InvoiceDetailPage({ params }: Props) {
           padding-top: 10px;
         }
 
+        .totals-table .balance-row td {
+          color: #dc2626;
+          font-weight: 700;
+        }
+
+        .totals-table .paid-row td {
+          color: #16a34a;
+        }
+
         .invoice-footer {
           text-align: center;
           font-size: 11px;
@@ -174,42 +194,12 @@ export default async function InvoiceDetailPage({ params }: Props) {
           border-top: 1px solid #eee;
           padding-top: 20px;
         }
-
-        .print-btn {
-          display: inline-block;
-          margin-bottom: 24px;
-          padding: 8px 20px;
-          background: #1a1a2e;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          font-size: 14px;
-          cursor: pointer;
-        }
-
-        .back-link {
-          display: inline-block;
-          margin-bottom: 24px;
-          margin-right: 12px;
-          font-size: 13px;
-          color: #555;
-          text-decoration: none;
-        }
-
-        .back-link:hover {
-          text-decoration: underline;
-        }
       `}</style>
 
       <div className="invoice-page">
 
-        {/* Actions — hidden on print */}
-        <div className="no-print" style={{ marginBottom: "8px" }}>
-          <a href="/invoices" className="back-link">← Back to invoices</a>
-          <button className="print-btn" onClick={() => window.print()}>
-            Print
-          </button>
-        </div>
+        {/* Interactive actions — print button + payment form */}
+        <InvoiceActions invoiceId={invoice.id} status={invoice.status} />
 
         {/* Header */}
         <div className="invoice-header">
@@ -228,7 +218,12 @@ export default async function InvoiceDetailPage({ params }: Props) {
             <p><strong>Date:</strong> {new Date(invoice.createdAt).toLocaleDateString("fr-CM", { day: "2-digit", month: "long", year: "numeric" })}</p>
             <p><strong>Due:</strong> {new Date(invoice.dueDate).toLocaleDateString("fr-CM", { day: "2-digit", month: "long", year: "numeric" })}</p>
             <p><strong>Order:</strong> {invoice.order?.number ?? "—"}</p>
-            <span className="status-badge">{invoice.status}</span>
+            <span
+              className="status-badge"
+              style={{ color: STATUS_COLOR[invoice.status] ?? "#888" }}
+            >
+              {invoice.status}
+            </span>
           </div>
 
         </div>
@@ -245,8 +240,8 @@ export default async function InvoiceDetailPage({ params }: Props) {
             <tr>
               <th>Code</th>
               <th>Title</th>
-              <th>Qty</th>
-              <th>Unit Price</th>
+              <th style={{ textAlign: "center" }}>Qty</th>
+              <th style={{ textAlign: "right" }}>Unit Price</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -273,14 +268,20 @@ export default async function InvoiceDetailPage({ params }: Props) {
         <div className="totals-block">
           <table className="totals-table">
             <tbody>
-              <tr>
-                <td>Subtotal</td>
-                <td>{Number(invoice.amount).toLocaleString()} FCFA</td>
-              </tr>
               <tr className="grand-total">
                 <td>Total</td>
-                <td>{Number(invoice.amount).toLocaleString()} FCFA</td>
+                <td>{total.toLocaleString()} FCFA</td>
               </tr>
+              <tr className="paid-row">
+                <td>Paid</td>
+                <td>{paid.toLocaleString()} FCFA</td>
+              </tr>
+              {balance > 0 && (
+                <tr className="balance-row">
+                  <td>Balance due</td>
+                  <td>{balance.toLocaleString()} FCFA</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

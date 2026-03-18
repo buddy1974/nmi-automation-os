@@ -102,7 +102,8 @@ model Invoice {
   customerName String   @default("") @map("customer_name")
   amount       Decimal  @default(0)
   dueDate      DateTime @map("due_date") @db.Date
-  status       String   @default("draft")
+  status       String   @default("issued")
+  paid         Decimal  @default(0)
   createdAt    DateTime @default(now()) @map("created_at")
 
   order Order @relation(fields: [orderId], references: [id])
