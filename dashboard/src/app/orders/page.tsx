@@ -1,324 +1,65 @@
-"use client"
+import { prisma } from "@/lib/db"
+import OrderForm from "./OrderForm"
 
-import { useState } from "react"
-import { products as initialProducts, type Product } from "@/lib/products"
+export const dynamic = "force-dynamic"
 
-type OrderItem = {
-  code: string
-  title: string
-  qty: number
-  price: number
-}
-
-type Customer = {
-  id: number
-  name: string
-}
-
-type SavedOrder = {
-  id: number
-  number: string
-  customer: string | undefined
-  date: string
-  items: OrderItem[]
-  total: number
-}
-
-type RoyaltyRecord = {
-  id: number
-  book: string
-  author: string
-  amount: number
-  date: string
-}
-
-export default function OrdersPage() {
-
-  const [products, setProducts] = useState<Product[]>(initialProducts)
-
-  const [orders, setOrders] = useState<OrderItem[]>([])
-
-  const [savedOrders, setSavedOrders] = useState<SavedOrder[]>([])
-
-  const [royaltyRecords, setRoyaltyRecords] = useState<RoyaltyRecord[]>([])
-
-  const [customers] = useState<Customer[]>([
-    { id: 1, name: "School A" },
-    { id: 2, name: "Bookshop B" }
+export default async function OrdersPage() {
+  const [dbProducts, dbCustomers, savedOrders] = await Promise.all([
+    prisma.product.findMany({ orderBy: { code: "asc" } }),
+    prisma.customer.findMany({ orderBy: { name: "asc" } }),
+    prisma.order.findMany({
+      include: { items: true },
+      orderBy: { id: "desc" },
+    }),
   ])
 
-  const [customerId, setCustomerId] = useState<number>(1)
-
-
-
-  function addOrder(code: string) {
-
-    const product = products.find(p => p.code === code)
-
-    if (!product) return
-    if (product.stock <= 0) return
-
-    const existing = orders.find(o => o.code === code)
-
-    setProducts(
-      products.map(p =>
-        p.code === code
-          ? { ...p, stock: p.stock - 1 }
-          : p
-      )
-    )
-
-    if (existing) {
-
-      setOrders(
-        orders.map(o =>
-          o.code === code
-            ? { ...o, qty: o.qty + 1 }
-            : o
-        )
-      )
-
-    } else {
-
-      setOrders([
-        ...orders,
-        {
-          code: product.code,
-          title: product.title,
-          price: product.price,
-          qty: 1
-        }
-      ])
-
-    }
-
-  }
-
-
-
-  function increase(code: string) {
-
-    const product = products.find(p => p.code === code)
-
-    if (!product) return
-    if (product.stock <= 0) return
-
-    setProducts(
-      products.map(p =>
-        p.code === code
-          ? { ...p, stock: p.stock - 1 }
-          : p
-      )
-    )
-
-    setOrders(
-      orders.map(o =>
-        o.code === code
-          ? { ...o, qty: o.qty + 1 }
-          : o
-      )
-    )
-
-  }
-
-
-
-  function decrease(code: string) {
-
-    setOrders(
-      orders
-        .map(o =>
-          o.code === code
-            ? { ...o, qty: o.qty - 1 }
-            : o
-        )
-        .filter(o => o.qty > 0)
-    )
-
-    setProducts(
-      products.map(p =>
-        p.code === code
-          ? { ...p, stock: p.stock + 1 }
-          : p
-      )
-    )
-
-  }
-
-
-
-  function saveOrder() {
-
-    if (orders.length === 0) return
-
-    const customer = customers.find(c => c.id === customerId)
-
-    const newOrder: SavedOrder = {
-
-      id: Date.now(),
-
-      number: "ORD-" + Date.now(),
-
-      customer: customer?.name,
-
-      date: new Date().toLocaleDateString(),
-
-      items: orders,
-
-      total: orders.reduce(
-        (sum, o) => sum + o.qty * o.price,
-        0
-      )
-
-    }
-
-
-    // ===== ROYALTY CALCULATION =====
-
-    const newRoyalties: RoyaltyRecord[] = []
-
-    orders.forEach(o => {
-
-      const product = products.find(p => p.code === o.code)
-
-      if (!product) return
-
-      let royalty = 0
-
-      if (product.royaltyType === "percent") {
-
-        royalty =
-          o.price *
-          o.qty *
-          product.royaltyValue /
-          100
-
-      }
-
-      if (product.royaltyType === "fixed") {
-
-        royalty =
-          product.royaltyValue *
-          o.qty
-
-      }
-
-      newRoyalties.push({
-
-        id: Date.now() + Math.random(),
-
-        book: product.title,
-
-        author: product.author,
-
-        amount: royalty,
-
-        date: new Date().toLocaleDateString()
-
-      })
-
-    })
-
-    setRoyaltyRecords([...royaltyRecords, ...newRoyalties])
-
-    setSavedOrders([...savedOrders, newOrder])
-
-    setOrders([])
-
-  }
-
-
-
-  const total = orders.reduce(
-    (sum, o) => sum + o.qty * o.price,
-    0
-  )
-
+  // Serialize Decimal fields before passing to client component
+  const products = dbProducts.map(p => ({
+    id: p.id,
+    code: p.code,
+    title: p.title,
+    price: Number(p.price),
+    stock: p.stock,
+  }))
+
+  const customers = dbCustomers.map(c => ({
+    id: c.id,
+    name: c.name,
+  }))
 
   return (
-
     <div>
-
       <h1>Orders</h1>
 
+      <OrderForm products={products} customers={customers} />
 
-      <h2>Customer</h2>
-
-      <select
-        value={customerId}
-        onChange={(e) => setCustomerId(Number(e.target.value))}
-      >
-
-        {customers.map(c => (
-
-          <option key={c.id} value={c.id}>
-            {c.name}
-          </option>
-
-        ))}
-
-      </select>
-
-
-
-      <h2>Add item</h2>
-
-      {products.map(p => (
-
-        <div key={p.id}>
-
-          {p.code} — {p.title} — stock: {p.stock}
-
-          <button onClick={() => addOrder(p.code)}>
-            Add
-          </button>
-
-        </div>
-
-      ))}
-
-
-
-      <h2>Order</h2>
-
-      {orders.map(o => (
-
-        <div key={o.code}>
-
-          {o.title} — {o.qty}
-
-          <button onClick={() => increase(o.code)}>+</button>
-
-          <button onClick={() => decrease(o.code)}>-</button>
-
-        </div>
-
-      ))}
-
-
-      <h2>Total: {total}</h2>
-
-      <button onClick={saveOrder}>
-        Save Order
-      </button>
-
-
-
-      <h2>Royalty Records</h2>
-
-      {royaltyRecords.map(r => (
-
-        <div key={r.id}>
-
-          {r.book} — {r.author} — {r.amount}
-
-        </div>
-
-      ))}
-
-
+      <h2>Saved Orders</h2>
+      {savedOrders.length === 0 ? (
+        <p>No orders yet</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {savedOrders.map(o => (
+              <tr key={o.id}>
+                <td>{o.number}</td>
+                <td>{o.customerName}</td>
+                <td>{new Date(o.date).toLocaleDateString()}</td>
+                <td>{Number(o.total).toLocaleString()}</td>
+                <td>{o.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
-
   )
-
 }
