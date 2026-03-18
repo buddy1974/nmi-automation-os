@@ -264,3 +264,17 @@ model StockHistory {
 
   @@map("stock_history")
 }
+
+// ── Users ─────────────────────────────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      String   @default("viewer")
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
