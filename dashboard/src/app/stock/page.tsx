@@ -1,43 +1,18 @@
-"use client"
+import { prisma } from "@/lib/db"
 
-import { useState } from "react"
-import { products as initialProducts } from "@/lib/products"
+export const dynamic = "force-dynamic"
 
-type LogEntry = {
-  id: string
-  action: string
-  qty: number
-  time: string
-}
+export default async function StockPage() {
 
-export default function StockPage() {
-
-  const [items, setItems] = useState(initialProducts)
-  const [log, setLog] = useState<LogEntry[]>([])
-
-  function addStock(id: string) {
-    setItems((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, stock: p.stock + 10 } : p
-      )
-    )
-    setLog((prev) => [
-      { id, action: "add", qty: 10, time: new Date().toISOString() },
-      ...prev,
-    ])
-  }
-
-  function removeStock(id: string) {
-    setItems((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, stock: p.stock - 10 } : p
-      )
-    )
-    setLog((prev) => [
-      { id, action: "remove", qty: 10, time: new Date().toISOString() },
-      ...prev,
-    ])
-  }
+  const products = await prisma.product.findMany({
+    orderBy: { code: "asc" },
+    include: {
+      stockHistory: {
+        orderBy: { createdAt: "desc" },
+        take: 5,
+      },
+    },
+  })
 
   return (
     <div>
@@ -49,15 +24,15 @@ export default function StockPage() {
         <thead>
           <tr>
             <th>Code</th>
-            <th>Title</th>
+            <th>Product</th>
             <th>Stock</th>
-            <th>Actions</th>
+            <th>Last movements</th>
           </tr>
         </thead>
 
         <tbody>
 
-          {items.map((p) => (
+          {products.map((p) => (
 
             <tr key={p.id}>
 
@@ -66,15 +41,27 @@ export default function StockPage() {
               <td>{p.stock}</td>
 
               <td>
-
-                <button onClick={() => addStock(p.id)}>
-                  +10
-                </button>
-
-                <button onClick={() => removeStock(p.id)}>
-                  -10
-                </button>
-
+                {p.stockHistory.length === 0 ? (
+                  <span style={{ color: "#888" }}>—</span>
+                ) : (
+                  <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+                    {p.stockHistory.map((h) => (
+                      <li key={h.id} style={{ fontSize: "0.85rem", marginBottom: 2 }}>
+                        <span style={{ color: h.change > 0 ? "green" : "red", fontWeight: "bold" }}>
+                          {h.change > 0 ? "+" : ""}{h.change}
+                        </span>
+                        {" "}
+                        <span style={{ color: "#555" }}>{h.reason}</span>
+                        {h.note ? (
+                          <span style={{ color: "#999" }}> — {h.note}</span>
+                        ) : null}
+                        <span style={{ color: "#aaa", marginLeft: 6 }}>
+                          {new Date(h.createdAt).toLocaleDateString()}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </td>
 
             </tr>
@@ -84,22 +71,6 @@ export default function StockPage() {
         </tbody>
 
       </table>
-
-      <h2>Stock Log</h2>
-
-      <ul>
-
-        {log.map((l, i) => (
-
-          <li key={i}>
-
-            {l.time} — {l.id} — {l.action} — {l.qty}
-
-          </li>
-
-        ))}
-
-      </ul>
 
     </div>
   )

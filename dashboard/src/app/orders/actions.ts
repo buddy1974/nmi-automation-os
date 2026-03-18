@@ -43,11 +43,19 @@ export async function saveOrder(data: {
       },
     })
 
-    // Decrement stock for each item
+    // Decrement stock and log history for each item
     for (const item of data.items) {
-      await tx.product.update({
+      const updated = await tx.product.update({
         where: { code: item.productCode },
         data: { stock: { decrement: item.qty } },
+      })
+      await tx.stockHistory.create({
+        data: {
+          productId: updated.id,
+          change: -item.qty,
+          reason: "order",
+          note: `Order deducted ${item.qty} unit(s)`,
+        },
       })
     }
   })

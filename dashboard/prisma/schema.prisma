@@ -35,6 +35,8 @@ model Product {
   price         Decimal     @default(0)
   stock         Int         @default(0)
 
+  stockHistory StockHistory[]
+
   @@map("products")
 }
 
@@ -242,4 +244,19 @@ model Payment {
   notes  String   @default("")
 
   @@map("payments")
+}
+
+// ── Stock history ─────────────────────────────────────────────────────────────
+
+model StockHistory {
+  id          Int      @id @default(autoincrement())
+  productId   Int      @map("product_id")
+  change      Int
+  reason      String   @default("manual")
+  note        String   @default("")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("stock_history")
 }
