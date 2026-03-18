@@ -1,21 +1,18 @@
-// NMI Automation OS — DB Client
-// Phase 12 — Foundation placeholder
-// Replace with Supabase client in Phase 12.2b
+import { PrismaClient } from "@prisma/client"
+import { PrismaNeon } from "@prisma/adapter-neon"
 
-export const db = {
-  connected: false
+function makePrisma() {
+  const adapter = new PrismaNeon({
+    connectionString: process.env.DATABASE_URL!
+  })
+  return new PrismaClient({ adapter })
 }
 
-// ── Phase 12.2b — uncomment and configure after Supabase project is created ──
-//
-// import { createClient } from "@supabase/supabase-js"
-//
-// const supabaseUrl  = process.env.NEXT_PUBLIC_SUPABASE_URL!
-// const supabaseKey  = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-//
-// export const supabase = createClient(supabaseUrl, supabaseKey)
-//
-// export const db = {
-//   connected: true,
-//   client: supabase
-// }
+// Prevent multiple instances in Next.js dev hot-reload
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
+
+export const prisma = globalForPrisma.prisma ?? makePrisma()
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma
+}

@@ -1,0 +1,245 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ── Branches ──────────────────────────────────────────────────────────────────
+
+model Branch {
+  id     Int     @id @default(autoincrement())
+  name   String
+  city   String
+  region String
+
+  orders Order[]
+  stock  Stock[]
+
+  @@map("branches")
+}
+
+// ── Products (books) ──────────────────────────────────────────────────────────
+
+model Product {
+  id            Int         @id @default(autoincrement())
+  code          String      @unique
+  title         String
+  level         String      @default("Primary")
+  class         String      @default("")
+  subject       String      @default("")
+  author        String      @default("Unknown")
+  royaltyType   String      @default("percent") @map("royalty_type")
+  royaltyValue  Decimal     @default(10)         @map("royalty_value")
+  price         Decimal     @default(0)
+  stock         Int         @default(0)
+
+  @@map("products")
+}
+
+// ── Customers ─────────────────────────────────────────────────────────────────
+
+model Customer {
+  id          Int     @id @default(autoincrement())
+  name        String
+  phone       String  @default("")
+  address     String  @default("")
+  type        String  @default("individual")
+  region      String  @default("")
+  creditLimit Decimal @default(0) @map("credit_limit")
+  status      String  @default("active")
+
+  orders Order[]
+
+  @@map("customers")
+}
+
+// ── Orders ────────────────────────────────────────────────────────────────────
+
+model Order {
+  id           Int         @id @default(autoincrement())
+  number       String      @unique
+  customerId   Int?        @map("customer_id")
+  customerName String      @default("") @map("customer_name")
+  branchId     Int?        @map("branch_id")
+  date         DateTime    @default(now()) @db.Date
+  total        Decimal     @default(0)
+  status       String      @default("pending")
+
+  customer  Customer?   @relation(fields: [customerId], references: [id])
+  branch    Branch?     @relation(fields: [branchId], references: [id])
+  items     OrderItem[]
+  invoice   Invoice?
+
+  @@map("orders")
+}
+
+// ── Order items ───────────────────────────────────────────────────────────────
+
+model OrderItem {
+  id          Int     @id @default(autoincrement())
+  orderId     Int     @map("order_id")
+  productCode String  @map("product_code")
+  title       String  @default("")
+  qty         Int     @default(1)
+  price       Decimal @default(0)
+  lineTotal   Decimal @default(0) @map("line_total")
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@map("order_items")
+}
+
+// ── Invoices ──────────────────────────────────────────────────────────────────
+
+model Invoice {
+  id      Int      @id @default(autoincrement())
+  orderId Int      @unique @map("order_id")
+  amount  Decimal  @default(0)
+  dueDate DateTime @map("due_date") @db.Date
+  status  String   @default("unpaid")
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@map("invoices")
+}
+
+// ── Authors ───────────────────────────────────────────────────────────────────
+
+model Author {
+  id    Int    @id @default(autoincrement())
+  name  String
+  phone String @default("")
+  email String @default("")
+
+  @@map("authors")
+}
+
+// ── Royalties ─────────────────────────────────────────────────────────────────
+
+model Royalty {
+  id     Int      @id @default(autoincrement())
+  author String
+  book   String   @default("")
+  amount Decimal  @default(0)
+  date   DateTime @default(now()) @db.Date
+  status String   @default("unpaid")
+
+  @@map("royalties")
+}
+
+// ── Manuscripts ───────────────────────────────────────────────────────────────
+
+model Manuscript {
+  id             Int      @id @default(autoincrement())
+  title          String
+  author         String   @default("")
+  subject        String   @default("")
+  level          String   @default("Primary")
+  class          String   @default("")
+  status         String   @default("submitted")
+  notes          String   @default("")
+  date           DateTime @default(now()) @db.Date
+  version        Int      @default(1)
+  editor         String   @default("")
+  editorNotes    String   @default("") @map("editor_notes")
+  approved       Boolean  @default(false)
+  readyForPrint  Boolean  @default(false) @map("ready_for_print")
+  suggestedCode  String   @default("")   @map("suggested_code")
+  aiReport       String   @default("")   @map("ai_report")
+  aiEditReport   String   @default("")   @map("ai_edit_report")
+
+  history ManuscriptHistory[]
+
+  @@map("manuscripts")
+}
+
+// ── Manuscript history ────────────────────────────────────────────────────────
+
+model ManuscriptHistory {
+  id           Int      @id @default(autoincrement())
+  manuscriptId Int      @map("manuscript_id")
+  version      Int
+  date         DateTime @default(now()) @db.Date
+  editor       String   @default("")
+  notes        String   @default("")
+
+  manuscript Manuscript @relation(fields: [manuscriptId], references: [id], onDelete: Cascade)
+
+  @@map("manuscript_history")
+}
+
+// ── Workers (HR) ──────────────────────────────────────────────────────────────
+
+model Worker {
+  id           Int      @id @default(autoincrement())
+  name         String
+  nationalId   String   @default("") @map("national_id")
+  cnpsNumber   String   @default("") @map("cnps_number")
+  phone        String   @default("")
+  email        String   @default("")
+  role         String   @default("")
+  department   String   @default("")
+  contractType String   @default("CDI") @map("contract_type")
+  startDate    DateTime? @map("start_date") @db.Date
+  endDate      DateTime? @map("end_date")   @db.Date
+  salaryBase   Decimal  @default(0) @map("salary_base")
+  status       String   @default("active")
+
+  @@map("workers")
+}
+
+// ── Printing jobs ─────────────────────────────────────────────────────────────
+
+model PrintingJob {
+  id       Int      @id @default(autoincrement())
+  book     String
+  quantity Int      @default(0)
+  cost     Decimal  @default(0)
+  printer  String   @default("")
+  date     DateTime @default(now()) @db.Date
+  status   String   @default("planned")
+
+  @@map("printing_jobs")
+}
+
+// ── Stock (per branch) ────────────────────────────────────────────────────────
+
+model Stock {
+  id         Int    @id @default(autoincrement())
+  titleCode  String @map("title_code")
+  branchId   Int    @map("branch_id")
+  qty        Int    @default(0)
+
+  branch Branch @relation(fields: [branchId], references: [id])
+
+  @@unique([titleCode, branchId])
+  @@map("stock")
+}
+
+// ── Cost records (accounting) ─────────────────────────────────────────────────
+
+model CostRecord {
+  id     Int      @id @default(autoincrement())
+  book   String   @default("")
+  type   String   @default("other")
+  amount Decimal  @default(0)
+  date   DateTime @default(now()) @db.Date
+  notes  String   @default("")
+
+  @@map("cost_records")
+}
+
+// ── Payments (HR payroll) ─────────────────────────────────────────────────────
+
+model Payment {
+  id     Int      @id @default(autoincrement())
+  worker String
+  type   String   @default("salary")
+  amount Decimal  @default(0)
+  date   DateTime @default(now()) @db.Date
+  notes  String   @default("")
+
+  @@map("payments")
+}
