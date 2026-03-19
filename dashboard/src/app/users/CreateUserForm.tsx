@@ -5,7 +5,9 @@ import { createUser }     from "./actions"
 
 const ROLES = ["admin", "manager", "accountant", "editor", "printer", "hr", "viewer"]
 
-export default function CreateUserForm() {
+interface Company { id: string; name: string }
+
+export default function CreateUserForm({ companies }: { companies: Company[] }) {
 
   const [state, action, pending] = useActionState(createUser, null)
 
@@ -16,7 +18,7 @@ export default function CreateUserForm() {
       borderRadius: "8px",
       padding: "24px",
       marginBottom: "40px",
-      maxWidth: "560px",
+      maxWidth: "600px",
     }}>
 
       <h2 style={{ margin: "0 0 20px", fontSize: "16px", fontWeight: 700 }}>Create user</h2>
@@ -53,6 +55,16 @@ export default function CreateUserForm() {
           <label style={labelStyle}>Role</label>
           <select name="role" defaultValue="viewer" style={{ ...inputStyle, cursor: "pointer" }}>
             {ROLES.map(r => <option key={r} value={r}>{r}</option>)}
+          </select>
+        </div>
+
+        <div style={{ gridColumn: "1 / -1" }}>
+          <label style={labelStyle}>Company</label>
+          <select name="companyId" defaultValue="" style={{ ...inputStyle, cursor: "pointer", maxWidth: "280px" }}>
+            <option value="">— No company —</option>
+            {companies.map(c => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
           </select>
         </div>
 

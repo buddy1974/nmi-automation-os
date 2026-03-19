@@ -13,10 +13,11 @@ export async function createUser(
   formData: FormData,
 ): Promise<{ error?: string; success?: boolean }> {
 
-  const name     = (formData.get("name")     as string)?.trim()
-  const email    = (formData.get("email")    as string)?.trim().toLowerCase()
-  const password = (formData.get("password") as string) ?? ""
-  const role     = (formData.get("role")     as string) ?? "viewer"
+  const name      = (formData.get("name")      as string)?.trim()
+  const email     = (formData.get("email")     as string)?.trim().toLowerCase()
+  const password  = (formData.get("password")  as string) ?? ""
+  const role      = (formData.get("role")      as string) ?? "viewer"
+  const companyId = (formData.get("companyId") as string) || null
 
   if (!name || !email || !password) return { error: "All fields are required." }
   if (password.length < 6)          return { error: "Password must be at least 6 characters." }
@@ -26,7 +27,7 @@ export async function createUser(
   if (exists) return { error: "Email already in use." }
 
   const hashed = await hashPassword(password)
-  await prisma.user.create({ data: { name, email, password: hashed, role } })
+  await prisma.user.create({ data: { name, email, password: hashed, role, companyId } })
 
   revalidatePath("/users")
   return { success: true }
@@ -46,6 +47,16 @@ export async function toggleUserActive(userId: string) {
   const user = await prisma.user.findUnique({ where: { id: userId } })
   if (!user) return
   await prisma.user.update({ where: { id: userId }, data: { active: !user.active } })
+  revalidatePath("/users")
+}
+
+// ── Update company ────────────────────────────────────────────────────────────
+
+export async function updateUserCompany(userId: string, companyId: string) {
+  await prisma.user.update({
+    where: { id: userId },
+    data:  { companyId: companyId === "none" ? null : companyId },
+  })
   revalidatePath("/users")
 }
 
