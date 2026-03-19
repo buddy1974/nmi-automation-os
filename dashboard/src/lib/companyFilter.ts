@@ -17,9 +17,10 @@ const OWNER_ROLES = ["admin", "owner", "manager"]
 
 /** Returns the active companyId string, or undefined (= no filter). */
 export function resolveCompany(
-  session:     SessionPayload,
+  session:      SessionPayload | null,
   cookieValue?: string,
 ): string | undefined {
+  if (!session) return undefined
   if (!OWNER_ROLES.includes(session.role)) {
     // Non-owner: always locked to their own company
     return session.companyId ?? undefined
