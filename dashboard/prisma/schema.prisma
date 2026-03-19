@@ -309,6 +309,8 @@ model PerformanceRecord {
   managerNote    String?  @map("manager_note")
   aiSummary      String?  @map("ai_summary")
   totalScore     Float    @default(0) @map("total_score")
+  scorePercent   Float    @default(0) @map("score_percent")
+  rating         String?
   bonusScore     Float    @default(0) @map("bonus_score")
   recommendation String?
   createdAt      DateTime @default(now()) @map("created_at")

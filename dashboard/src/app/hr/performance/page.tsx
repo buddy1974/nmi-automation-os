@@ -8,31 +8,46 @@ export const dynamic = "force-dynamic"
 
 const ALLOWED = ["admin", "hr", "manager"]
 
-function scoreColor(score: number): string {
-  if (score >= 80) return "#16a34a"
-  if (score >= 60) return "#d97706"
+function barColor(pct: number): string {
+  if (pct > 80) return "#16a34a"
+  if (pct > 60) return "#2563eb"
+  if (pct > 40) return "#d97706"
   return "#dc2626"
 }
 
-function scoreLabel(score: number): string {
-  if (score >= 80) return "Excellent"
-  if (score >= 60) return "Good"
-  if (score >= 40) return "Average"
-  return "Low"
+function ratingColor(rating: string | null): string {
+  switch (rating) {
+    case "Outstanding":       return "#16a34a"
+    case "Excellent":         return "#2563eb"
+    case "Very Good":         return "#7c3aed"
+    case "Good":              return "#d97706"
+    case "Needs Improvement": return "#ea580c"
+    default:                  return "#dc2626"
+  }
+}
+
+function Bar({ value, max = 100 }: { value: number; max?: number }) {
+  const pct = Math.min((value / max) * 100, 100)
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+      <div style={{ flex: 1, height: "8px", background: "#e5e7eb", borderRadius: "99px", overflow: "hidden" }}>
+        <div style={{ height: "100%", width: `${pct}%`, background: barColor(pct), borderRadius: "99px" }} />
+      </div>
+      <span style={{ fontSize: "11px", color: "#555", minWidth: "28px", textAlign: "right" }}>{value}</span>
+    </div>
+  )
 }
 
 export default async function PerformancePage() {
 
-  // ── Role guard ───────────────────────────────────────────────────────────────
   const jar     = await cookies()
   const session = await getSession(jar.get("nmi_session")?.value)
   if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
 
-  // ── Data ─────────────────────────────────────────────────────────────────────
   const [workers, records] = await Promise.all([
     prisma.worker.findMany({ where: { status: "active" }, orderBy: { name: "asc" } }),
     prisma.performanceRecord.findMany({
-      include: { worker: { select: { name: true, role: true } } },
+      include: { worker: { select: { name: true, role: true, department: true } } },
       orderBy: { createdAt: "desc" },
     }),
   ])
@@ -40,78 +55,111 @@ export default async function PerformancePage() {
   return (
     <div style={{ padding: "32px", fontFamily: "Arial, sans-serif", color: "#111" }}>
 
-      <h1 style={{ margin: "0 0 4px", fontSize: "24px" }}>Performance evaluations</h1>
+      <h1 style={{ margin: "0 0 4px", fontSize: "24px" }}>AI Performance Scorecard</h1>
       <p style={{ margin: "0 0 32px", color: "#666", fontSize: "13px" }}>
-        PeopleOS — KPI scoring, manager notes, AI analysis (17.3)
+        PeopleOS — Score /500 · Rating · Bonus · AI Summary · Recommendations
       </p>
 
-      {/* Evaluation form */}
       <EvalForm workers={workers.map(w => ({ id: w.id, name: w.name, role: w.role }))} />
 
-      {/* Records table */}
-      <h2 style={{ fontSize: "16px", margin: "0 0 16px" }}>
-        All evaluations ({records.length})
-      </h2>
+      <h2 style={{ fontSize: "16px", margin: "0 0 20px" }}>Evaluations ({records.length})</h2>
 
       {records.length === 0 ? (
-        <p style={{ color: "#aaa" }}>No evaluations yet. Add one above.</p>
+        <p style={{ color: "#aaa" }}>No evaluations yet.</p>
       ) : (
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
-            <thead>
-              <tr>
-                {["Worker", "Period", "Attend.", "Prod.", "Quality", "Teamwork", "Discipline", "Total", "Note", "Date"].map(h => (
-                  <th key={h} style={{
-                    background: "#1a1a2e", color: "white",
-                    padding: "10px 10px", textAlign: "left",
-                    fontSize: "11px", textTransform: "uppercase",
-                    letterSpacing: "0.5px", whiteSpace: "nowrap",
-                  }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {records.map(r => (
-                <tr key={r.id}>
-                  <td style={td}>
-                    <div style={{ fontWeight: 600 }}>{r.worker.name}</div>
-                    <div style={{ fontSize: "11px", color: "#888" }}>{r.worker.role}</div>
-                  </td>
-                  <td style={td}>{r.period}</td>
-                  {[r.attendance, r.productivity, r.quality, r.teamwork, r.discipline].map((v, i) => (
-                    <td key={i} style={{ ...td, color: scoreColor(v), fontWeight: 600 }}>{v}</td>
-                  ))}
-                  <td style={td}>
-                    <span style={{
-                      padding: "2px 8px", borderRadius: "4px", fontSize: "11px",
-                      fontWeight: 700, color: "white",
-                      background: scoreColor(r.totalScore),
-                    }}>
-                      {r.totalScore.toFixed(1)} — {scoreLabel(r.totalScore)}
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {records.map(r => {
+            const pct = r.scorePercent ?? 0
+            return (
+              <div key={r.id} style={{
+                border: "1px solid #e5e7eb",
+                borderRadius: "10px",
+                padding: "20px 24px",
+                background: "white",
+                boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+              }}>
+
+                {/* Header row */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px", flexWrap: "wrap", gap: "8px" }}>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "16px" }}>{r.worker.name}</div>
+                    <div style={{ fontSize: "12px", color: "#888" }}>{r.worker.role} — {r.worker.department || "No dept"} · {r.period}</div>
+                  </div>
+                  <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+                    {r.rating && (
+                      <span style={{
+                        padding: "4px 12px", borderRadius: "6px", fontSize: "12px",
+                        fontWeight: 700, color: "white",
+                        background: ratingColor(r.rating),
+                      }}>
+                        {r.rating}
+                      </span>
+                    )}
+                    <span style={{ fontSize: "18px", fontWeight: 700, color: barColor(pct) }}>
+                      {r.totalScore}/500
                     </span>
-                  </td>
-                  <td style={{ ...td, maxWidth: "180px", color: "#555" }}>
-                    {r.managerNote
-                      ? <span title={r.managerNote}>{r.managerNote.slice(0, 40)}{r.managerNote.length > 40 ? "…" : ""}</span>
-                      : <span style={{ color: "#ccc" }}>—</span>
-                    }
-                  </td>
-                  <td style={{ ...td, whiteSpace: "nowrap", color: "#888" }}>
-                    {new Date(r.createdAt).toLocaleDateString("fr-CM", { day: "2-digit", month: "short", year: "numeric" })}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    <span style={{ fontSize: "13px", color: "#888" }}>
+                      {pct.toFixed(1)}%
+                    </span>
+                  </div>
+                </div>
+
+                {/* Overall bar */}
+                <div style={{ marginBottom: "16px" }}>
+                  <div style={{ fontSize: "11px", color: "#888", marginBottom: "4px", textTransform: "uppercase", letterSpacing: "0.5px" }}>Overall</div>
+                  <div style={{ height: "12px", background: "#e5e7eb", borderRadius: "99px", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${pct}%`, background: barColor(pct), borderRadius: "99px", transition: "width 0.3s" }} />
+                  </div>
+                </div>
+
+                {/* KPI bars */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "12px", marginBottom: "16px" }}>
+                  {[
+                    { label: "Attendance",   value: r.attendance },
+                    { label: "Productivity", value: r.productivity },
+                    { label: "Quality",      value: r.quality },
+                    { label: "Teamwork",     value: r.teamwork },
+                    { label: "Discipline",   value: r.discipline },
+                  ].map(kpi => (
+                    <div key={kpi.label}>
+                      <div style={{ fontSize: "11px", color: "#888", marginBottom: "4px" }}>{kpi.label}</div>
+                      <Bar value={kpi.value} />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bonus + Recommendation + AI Summary */}
+                <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", borderTop: "1px solid #f0f0f0", paddingTop: "12px" }}>
+                  {r.bonusScore !== null && r.bonusScore > 0 && (
+                    <div>
+                      <span style={{ fontSize: "11px", color: "#888" }}>Bonus score </span>
+                      <span style={{ fontWeight: 700, color: "#16a34a" }}>{r.bonusScore}%</span>
+                    </div>
+                  )}
+                  {r.recommendation && (
+                    <div>
+                      <span style={{ fontSize: "11px", color: "#888" }}>Recommendation: </span>
+                      <span style={{ fontWeight: 600, color: ratingColor(r.rating) }}>{r.recommendation}</span>
+                    </div>
+                  )}
+                  {r.aiSummary && (
+                    <div style={{ width: "100%", fontSize: "12px", color: "#555", fontStyle: "italic", marginTop: "4px" }}>
+                      {r.aiSummary}
+                    </div>
+                  )}
+                  {r.managerNote && (
+                    <div style={{ width: "100%", fontSize: "12px", color: "#374151", background: "#f9fafb", padding: "8px 12px", borderRadius: "6px", borderLeft: "3px solid #d1d5db" }}>
+                      <strong>Manager note:</strong> {r.managerNote}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            )
+          })}
         </div>
       )}
 
     </div>
   )
-}
-
-const td: React.CSSProperties = {
-  padding: "10px 10px",
-  borderBottom: "1px solid #eee",
-  verticalAlign: "middle",
 }

@@ -1,4 +1,6 @@
-import type { AutomationJob } from "@prisma/client"
+import type { AutomationJob }  from "@prisma/client"
+import { prisma }              from "./db"
+import { computeRating }       from "./performance-utils"
 
 // ── AI action result ──────────────────────────────────────────────────────────
 
@@ -58,16 +60,46 @@ function handleHROnboarding(payload: Record<string, unknown>): AIActionResult {
   }
 }
 
+// ── Performance evaluation ────────────────────────────────────────────────────
+
+async function handlePerformanceEvaluation(payload: Record<string, unknown>): Promise<AIActionResult> {
+  const recordId = Number(payload.recordId)
+  if (!recordId) return { ok: false, error: "recordId required in payload" }
+
+  const record = await prisma.performanceRecord.findUnique({
+    where:   { id: recordId },
+    include: { worker: true },
+  })
+  if (!record) return { ok: false, error: `PerformanceRecord ${recordId} not found` }
+
+  const totalScore   = record.attendance + record.productivity + record.quality + record.teamwork + record.discipline
+  const scorePercent = (totalScore / 500) * 100
+  const { rating, bonus: bonusScore, recommendation } = computeRating(totalScore)
+  const aiSummary    = `${record.worker.name} scored ${totalScore}/500 (${rating}). Recommendation: ${recommendation}`
+
+  await prisma.performanceRecord.update({
+    where: { id: recordId },
+    data:  { totalScore, scorePercent, rating, bonusScore, recommendation, aiSummary },
+  })
+
+  return {
+    ok: true, type: "performance_evaluation",
+    summary: aiSummary,
+    data: { recordId, totalScore, scorePercent, rating, bonusScore, recommendation },
+  }
+}
+
 // ── Main dispatcher ───────────────────────────────────────────────────────────
 
 export async function runAIAction(job: AutomationJob): Promise<AIActionResult> {
   const payload = (job.payload ?? {}) as Record<string, unknown>
 
   switch (job.type) {
-    case "manuscript_review":  return handleManuscriptReview(payload)
-    case "ai_invoice_summary": return handleInvoiceSummaryAI(payload)
-    case "stock_alert":        return handleStockAlert(payload)
-    case "hr_onboarding":      return handleHROnboarding(payload)
+    case "manuscript_review":       return handleManuscriptReview(payload)
+    case "ai_invoice_summary":      return handleInvoiceSummaryAI(payload)
+    case "stock_alert":             return handleStockAlert(payload)
+    case "hr_onboarding":           return handleHROnboarding(payload)
+    case "performance_evaluation":  return handlePerformanceEvaluation(payload)
     default:
       return { ok: false, error: `Unknown AI action: "${job.type}"` }
   }
@@ -80,4 +112,5 @@ export const AI_JOB_TYPES = [
   "ai_invoice_summary",
   "stock_alert",
   "hr_onboarding",
+  "performance_evaluation",
 ]
