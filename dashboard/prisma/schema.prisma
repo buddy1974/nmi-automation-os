@@ -193,6 +193,8 @@ model Worker {
   salaryBase   Decimal  @default(0) @map("salary_base")
   status       String   @default("active")
 
+  performance PerformanceRecord[]
+
   @@map("workers")
 }
 
@@ -291,4 +293,27 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("users")
+}
+
+// ── Performance records (PeopleOS AI) ────────────────────────────────────────
+
+model PerformanceRecord {
+  id             Int      @id @default(autoincrement())
+  workerId       Int      @map("worker_id")
+  period         String
+  attendance     Float    @default(0)
+  productivity   Float    @default(0)
+  quality        Float    @default(0)
+  teamwork       Float    @default(0)
+  discipline     Float    @default(0)
+  managerNote    String?  @map("manager_note")
+  aiSummary      String?  @map("ai_summary")
+  totalScore     Float    @default(0) @map("total_score")
+  bonusScore     Float    @default(0) @map("bonus_score")
+  recommendation String?
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  worker Worker @relation(fields: [workerId], references: [id])
+
+  @@map("performance_records")
 }
