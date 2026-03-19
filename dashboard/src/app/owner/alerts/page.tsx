@@ -2,6 +2,7 @@ import { cookies }    from "next/headers"
 import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
+import { resolveCompany, perfFilter, directFilter } from "@/lib/companyFilter"
 
 export const dynamic = "force-dynamic"
 
@@ -48,12 +49,14 @@ export default async function AlertsPage() {
   if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
 
   // Load data
+  const cid = resolveCompany(session, jar.get("nmi_company")?.value)
   const [records, allWorkers] = await Promise.all([
     prisma.performanceRecord.findMany({
+      where:    perfFilter(cid),
       include:  { worker: true },
       orderBy:  { totalScore: "asc" },
     }),
-    prisma.worker.findMany({ where: { status: "active" } }),
+    prisma.worker.findMany({ where: { status: "active", ...directFilter(cid) } }),
   ])
 
   // ── Aggregate metrics ────────────────────────────────────────────────────────

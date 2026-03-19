@@ -1,13 +1,21 @@
-import { prisma } from "@/lib/db"
+import { cookies }    from "next/headers"
+import { prisma }     from "@/lib/db"
+import { getSession } from "@/lib/auth"
+import { resolveCompany, directFilter } from "@/lib/companyFilter"
 import OrderForm from "./OrderForm"
 
 export const dynamic = "force-dynamic"
 
 export default async function OrdersPage() {
+  const jar     = await cookies()
+  const session = await getSession(jar.get("nmi_session")?.value)
+  const cid     = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
+
   const [dbProducts, dbCustomers, savedOrders] = await Promise.all([
     prisma.product.findMany({ orderBy: { code: "asc" } }),
     prisma.customer.findMany({ orderBy: { name: "asc" } }),
     prisma.order.findMany({
+      where:   directFilter(cid),
       include: { items: true },
       orderBy: { id: "desc" },
     }),

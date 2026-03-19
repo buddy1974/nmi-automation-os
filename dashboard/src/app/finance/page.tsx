@@ -1,4 +1,7 @@
-import { prisma } from "@/lib/db"
+import { cookies }    from "next/headers"
+import { prisma }     from "@/lib/db"
+import { getSession } from "@/lib/auth"
+import { resolveCompany, directFilter } from "@/lib/companyFilter"
 
 export const dynamic = "force-dynamic"
 
@@ -12,7 +15,12 @@ const STATUS_COLOR: Record<string, string> = {
 
 export default async function FinancePage() {
 
+  const jar     = await cookies()
+  const session = await getSession(jar.get("nmi_session")?.value)
+  const cid     = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
+
   const invoices = await prisma.invoice.findMany({
+    where:   directFilter(cid),
     orderBy: [
       { status: "asc" },   // issued / partial first (alphabetically before "paid")
       { dueDate: "asc" },  // oldest due date first

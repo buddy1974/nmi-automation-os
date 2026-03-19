@@ -2,6 +2,7 @@ import { cookies }    from "next/headers"
 import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
+import { resolveCompany, perfFilter } from "@/lib/companyFilter"
 
 export const dynamic = "force-dynamic"
 
@@ -54,7 +55,9 @@ export default async function OwnerPage() {
   const session = await getSession(jar.get("nmi_session")?.value)
   if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
 
+  const cid     = resolveCompany(session, jar.get("nmi_company")?.value)
   const records = await prisma.performanceRecord.findMany({
+    where:    perfFilter(cid),
     include:  { worker: true },
     orderBy:  { totalScore: "desc" },
   })
