@@ -62,6 +62,26 @@ function handleHROnboarding(payload: Record<string, unknown>): AIActionResult {
 
 // ── Performance evaluation ────────────────────────────────────────────────────
 
+// Bonus percent by rating
+const BONUS_PERCENT: Record<string, number> = {
+  "Outstanding":       0.25,
+  "Excellent":         0.18,
+  "Very Good":         0.12,
+  "Good":              0.07,
+  "Needs Improvement": 0.02,
+  "Critical":          0,
+}
+
+// Salary increase percent by rating
+const SALARY_INCREASE_PERCENT: Record<string, number> = {
+  "Outstanding":       0.15,
+  "Excellent":         0.10,
+  "Very Good":         0.07,
+  "Good":              0.03,
+  "Needs Improvement": 0,
+  "Critical":          0,
+}
+
 async function handlePerformanceEvaluation(payload: Record<string, unknown>): Promise<AIActionResult> {
   const recordId = Number(payload.recordId)
   if (!recordId) return { ok: false, error: "recordId required in payload" }
@@ -77,15 +97,27 @@ async function handlePerformanceEvaluation(payload: Record<string, unknown>): Pr
   const { rating, bonus: bonusScore, recommendation } = computeRating(totalScore)
   const aiSummary    = `${record.worker.name} scored ${totalScore}/500 (${rating}). Recommendation: ${recommendation}`
 
+  // Salary / bonus engine
+  const baseSalary      = Number(record.worker.salaryBase) ?? 0
+  const bonusPercent    = BONUS_PERCENT[rating]    ?? 0
+  const increasePercent = SALARY_INCREASE_PERCENT[rating] ?? 0
+  const bonusAmount     = Math.round(baseSalary * bonusPercent)
+  const salaryIncrease  = Math.round(baseSalary * increasePercent)
+  const suggestedSalary = baseSalary + salaryIncrease
+  const aiBonusSummary  = `${record.worker.name} performance ${rating}. Bonus suggested: ${bonusAmount.toLocaleString()} XAF. New salary suggestion: ${suggestedSalary.toLocaleString()} XAF.`
+
   await prisma.performanceRecord.update({
     where: { id: recordId },
-    data:  { totalScore, scorePercent, rating, bonusScore, recommendation, aiSummary },
+    data:  {
+      totalScore, scorePercent, rating, bonusScore, recommendation, aiSummary,
+      baseSalary, bonusPercent, bonusAmount, suggestedSalary, salaryIncrease, aiBonusSummary,
+    },
   })
 
   return {
     ok: true, type: "performance_evaluation",
-    summary: aiSummary,
-    data: { recordId, totalScore, scorePercent, rating, bonusScore, recommendation },
+    summary: aiBonusSummary,
+    data: { recordId, totalScore, scorePercent, rating, bonusScore, recommendation, baseSalary, bonusAmount, suggestedSalary, salaryIncrease },
   }
 }
 

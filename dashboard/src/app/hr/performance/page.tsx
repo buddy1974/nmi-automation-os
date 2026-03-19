@@ -154,6 +154,65 @@ export default async function PerformancePage() {
                   )}
                 </div>
 
+                {/* Salary / Bonus Engine block */}
+                {(r.baseSalary != null || r.bonusAmount != null) && (
+                  <div style={{ marginTop: "14px", borderTop: "1px solid #f0f0f0", paddingTop: "14px" }}>
+                    <div style={{ fontSize: "11px", color: "#888", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "10px" }}>
+                      Salary &amp; Bonus Suggestion
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px" }}>
+
+                      {r.baseSalary != null && (
+                        <div style={{ background: "#f9fafb", borderRadius: "8px", padding: "10px 14px" }}>
+                          <div style={{ fontSize: "10px", color: "#888", marginBottom: "2px" }}>Base Salary</div>
+                          <div style={{ fontWeight: 700, fontSize: "14px" }}>{r.baseSalary.toLocaleString()} XAF</div>
+                        </div>
+                      )}
+
+                      {r.bonusPercent != null && (
+                        <div style={{ background: "#f9fafb", borderRadius: "8px", padding: "10px 14px" }}>
+                          <div style={{ fontSize: "10px", color: "#888", marginBottom: "2px" }}>Bonus %</div>
+                          <div style={{ fontWeight: 700, fontSize: "14px" }}>{((r.bonusPercent ?? 0) * 100).toFixed(0)}%</div>
+                        </div>
+                      )}
+
+                      {r.bonusAmount != null && (
+                        <div style={{ background: (r.bonusAmount ?? 0) > 0 ? "#f0fdf4" : "#f9fafb", borderRadius: "8px", padding: "10px 14px", border: (r.bonusAmount ?? 0) > 0 ? "1px solid #bbf7d0" : "none" }}>
+                          <div style={{ fontSize: "10px", color: "#888", marginBottom: "2px" }}>Bonus Amount</div>
+                          <div style={{ fontWeight: 700, fontSize: "14px", color: (r.bonusAmount ?? 0) > 0 ? "#16a34a" : "#111" }}>
+                            {(r.bonusAmount ?? 0).toLocaleString()} XAF
+                          </div>
+                        </div>
+                      )}
+
+                      {r.salaryIncrease != null && (
+                        <div style={{ background: (r.salaryIncrease ?? 0) > 0 ? "#eff6ff" : "#f9fafb", borderRadius: "8px", padding: "10px 14px", border: (r.salaryIncrease ?? 0) > 0 ? "1px solid #bfdbfe" : "none" }}>
+                          <div style={{ fontSize: "10px", color: "#888", marginBottom: "2px" }}>Salary Increase</div>
+                          <div style={{ fontWeight: 700, fontSize: "14px", color: (r.salaryIncrease ?? 0) > 0 ? "#2563eb" : "#111" }}>
+                            +{(r.salaryIncrease ?? 0).toLocaleString()} XAF
+                          </div>
+                        </div>
+                      )}
+
+                      {r.suggestedSalary != null && (
+                        <div style={{ background: "#fefce8", borderRadius: "8px", padding: "10px 14px", border: "1px solid #fde68a" }}>
+                          <div style={{ fontSize: "10px", color: "#888", marginBottom: "2px" }}>Suggested Salary</div>
+                          <div style={{ fontWeight: 700, fontSize: "14px", color: "#92400e" }}>
+                            {(r.suggestedSalary ?? 0).toLocaleString()} XAF
+                          </div>
+                        </div>
+                      )}
+
+                    </div>
+
+                    {r.aiBonusSummary && (
+                      <div style={{ marginTop: "10px", fontSize: "12px", color: "#374151", background: "#f0fdf4", padding: "8px 12px", borderRadius: "6px", borderLeft: "3px solid #86efac" }}>
+                        {r.aiBonusSummary}
+                      </div>
+                    )}
+                  </div>
+                )}
+
               </div>
             )
           })}

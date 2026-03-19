@@ -313,6 +313,12 @@ model PerformanceRecord {
   rating         String?
   bonusScore     Float    @default(0) @map("bonus_score")
   recommendation String?
+  baseSalary     Float?   @map("base_salary")
+  bonusPercent   Float?   @map("bonus_percent")
+  bonusAmount    Float?   @map("bonus_amount")
+  suggestedSalary Float?  @map("suggested_salary")
+  salaryIncrease Float?   @map("salary_increase")
+  aiBonusSummary String?  @map("ai_bonus_summary")
   createdAt      DateTime @default(now()) @map("created_at")
 
   worker Worker @relation(fields: [workerId], references: [id])
