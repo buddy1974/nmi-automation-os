@@ -45,5 +45,5 @@ export async function loginAction(
     path:     "/",
   })
 
-  redirect("/")
+  redirect("/dashboard")
 }

@@ -52,6 +52,7 @@ export async function getSession(token?: string): Promise<SessionPayload | null>
 
 export const ROLE_ACCESS: Record<string, string[]> = {
   admin:      ["*"],
+  owner:      ["*"],
   manager:    ["/", "/dashboard", "/orders", "/invoices", "/finance", "/customers", "/stock", "/catalogue", "/sales", "/exec"],
   accountant: ["/", "/dashboard", "/finance", "/invoices", "/royalties", "/accounting"],
   editor:     ["/", "/dashboard", "/manuscripts", "/authors", "/editorial"],
@@ -61,7 +62,7 @@ export const ROLE_ACCESS: Record<string, string[]> = {
 }
 
 export function canAccess(role: string, pathname: string): boolean {
-  if (role === "admin") return true
+  if (role === "admin" || role === "owner") return true
   const allowed = ROLE_ACCESS[role] ?? []
   return allowed.some((path) =>
     path === "/" ? pathname === "/" : pathname.startsWith(path)

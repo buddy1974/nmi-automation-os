@@ -11,6 +11,7 @@ const PUBLIC = ["/login"]
 // Keep in sync with ROLE_ACCESS in src/lib/auth.ts
 const ROLE_ACCESS: Record<string, string[]> = {
   admin:      ["*"],
+  owner:      ["*"],
   manager:    ["/", "/dashboard", "/orders", "/invoices", "/finance", "/customers", "/stock", "/catalogue", "/sales", "/exec"],
   accountant: ["/", "/dashboard", "/finance", "/invoices", "/royalties", "/accounting"],
   editor:     ["/", "/dashboard", "/manuscripts", "/authors", "/editorial"],
@@ -20,7 +21,7 @@ const ROLE_ACCESS: Record<string, string[]> = {
 }
 
 function canAccess(role: string, pathname: string): boolean {
-  if (role === "admin") return true
+  if (role === "admin" || role === "owner") return true
   const allowed = ROLE_ACCESS[role] ?? []
   return allowed.some((path) =>
     path === "/" ? pathname === "/" : pathname.startsWith(path)
