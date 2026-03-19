@@ -1,88 +1,61 @@
-"use client"
+import { prisma } from "@/lib/db"
 
-import { useState } from "react"
+export const dynamic = "force-dynamic"
 
-type Royalty = {
-  id: number
-  author: string
-  amount: number
-  date: string
-}
+// Royalty model has no companyId — royalties are global (per author/book)
 
-export default function RoyaltiesPage() {
+export default async function RoyaltiesPage() {
+  const royalties = await prisma.royalty.findMany({
+    orderBy: { date: "desc" },
+  })
 
-  const [royalties, setRoyalties] = useState<Royalty[]>([])
+  const unpaidTotal = royalties
+    .filter(r => r.status === "unpaid")
+    .reduce((sum, r) => sum + Number(r.amount), 0)
 
-  const [author, setAuthor] = useState("")
-  const [amount, setAmount] = useState("")
-
-
-  function addRoyalty() {
-
-    if (!author) return
-
-    const newRoyalty: Royalty = {
-
-      id: Date.now(),
-
-      author,
-
-      amount: Number(amount),
-
-      date: new Date().toLocaleDateString()
-
-    }
-
-    setRoyalties([...royalties, newRoyalty])
-
-    setAuthor("")
-    setAmount("")
-
-  }
-
+  const paidTotal = royalties
+    .filter(r => r.status === "paid")
+    .reduce((sum, r) => sum + Number(r.amount), 0)
 
   return (
-
     <div>
-
       <h1>Royalties</h1>
 
+      <table>
+        <tbody>
+          <tr><td>Unpaid</td><td>{unpaidTotal.toLocaleString()} XAF</td></tr>
+          <tr><td>Paid</td>  <td>{paidTotal.toLocaleString()} XAF</td></tr>
+        </tbody>
+      </table>
 
-      <h2>Add royalty</h2>
+      <h2>All Royalties</h2>
 
-      <input
-        placeholder="Author"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
-
-      <input
-        placeholder="Amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
-
-      <button onClick={addRoyalty}>
-        Add
-      </button>
-
-
-
-      <h2>List</h2>
-
-      {royalties.map(r => (
-
-        <div key={r.id}>
-
-          {r.author} — {r.amount} — {r.date}
-
-        </div>
-
-      ))}
-
-
+      {royalties.length === 0 ? (
+        <p>No royalties recorded</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Author</th>
+              <th>Book</th>
+              <th>Amount (XAF)</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {royalties.map((r) => (
+              <tr key={r.id}>
+                <td>{r.author}</td>
+                <td>{r.book || "—"}</td>
+                <td>{Number(r.amount).toLocaleString()}</td>
+                <td>{new Date(r.date).toLocaleDateString()}</td>
+                <td>{r.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
-
   )
-
 }
