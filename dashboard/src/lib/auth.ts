@@ -16,10 +16,11 @@ export async function checkPassword(pw: string, hash: string): Promise<boolean> 
 // ── JWT ───────────────────────────────────────────────────────────────────────
 
 export interface SessionPayload extends JWTPayload {
-  id:    string
-  email: string
-  name:  string
-  role:  string
+  id:        string
+  email:     string
+  name:      string
+  role:      string
+  companyId?: string   // null = owner / admin (sees all companies)
 }
 
 export async function createToken(payload: Omit<SessionPayload, keyof JWTPayload>): Promise<string> {
@@ -65,4 +66,17 @@ export function canAccess(role: string, pathname: string): boolean {
   return allowed.some((path) =>
     path === "/" ? pathname === "/" : pathname.startsWith(path)
   )
+}
+
+// ── Multi-company filter ───────────────────────────────────────────────────────
+// Returns a Prisma `where` fragment that scopes queries to the user's company.
+// Owner / admin (companyId = undefined) returns {} → sees all records.
+//
+// Usage:
+//   const filter = companyFilter(session)
+//   const orders = await prisma.order.findMany({ where: filter })
+
+export function companyFilter(session: SessionPayload): { companyId?: string } {
+  if (!session.companyId || session.role === "admin" || session.role === "owner") return {}
+  return { companyId: session.companyId }
 }

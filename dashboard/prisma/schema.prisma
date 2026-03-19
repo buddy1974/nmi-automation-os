@@ -68,11 +68,13 @@ model Order {
   date         DateTime    @default(now()) @db.Date
   total        Decimal     @default(0)
   status       String      @default("pending")
+  companyId    String?     @map("company_id")
 
   customer  Customer?   @relation(fields: [customerId], references: [id])
   branch    Branch?     @relation(fields: [branchId], references: [id])
   items     OrderItem[]
   invoice   Invoice?
+  company   Company?    @relation(fields: [companyId], references: [id])
 
   @@map("orders")
 }
@@ -105,8 +107,10 @@ model Invoice {
   status       String   @default("issued")
   paid         Decimal  @default(0)
   createdAt    DateTime @default(now()) @map("created_at")
+  companyId    String?  @map("company_id")
 
-  order Order @relation(fields: [orderId], references: [id])
+  order   Order    @relation(fields: [orderId], references: [id])
+  company Company? @relation(fields: [companyId], references: [id])
 
   @@map("invoices")
 }
@@ -192,7 +196,9 @@ model Worker {
   endDate      DateTime? @map("end_date")   @db.Date
   salaryBase   Decimal  @default(0) @map("salary_base")
   status       String   @default("active")
+  companyId    String?  @map("company_id")
 
+  company     Company?           @relation(fields: [companyId], references: [id])
   performance PerformanceRecord[]
 
   @@map("workers")
@@ -281,6 +287,22 @@ model AutomationJob {
   @@map("automation_jobs")
 }
 
+// ── Companies ─────────────────────────────────────────────────────────────────
+
+model Company {
+  id     String  @id @default(cuid())
+  name   String
+  city   String  @default("")
+  active Boolean @default(true)
+
+  users    User[]
+  workers  Worker[]
+  orders   Order[]
+  invoices Invoice[]
+
+  @@map("companies")
+}
+
 // ── Users ─────────────────────────────────────────────────────────────────────
 
 model User {
@@ -291,6 +313,9 @@ model User {
   role      String   @default("viewer")
   active    Boolean  @default(true)
   createdAt DateTime @default(now()) @map("created_at")
+  companyId String?  @map("company_id")
+
+  company Company? @relation(fields: [companyId], references: [id])
 
   @@map("users")
 }

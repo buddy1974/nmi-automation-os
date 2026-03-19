@@ -29,10 +29,11 @@ export async function loginAction(
   }
 
   const token = await createToken({
-    id:    user.id,
-    email: user.email,
-    name:  user.name,
-    role:  user.role,
+    id:        user.id,
+    email:     user.email,
+    name:      user.name,
+    role:      user.role,
+    companyId: user.companyId ?? undefined,
   })
 
   const jar = await cookies()
