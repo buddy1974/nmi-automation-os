@@ -76,7 +76,25 @@ export function canAccess(role: string, pathname: string): boolean {
 //   const filter = companyFilter(session)
 //   const orders = await prisma.order.findMany({ where: filter })
 
-export function companyFilter(session: SessionPayload): { companyId?: string } {
-  if (!session.companyId || session.role === "admin" || session.role === "owner") return {}
-  return { companyId: session.companyId }
+// Returns the active companyId to use for DB queries.
+// - Non-admin/owner → always their own companyId (cookie ignored)
+// - Admin/owner + cookie "all" → undefined (no filter)
+// - Admin/owner + cookie set → that companyId
+export function getActiveCompanyId(
+  session:      SessionPayload,
+  cookieValue?: string,         // value of nmi_company cookie
+): string | undefined {
+  if (session.role !== "admin" && session.role !== "owner" && session.role !== "manager") {
+    return session.companyId ?? undefined
+  }
+  if (!cookieValue || cookieValue === "all") return undefined
+  return cookieValue
+}
+
+export function companyFilter(
+  session:      SessionPayload,
+  cookieValue?: string,
+): { companyId?: string } {
+  const id = getActiveCompanyId(session, cookieValue)
+  return id ? { companyId: id } : {}
 }
