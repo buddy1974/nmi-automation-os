@@ -32,8 +32,17 @@ function canAccess(role: string, pathname: string): boolean {
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
-  // Always pass public routes
+  // Authenticated users visiting /login → redirect to dashboard
   if (PUBLIC.some((p) => pathname.startsWith(p))) {
+    const token = req.cookies.get("nmi_session")?.value
+    if (token) {
+      try {
+        await jwtVerify(token, secret)
+        return NextResponse.redirect(new URL("/dashboard", req.url))
+      } catch {
+        // Invalid token — let them stay on /login
+      }
+    }
     return NextResponse.next()
   }
 
