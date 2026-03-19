@@ -28,9 +28,9 @@ function canAccess(role: string, pathname: string): boolean {
   )
 }
 
-// ── Middleware ────────────────────────────────────────────────────────────────
+// ── Proxy (auth guard) ────────────────────────────────────────────────────────
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   // Authenticated users visiting /login → redirect to dashboard
