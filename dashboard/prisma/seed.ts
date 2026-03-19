@@ -1,6 +1,7 @@
 import "dotenv/config"
 import { PrismaClient } from "@prisma/client"
 import { PrismaNeon } from "@prisma/adapter-neon"
+import bcrypt from "bcryptjs"
 
 const adapter = new PrismaNeon({
   connectionString: process.env.DATABASE_URL!,
@@ -57,6 +58,21 @@ async function main() {
   })
 
   console.log("Seeded 34 products successfully")
+
+  // ── Admin user ───────────────────────────────────────────────────────────────
+  const password = await bcrypt.hash("admin123", 10)
+  await prisma.user.upsert({
+    where:  { email: "admin@nmi.local" },
+    update: {},
+    create: {
+      email:    "admin@nmi.local",
+      name:     "Admin",
+      password,
+      role:     "owner",
+      active:   true,
+    },
+  })
+  console.log("Admin user ready — admin@nmi.local / admin123")
 }
 
 main()
