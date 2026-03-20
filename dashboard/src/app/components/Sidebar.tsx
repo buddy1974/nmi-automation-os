@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation"
 import styles      from "./Sidebar.module.css"
 
 const NAV = [
-  { label: "Dashboard",  href: "/dashboard"  },
-  { label: "Orders",     href: "/orders"     },
+  { label: "Dashboard",    href: "/dashboard"    },
+  { label: "AI Assistant", href: "/ai"           },
+  { label: "Orders",       href: "/orders"       },
   { label: "Sales",      href: "/sales"      },
   { label: "Customers",  href: "/customers"  },
   { label: "Invoices",   href: "/invoices"   },
