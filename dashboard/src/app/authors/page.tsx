@@ -1,40 +1,35 @@
 import { prisma } from "@/lib/db"
+import { S, row } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
-// Author model has no companyId — authors are global
-
 export default async function AuthorsPage() {
-  const authors = await prisma.author.findMany({
-    orderBy: { name: "asc" },
-  })
+  const authors = await prisma.author.findMany({ orderBy: { name: "asc" } })
 
   return (
-    <div>
-      <h1>Authors</h1>
-      <p>{authors.length} author{authors.length !== 1 ? "s" : ""}</p>
+    <div style={S.page}>
+      <h1 style={S.heading}>Authors</h1>
+      <p style={S.subtitle}>Author registry — global, not company-scoped</p>
 
-      {authors.length === 0 ? (
-        <p>No authors recorded</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {authors.map((a) => (
-              <tr key={a.id}>
-                <td>{a.name}</td>
-                <td>{a.phone || "—"}</td>
-                <td>{a.email || "—"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div style={S.statBar}>
+        <div style={S.statCard}><div style={S.statLabel}>Total Authors</div><div style={S.statValue}>{authors.length}</div></div>
+      </div>
+
+      {authors.length === 0 ? <p style={S.mutedText}>No authors recorded</p> : (
+        <div style={S.tableWrap}>
+          <table style={S.table}>
+            <thead><tr>{["Name","Phone","Email"].map(h => <th key={h} style={S.th}>{h}</th>)}</tr></thead>
+            <tbody>
+              {authors.map((a, i) => (
+                <tr key={a.id} style={row(i)}>
+                  <td style={{ ...S.td, fontWeight: 600 }}>{a.name}</td>
+                  <td style={S.td}>{a.phone || "—"}</td>
+                  <td style={S.td}>{a.email || "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   )

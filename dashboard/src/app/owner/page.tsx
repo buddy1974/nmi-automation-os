@@ -2,227 +2,259 @@ import { cookies }    from "next/headers"
 import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
-import { resolveCompany, perfFilter } from "@/lib/companyFilter"
+import { S, row }     from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
-const ALLOWED = ["admin", "hr", "manager", "owner"]
+const ALLOWED = ["admin", "owner"]
 
-function scoreColor(score: number): string {
-  if (score > 400) return "#16a34a"
-  if (score > 300) return "#2563eb"
-  if (score > 250) return "#d97706"
-  return "#dc2626"
-}
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
-function ratingColor(rating: string | null): string {
-  switch (rating) {
-    case "Outstanding":       return "#16a34a"
-    case "Excellent":         return "#2563eb"
-    case "Very Good":         return "#7c3aed"
-    case "Good":              return "#d97706"
-    case "Needs Improvement": return "#ea580c"
-    default:                  return "#dc2626"
-  }
-}
+function fmt(n: number): string { return n.toLocaleString() }
 
-function fmt(n: number | null | undefined): string {
-  return (n ?? 0).toLocaleString()
-}
-
-function Card({
-  label, value, sub, color,
-}: { label: string; value: string; sub?: string; color: string }) {
+function KpiCard({ label, value, sub, accent }: { label: string; value: string; sub?: string; accent: string }) {
   return (
-    <div style={{
-      background: "white",
-      border: "1px solid #e5e7eb",
-      borderRadius: "12px",
-      padding: "20px 24px",
-      boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
-      borderTop: `4px solid ${color}`,
-    }}>
+    <div style={S.kpiCard(accent)}>
       <div style={{ fontSize: "11px", color: "#888", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>{label}</div>
-      <div style={{ fontSize: "24px", fontWeight: 700, color }}>{value}</div>
+      <div style={{ fontSize: "26px", fontWeight: 700, color: accent }}>{value}</div>
       {sub && <div style={{ fontSize: "12px", color: "#999", marginTop: "4px" }}>{sub}</div>}
     </div>
   )
 }
 
-export default async function OwnerPage() {
+// ── Page ─────────────────────────────────────────────────────────────────────
 
+export default async function OwnerPage() {
   const jar     = await cookies()
   const session = await getSession(jar.get("nmi_session")?.value)
   if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
 
-  const cid     = resolveCompany(session, jar.get("nmi_company")?.value)
-  const records = await prisma.performanceRecord.findMany({
-    where:    perfFilter(cid),
-    include:  { worker: true },
-    orderBy:  { totalScore: "desc" },
-  })
+  // ── Global aggregates ─────────────────────────────────────────────────────
 
-  // ── Aggregates ──────────────────────────────────────────────────────────────
-  const totalBonus          = records.reduce((s, r) => s + (r.bonusAmount     ?? 0), 0)
-  const totalSalaryIncrease = records.reduce((s, r) => s + (r.salaryIncrease  ?? 0), 0)
-  const totalSuggestedSalary = records.reduce((s, r) => s + (r.suggestedSalary ?? 0), 0)
-  const topWorkers          = records.filter(r => r.totalScore > 400)
-  const riskWorkers         = records.filter(r => r.totalScore < 250)
+  const [
+    revenueAgg,
+    orderCount,
+    activeWorkerCount,
+    companies,
+    workers,
+    lowStockProducts,
+    unpaidRoyalties,
+    printReadyManuscripts,
+    performanceRecords,
+  ] = await Promise.all([
+    prisma.order.aggregate({ _sum: { total: true } }),
+    prisma.order.count(),
+    prisma.worker.count({ where: { status: "active" } }),
+    prisma.company.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
+    prisma.worker.findMany({
+      where:  { status: "active" },
+      select: { id: true, name: true, cnpsNumber: true, contractType: true, salaryBase: true, companyId: true },
+    }),
+    prisma.product.findMany({
+      where:  { stock: { lt: 10 } },
+      select: { code: true, title: true, stock: true },
+    }),
+    prisma.royalty.findMany({
+      where:  { status: "unpaid" },
+      select: { id: true, author: true, book: true, amount: true },
+    }),
+    prisma.manuscript.findMany({
+      where:  { readyForPrint: true },
+      select: { id: true, title: true, author: true },
+    }),
+    prisma.performanceRecord.findMany({
+      select: { workerId: true, scorePercent: true, totalScore: true },
+    }),
+  ])
 
-  // ── Department roll-up ───────────────────────────────────────────────────────
-  const deptMap: Record<string, { count: number; scoreSum: number; bonus: number }> = {}
-  for (const r of records) {
-    const dept = r.worker.department || "Unassigned"
-    if (!deptMap[dept]) deptMap[dept] = { count: 0, scoreSum: 0, bonus: 0 }
-    deptMap[dept].count++
-    deptMap[dept].scoreSum += r.totalScore
-    deptMap[dept].bonus    += r.bonusAmount ?? 0
+  const totalRevenue   = Number(revenueAgg._sum.total ?? 0)
+  const activeCompanyCount = companies.length
+
+  // ── Per-company breakdown ─────────────────────────────────────────────────
+
+  const companyBreakdown = await Promise.all(
+    companies.map(async c => {
+      const [rev, orders, workerCnt] = await Promise.all([
+        prisma.order.aggregate({ _sum: { total: true }, where: { companyId: c.id } }),
+        prisma.order.count({ where: { companyId: c.id } }),
+        prisma.worker.count({ where: { companyId: c.id, status: "active" } }),
+      ])
+      const revenue = Number(rev._sum.total ?? 0)
+      return { id: c.id, name: c.name, city: c.city, revenue, orders, workers: workerCnt }
+    })
+  )
+
+  // ── AI Decisions (system-generated recommendations) ───────────────────────
+
+  type Decision = { severity: "high" | "medium" | "low"; message: string }
+  const decisions: Decision[] = []
+
+  // Low stock
+  for (const p of lowStockProducts) {
+    decisions.push({
+      severity: p.stock === 0 ? "high" : "medium",
+      message:  `Low stock: ${p.code} — ${p.title} (${p.stock} units remaining)`,
+    })
   }
-  const depts = Object.entries(deptMap)
-    .map(([name, d]) => ({ name, count: d.count, avg: Math.round(d.scoreSum / d.count), bonus: d.bonus }))
-    .sort((a, b) => b.avg - a.avg)
 
-  // ── AI summary ───────────────────────────────────────────────────────────────
-  const avgScore = records.length
-    ? Math.round(records.reduce((s, r) => s + r.totalScore, 0) / records.length)
-    : 0
-  const overallLabel = avgScore >= 400 ? "strong" : avgScore >= 300 ? "moderate" : "below expectations"
-  const aiSummary = records.length === 0
-    ? "No performance data yet. Evaluate workers to generate insights."
-    : `Overall performance is ${overallLabel} (avg ${avgScore}/500). ` +
-      `Total bonus recommended: ${totalBonus.toLocaleString()} XAF. ` +
-      `Workers at risk: ${riskWorkers.length}. ` +
-      `Top performers: ${topWorkers.length}.`
+  // Unpaid royalties
+  if (unpaidRoyalties.length > 0) {
+    const total = unpaidRoyalties.reduce((s, r) => s + Number(r.amount), 0)
+    decisions.push({
+      severity: "medium",
+      message:  `${unpaidRoyalties.length} unpaid royalties totalling ${fmt(total)} XAF`,
+    })
+  }
+
+  // Missing CNPS
+  const missingCnps = workers.filter(w => !w.cnpsNumber && ["CDI", "CDD"].includes(w.contractType))
+  for (const w of missingCnps) {
+    decisions.push({
+      severity: "high",
+      message:  `Missing CNPS: ${w.name} (${w.contractType}) — required for compliance`,
+    })
+  }
+
+  // Low performers (scorePercent < 50)
+  const latestPerf = new Map<number, number>()
+  for (const r of performanceRecords) {
+    if (!latestPerf.has(r.workerId)) latestPerf.set(r.workerId, r.scorePercent)
+  }
+  const lowPerformers = [...latestPerf.entries()].filter(([, pct]) => pct < 50)
+  if (lowPerformers.length > 0) {
+    decisions.push({
+      severity: "medium",
+      message:  `${lowPerformers.length} worker${lowPerformers.length !== 1 ? "s" : ""} with performance below 50%`,
+    })
+  }
+
+  // Manuscripts ready to print
+  for (const m of printReadyManuscripts) {
+    decisions.push({
+      severity: "low",
+      message:  `Ready to print: "${m.title}" by ${m.author || "unknown"}`,
+    })
+  }
+
+  // Sort: high → medium → low
+  const ORDER = { high: 0, medium: 1, low: 2 }
+  decisions.sort((a, b) => ORDER[a.severity] - ORDER[b.severity])
+
+  const severityColor: Record<string, string> = {
+    high:   "#dc2626",
+    medium: "#d97706",
+    low:    "#2563eb",
+  }
 
   return (
-    <div style={{ padding: "32px", fontFamily: "Arial, sans-serif", color: "#111", maxWidth: "1200px" }}>
+    <div style={S.page}>
 
-      {/* Header */}
-      <h1 style={{ margin: "0 0 4px", fontSize: "24px" }}>Executive AI Overview</h1>
-      <p style={{ margin: "0 0 24px", color: "#666", fontSize: "13px" }}>
-        PeopleOS — Performance · Bonus · Salary Intelligence · {records.length} evaluation{records.length !== 1 ? "s" : ""}
+      {/* ── Header ─────────────────────────────────────────────────────────── */}
+
+      <h1 style={S.heading}>Owner Intelligence Dashboard</h1>
+      <p style={S.subtitle}>
+        Real-time command centre — {activeCompanyCount} active compan{activeCompanyCount !== 1 ? "ies" : "y"} · {fmt(orderCount)} total orders
       </p>
 
-      {/* AI Summary banner */}
-      <div style={{
-        background: "#f0fdf4",
-        border: "1px solid #86efac",
-        borderLeft: "4px solid #16a34a",
-        borderRadius: "8px",
-        padding: "14px 18px",
-        marginBottom: "28px",
-        fontSize: "13px",
-        color: "#14532d",
-        lineHeight: "1.6",
-      }}>
-        <strong>AI Insight: </strong>{aiSummary}
+
+      {/* ── KPI Row ────────────────────────────────────────────────────────── */}
+
+      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "36px" }}>
+        <KpiCard label="Total Revenue"      value={`${fmt(totalRevenue)} XAF`} sub="all companies, all time" accent="#16a34a" />
+        <KpiCard label="Total Orders"       value={fmt(orderCount)}             sub="all companies"           accent="#2563eb" />
+        <KpiCard label="Active Workers"     value={fmt(activeWorkerCount)}      sub="status = active"         accent="#7c3aed" />
+        <KpiCard label="Active Companies"   value={fmt(activeCompanyCount)}     sub="in the system"           accent="#d97706" />
       </div>
 
-      {/* KPI Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", marginBottom: "32px" }}>
-        <Card label="Total Bonus Suggested"  value={`${totalBonus.toLocaleString()} XAF`}          sub="across all evaluations" color="#16a34a" />
-        <Card label="Total Salary Increase"  value={`${totalSalaryIncrease.toLocaleString()} XAF`} sub="recommended increases"   color="#2563eb" />
-        <Card label="Top Performers"         value={String(topWorkers.length)}                      sub="score above 400/500"     color="#7c3aed" />
-        <Card label="Risk Workers"           value={String(riskWorkers.length)}                     sub="score below 250/500"     color="#dc2626" />
-      </div>
 
-      {/* Worker Table */}
-      {records.length > 0 ? (
-        <>
-          <h2 style={{ fontSize: "16px", margin: "0 0 16px" }}>Worker Performance &amp; Compensation</h2>
-          <div style={{ overflowX: "auto", marginBottom: "36px" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
-              <thead>
-                <tr style={{ background: "#f9fafb", borderBottom: "2px solid #e5e7eb" }}>
-                  {["Worker", "Dept", "Score", "Rating", "Bonus %", "Bonus (XAF)", "Salary +", "Suggested Salary", "Recommendation"].map(h => (
-                    <th key={h} style={{ padding: "10px 14px", textAlign: "left", fontWeight: 600, color: "#555", whiteSpace: "nowrap" }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {records.map((r, i) => {
-                  const col = scoreColor(r.totalScore)
-                  return (
-                    <tr key={r.id} style={{ borderBottom: "1px solid #f0f0f0", background: i % 2 === 0 ? "white" : "#fafafa" }}>
-                      <td style={{ padding: "10px 14px", fontWeight: 600 }}>{r.worker.name}</td>
-                      <td style={{ padding: "10px 14px", color: "#666" }}>{r.worker.department || "—"}</td>
-                      <td style={{ padding: "10px 14px", fontWeight: 700, color: col }}>{r.totalScore}/500</td>
-                      <td style={{ padding: "10px 14px" }}>
-                        {r.rating && (
-                          <span style={{
-                            padding: "2px 8px", borderRadius: "4px", fontSize: "11px",
-                            fontWeight: 700, color: "white",
-                            background: ratingColor(r.rating),
-                          }}>
-                            {r.rating}
-                          </span>
-                        )}
-                      </td>
-                      <td style={{ padding: "10px 14px", color: "#555" }}>
-                        {r.bonusPercent != null ? `${((r.bonusPercent) * 100).toFixed(0)}%` : "—"}
-                      </td>
-                      <td style={{ padding: "10px 14px", fontWeight: 600, color: (r.bonusAmount ?? 0) > 0 ? "#16a34a" : "#111" }}>
-                        {r.bonusAmount != null ? fmt(r.bonusAmount) : "—"}
-                      </td>
-                      <td style={{ padding: "10px 14px", fontWeight: 600, color: (r.salaryIncrease ?? 0) > 0 ? "#2563eb" : "#111" }}>
-                        {r.salaryIncrease != null ? `+${fmt(r.salaryIncrease)}` : "—"}
-                      </td>
-                      <td style={{ padding: "10px 14px", fontWeight: 600, color: "#92400e" }}>
-                        {r.suggestedSalary != null ? fmt(r.suggestedSalary) : "—"}
-                      </td>
-                      <td style={{ padding: "10px 14px", color: col, fontWeight: 600 }}>{r.recommendation ?? "—"}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-              {/* Totals row */}
-              <tfoot>
-                <tr style={{ borderTop: "2px solid #e5e7eb", background: "#f9fafb", fontWeight: 700 }}>
-                  <td style={{ padding: "10px 14px" }} colSpan={5}>TOTAL</td>
-                  <td style={{ padding: "10px 14px", color: "#16a34a" }}>{totalBonus.toLocaleString()}</td>
-                  <td style={{ padding: "10px 14px", color: "#2563eb" }}>+{totalSalaryIncrease.toLocaleString()}</td>
-                  <td style={{ padding: "10px 14px", color: "#92400e" }}>{totalSuggestedSalary.toLocaleString()}</td>
-                  <td />
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+      {/* ── AI Decisions ───────────────────────────────────────────────────── */}
 
-          {/* Department roll-up */}
-          {depts.length > 0 && (
-            <>
-              <h2 style={{ fontSize: "16px", margin: "0 0 16px" }}>Department Overview</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "12px" }}>
-                {depts.map(d => (
-                  <div key={d.name} style={{
-                    background: "white",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "10px",
-                    padding: "16px 20px",
-                    boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-                  }}>
-                    <div style={{ fontWeight: 700, fontSize: "14px", marginBottom: "10px" }}>{d.name}</div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555", marginBottom: "4px" }}>
-                      <span>Workers evaluated</span><span style={{ fontWeight: 600 }}>{d.count}</span>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555", marginBottom: "4px" }}>
-                      <span>Avg score</span>
-                      <span style={{ fontWeight: 600, color: scoreColor(d.avg) }}>{d.avg}/500</span>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555" }}>
-                      <span>Total bonus</span>
-                      <span style={{ fontWeight: 600, color: "#16a34a" }}>{d.bonus.toLocaleString()} XAF</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </>
+      <h2 style={S.sectionTitle}>AI Decisions &amp; Alerts ({decisions.length})</h2>
+
+      {decisions.length === 0 ? (
+        <p style={S.successText}>✓ No issues detected — system is healthy</p>
       ) : (
-        <div style={{ textAlign: "center", padding: "60px 0", color: "#aaa", fontSize: "14px" }}>
-          No evaluations found. Use the Performance Scorecard to evaluate workers first.
+        <div style={{ marginBottom: "32px" }}>
+          {decisions.map((d, i) => (
+            <div key={i} style={{
+              display:      "flex",
+              alignItems:   "flex-start",
+              gap:          "12px",
+              background:   "#fff",
+              border:       "1px solid #e5e7eb",
+              borderLeft:   `4px solid ${severityColor[d.severity]}`,
+              borderRadius: "6px",
+              padding:      "10px 14px",
+              marginBottom: "6px",
+              fontSize:     "13px",
+            }}>
+              <span style={S.badge(severityColor[d.severity])}>{d.severity}</span>
+              <span>{d.message}</span>
+            </div>
+          ))}
         </div>
+      )}
+
+
+      {/* ── Company Breakdown ──────────────────────────────────────────────── */}
+
+      <h2 style={S.sectionTitle}>Company Breakdown</h2>
+
+      {companyBreakdown.length === 0 ? (
+        <p style={S.mutedText}>No companies found. Create companies in the Owner section.</p>
+      ) : (
+        <div style={S.tableWrap}>
+          <table style={S.table}>
+            <thead>
+              <tr>
+                {["Company", "City", "Orders", "Revenue (XAF)", "Active Workers"].map(h => (
+                  <th key={h} style={S.th}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {companyBreakdown.map((c, i) => (
+                <tr key={c.id} style={row(i)}>
+                  <td style={{ ...S.td, fontWeight: 600 }}>{c.name}</td>
+                  <td style={S.td}>{c.city || "—"}</td>
+                  <td style={S.td}>{c.orders}</td>
+                  <td style={{ ...S.td, fontWeight: 600, color: "#16a34a" }}>{fmt(c.revenue)}</td>
+                  <td style={S.td}>{c.workers}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr style={{ background: "#f1f5f9", fontWeight: 700, borderTop: "2px solid #e2e8f0" }}>
+                <td style={S.td} colSpan={2}>TOTAL</td>
+                <td style={S.td}>{fmt(orderCount)}</td>
+                <td style={{ ...S.td, color: "#16a34a" }}>{fmt(totalRevenue)}</td>
+                <td style={S.td}>{fmt(activeWorkerCount)}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      )}
+
+
+      {/* ── Performance Intel (from existing owner data) ───────────────────── */}
+
+      {performanceRecords.length > 0 && (
+        <>
+          <h2 style={S.sectionTitle}>Performance Intel</h2>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            {[
+              { label: "Evaluations",     value: performanceRecords.length,                                   accent: "#2563eb" },
+              { label: "Low performers",  value: lowPerformers.length,                                         accent: "#dc2626" },
+              { label: "Avg score",       value: `${Math.round(performanceRecords.reduce((s,r) => s + r.scorePercent, 0) / performanceRecords.length)}%`, accent: "#7c3aed" },
+              { label: "High performers", value: performanceRecords.filter(r => r.scorePercent >= 80).length,  accent: "#16a34a" },
+            ].map(k => (
+              <div key={k.label} style={S.kpiCard(k.accent)}>
+                <div style={{ fontSize: "11px", color: "#888", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "6px" }}>{k.label}</div>
+                <div style={{ fontSize: "22px", fontWeight: 700, color: k.accent }}>{k.value}</div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
     </div>

@@ -52,11 +52,11 @@ export default async function FinancePage() {
   ]
 
   return (
-    <div style={{ padding: "32px", fontFamily: "Arial, sans-serif", color: "#111" }}>
+    <div style={{ padding: "28px 32px", fontFamily: "Arial, sans-serif", color: "#111", maxWidth: "1200px" }}>
 
-      <h1 style={{ margin: "0 0 8px", fontSize: "24px" }}>Finance — Receivables</h1>
-      <p style={{ margin: "0 0 32px", color: "#666", fontSize: "13px" }}>
-        Revenue tracking, payment status, and outstanding balances
+      <h1 style={{ margin: "0 0 4px", fontSize: "22px", fontWeight: 700, color: "#1a1a2e" }}>Finance — Receivables</h1>
+      <p style={{ margin: "0 0 28px", color: "#64748b", fontSize: "13px" }}>
+        Revenue tracking, payment status, and outstanding balances — company-scoped
       </p>
 
       {/* ── Summary cards ───────────────────────────────────────────────────────── */}

@@ -2,11 +2,9 @@ import { cookies }    from "next/headers"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
+import { S, row }     from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
-
-// Customer model has no companyId — we scope by customers who have orders
-// for the active company. If no company filter, all customers are shown.
 
 export default async function CustomersPage() {
   const jar     = await cookies()
@@ -14,44 +12,46 @@ export default async function CustomersPage() {
   const cid     = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
 
   const customers = await prisma.customer.findMany({
-    where: cid
-      ? { orders: { some: { companyId: cid } } }
-      : undefined,
+    where:   cid ? { orders: { some: { companyId: cid } } } : undefined,
     orderBy: { name: "asc" },
   })
 
+  const activeCount = customers.filter(c => c.status === "active").length
+
   return (
-    <div>
-      <h1>Customers</h1>
-      <p>{customers.length} customer{customers.length !== 1 ? "s" : ""}</p>
+    <div style={S.page}>
+      <h1 style={S.heading}>Customers</h1>
+      <p style={S.subtitle}>All customers — filtered by company via order history</p>
+
+      <div style={S.statBar}>
+        <div style={S.statCard}><div style={S.statLabel}>Total Customers</div><div style={S.statValue}>{customers.length}</div></div>
+        <div style={S.statCard}><div style={S.statLabel}>Active</div><div style={{ ...S.statValue, color: "#16a34a" }}>{activeCount}</div></div>
+      </div>
 
       {customers.length === 0 ? (
-        <p>No customers found</p>
+        <p style={S.mutedText}>No customers found</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>Type</th>
-              <th>Region</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {customers.map((c) => (
-              <tr key={c.id}>
-                <td>{c.name}</td>
-                <td>{c.phone || "—"}</td>
-                <td>{c.address || "—"}</td>
-                <td>{c.type}</td>
-                <td>{c.region || "—"}</td>
-                <td>{c.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={S.tableWrap}>
+          <table style={S.table}>
+            <thead>
+              <tr>{["Name","Phone","Address","Type","Region","Status"].map(h => <th key={h} style={S.th}>{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {customers.map((c, i) => (
+                <tr key={c.id} style={row(i)}>
+                  <td style={{ ...S.td, fontWeight: 600 }}>{c.name}</td>
+                  <td style={S.td}>{c.phone || "—"}</td>
+                  <td style={S.td}>{c.address || "—"}</td>
+                  <td style={S.td}>{c.type}</td>
+                  <td style={S.td}>{c.region || "—"}</td>
+                  <td style={S.td}>
+                    <span style={S.badge(c.status === "active" ? "#16a34a" : "#888")}>{c.status}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   )

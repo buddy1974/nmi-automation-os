@@ -2,6 +2,7 @@ import { cookies }    from "next/headers"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany, directFilter, perfFilter } from "@/lib/companyFilter"
+import { S, row }     from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -13,11 +14,7 @@ export default async function HRPage() {
   const companyWhere = directFilter(cid)
 
   const [workers, performanceRecords] = await Promise.all([
-    prisma.worker.findMany({
-      where:   companyWhere,
-      orderBy: { name: "asc" },
-    }),
-
+    prisma.worker.findMany({ where: companyWhere, orderBy: { name: "asc" } }),
     prisma.performanceRecord.findMany({
       where:   perfFilter(cid),
       include: { worker: { select: { name: true } } },
@@ -25,155 +22,119 @@ export default async function HRPage() {
     }),
   ])
 
-  // ── AI Alerts (computed) ────────────────────────────────────────────────────
+  const missingCnps   = workers.filter(w => !w.cnpsNumber && ["CDI","CDD"].includes(w.contractType) && w.status === "active")
+  const missingSalary = workers.filter(w => Number(w.salaryBase) === 0 && w.contractType === "CDI" && w.status === "active")
 
-  const missingCnps = workers.filter(
-    w => !w.cnpsNumber && ["CDI", "CDD"].includes(w.contractType) && w.status === "active"
-  )
-
-  const missingSalary = workers.filter(
-    w => Number(w.salaryBase) === 0 && w.contractType === "CDI" && w.status === "active"
-  )
-
-  // latest performance record per worker
   const latestPerf = new Map<number, typeof performanceRecords[0]>()
   for (const rec of performanceRecords) {
     if (!latestPerf.has(rec.workerId)) latestPerf.set(rec.workerId, rec)
   }
-
   const lowPerformers = [...latestPerf.values()].filter(r => r.scorePercent < 50)
 
-  // ── Summary totals ──────────────────────────────────────────────────────────
-
-  const activeCount  = workers.filter(w => w.status === "active").length
-  const totalSalary  = workers
-    .filter(w => w.status === "active")
-    .reduce((sum, w) => sum + Number(w.salaryBase), 0)
+  const activeCount = workers.filter(w => w.status === "active").length
+  const totalSalary = workers.filter(w => w.status === "active").reduce((s, w) => s + Number(w.salaryBase), 0)
 
   return (
-    <div>
-      <h1>HR / PeopleOS</h1>
+    <div style={S.page}>
 
+      <h1 style={S.heading}>HR / PeopleOS</h1>
+      <p style={S.subtitle}>Workers, performance records and compliance alerts — company-scoped</p>
 
-      {/* ── Summary ──────────────────────────────────────────────────────────── */}
+      {/* ── Summary bar ──────────────────────────────────────────────────── */}
+      <div style={S.statBar}>
+        {[
+          { label: "Total Workers",          value: workers.length },
+          { label: "Active",                 value: activeCount },
+          { label: "Base Salary Total (XAF)",value: totalSalary.toLocaleString() },
+          { label: "Performance Records",    value: performanceRecords.length },
+          { label: "Alerts",                 value: missingCnps.length + missingSalary.length + lowPerformers.length },
+        ].map(s => (
+          <div key={s.label} style={S.statCard}>
+            <div style={S.statLabel}>{s.label}</div>
+            <div style={S.statValue}>{s.value}</div>
+          </div>
+        ))}
+      </div>
 
-      <h2>Summary</h2>
-
-      <table>
-        <tbody>
-          <tr><td>Total workers</td>            <td>{workers.length}</td></tr>
-          <tr><td>Active workers</td>           <td>{activeCount}</td></tr>
-          <tr><td>Total base salary (XAF)</td>  <td>{totalSalary.toLocaleString()}</td></tr>
-          <tr><td>Performance records</td>      <td>{performanceRecords.length}</td></tr>
-        </tbody>
-      </table>
-
-
-      {/* ── AI Alerts ────────────────────────────────────────────────────────── */}
-
-      <h2>AI Alerts</h2>
-
+      {/* ── AI Alerts ────────────────────────────────────────────────────── */}
+      <h2 style={S.sectionTitle}>AI Alerts</h2>
       {missingCnps.length === 0 && missingSalary.length === 0 && lowPerformers.length === 0 ? (
-        <p>✓ No HR alerts</p>
+        <p style={S.successText}>✓ No HR alerts</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Worker</th>
-              <th>Alert</th>
-            </tr>
-          </thead>
-          <tbody>
-            {missingCnps.map(w => (
-              <tr key={`cnps-${w.id}`}>
-                <td>{w.name}</td>
-                <td>⚠ CNPS number missing ({w.contractType})</td>
-              </tr>
-            ))}
-            {missingSalary.map(w => (
-              <tr key={`salary-${w.id}`}>
-                <td>{w.name}</td>
-                <td>⚠ Base salary not set (CDI)</td>
-              </tr>
-            ))}
-            {lowPerformers.map(r => (
-              <tr key={`perf-${r.id}`}>
-                <td>{r.worker.name}</td>
-                <td>⚠ Low performance: {r.scorePercent.toFixed(1)}% — {r.rating ?? "unrated"} ({r.period})</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <>
+          {missingCnps.map(w => (
+            <div key={`cnps-${w.id}`} style={S.alertBox}>⚠ {w.name} — CNPS number missing ({w.contractType})</div>
+          ))}
+          {missingSalary.map(w => (
+            <div key={`sal-${w.id}`} style={S.alertBox}>⚠ {w.name} — Base salary not set (CDI)</div>
+          ))}
+          {lowPerformers.map(r => (
+            <div key={`perf-${r.id}`} style={S.alertBox}>
+              ⚠ {r.worker.name} — Low performance: {r.scorePercent.toFixed(1)}% — {r.rating ?? "unrated"} ({r.period})
+            </div>
+          ))}
+        </>
       )}
 
-
-      {/* ── Workers ──────────────────────────────────────────────────────────── */}
-
-      <h2>Workers ({workers.length})</h2>
-
+      {/* ── Workers ──────────────────────────────────────────────────────── */}
+      <h2 style={S.sectionTitle}>Workers ({workers.length})</h2>
       {workers.length === 0 ? (
-        <p>No workers found</p>
+        <p style={S.mutedText}>No workers found</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Department</th>
-              <th>Contract</th>
-              <th>Base Salary (XAF)</th>
-              <th>CNPS #</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {workers.map(w => (
-              <tr key={w.id}>
-                <td>{w.name}</td>
-                <td>{w.role || "—"}</td>
-                <td>{w.department || "—"}</td>
-                <td>{w.contractType}</td>
-                <td>{Number(w.salaryBase).toLocaleString()}</td>
-                <td>{w.cnpsNumber || <em>missing</em>}</td>
-                <td>{w.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={S.tableWrap}>
+          <table style={S.table}>
+            <thead>
+              <tr>{["Name","Role","Department","Contract","Base Salary (XAF)","CNPS #","Status"].map(h => <th key={h} style={S.th}>{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {workers.map((w, i) => (
+                <tr key={w.id} style={row(i)}>
+                  <td style={{ ...S.td, fontWeight: 600 }}>{w.name}</td>
+                  <td style={S.td}>{w.role || "—"}</td>
+                  <td style={S.td}>{w.department || "—"}</td>
+                  <td style={S.td}>{w.contractType}</td>
+                  <td style={S.td}>{Number(w.salaryBase).toLocaleString()}</td>
+                  <td style={S.td}>{w.cnpsNumber || <span style={{ color: "#dc2626" }}>missing</span>}</td>
+                  <td style={S.td}>
+                    <span style={S.badge(w.status === "active" ? "#16a34a" : w.status === "suspended" ? "#dc2626" : "#888")}>
+                      {w.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
-
-      {/* ── Performance ──────────────────────────────────────────────────────── */}
-
-      <h2>Performance Records ({performanceRecords.length})</h2>
-
+      {/* ── Performance ──────────────────────────────────────────────────── */}
+      <h2 style={S.sectionTitle}>Performance Records ({performanceRecords.length})</h2>
       {performanceRecords.length === 0 ? (
-        <p>No performance records yet — use HR &gt; Performance to add evaluations</p>
+        <p style={S.mutedText}>No performance records yet — use HR &gt; Performance to add evaluations</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Worker</th>
-              <th>Period</th>
-              <th>Score</th>
-              <th>%</th>
-              <th>Rating</th>
-              <th>Recommendation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {performanceRecords.map(r => (
-              <tr key={r.id}>
-                <td>{r.worker.name}</td>
-                <td>{r.period}</td>
-                <td>{r.totalScore.toFixed(1)}</td>
-                <td>{r.scorePercent.toFixed(1)}%</td>
-                <td>{r.rating ?? "—"}</td>
-                <td>{r.recommendation ?? "—"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={S.tableWrap}>
+          <table style={S.table}>
+            <thead>
+              <tr>{["Worker","Period","Score","Score %","Rating","Recommendation"].map(h => <th key={h} style={S.th}>{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {performanceRecords.map((r, i) => (
+                <tr key={r.id} style={row(i)}>
+                  <td style={{ ...S.td, fontWeight: 600 }}>{r.worker.name}</td>
+                  <td style={S.td}>{r.period}</td>
+                  <td style={S.td}>{r.totalScore.toFixed(1)}</td>
+                  <td style={S.td}>
+                    <span style={S.badge(r.scorePercent >= 80 ? "#16a34a" : r.scorePercent >= 50 ? "#d97706" : "#dc2626")}>
+                      {r.scorePercent.toFixed(1)}%
+                    </span>
+                  </td>
+                  <td style={S.td}>{r.rating ?? "—"}</td>
+                  <td style={S.td}>{r.recommendation ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
     </div>
