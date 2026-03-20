@@ -39,7 +39,7 @@ export default async function InvoicesPage() {
         <div style={S.tableWrap}>
           <table style={S.table}>
             <thead>
-              <tr>{["Invoice #","Customer","Amount (XAF)","Paid (XAF)","Balance","Status","Due Date","Created"].map(h => (
+              <tr>{["Invoice #","Customer","Amount (XAF)","Paid (XAF)","Balance","Status","Due Date","Created",""].map(h => (
                 <th key={h} style={S.th}>{h}</th>
               ))}</tr>
             </thead>
@@ -62,6 +62,25 @@ export default async function InvoicesPage() {
                     <td style={S.td}><span style={statusBadge(inv.status)}>{inv.status}</span></td>
                     <td style={S.td}>{new Date(inv.dueDate).toLocaleDateString()}</td>
                     <td style={{ ...S.td, ...S.mutedText }}>{new Date(inv.createdAt).toLocaleDateString()}</td>
+                    <td style={S.td}>
+                      <a
+                        href={`/api/reports/invoice/${inv.id}`}
+                        style={{
+                          display:       "inline-block",
+                          padding:       "3px 10px",
+                          fontSize:      "11px",
+                          fontWeight:    600,
+                          borderRadius:  "6px",
+                          background:    "#f1f5f9",
+                          color:         "#2563eb",
+                          textDecoration:"none",
+                          border:        "1px solid #e2e8f0",
+                          whiteSpace:    "nowrap",
+                        }}
+                      >
+                        ↓ PDF
+                      </a>
+                    </td>
                   </tr>
                 )
               })}
