@@ -3,9 +3,10 @@ import { cookies }    from "next/headers"
 import { getSession } from "@/lib/auth"
 import Sidebar     from "./components/Sidebar";
 import Header      from "./components/Header";
-import ChatWidget  from "./components/ChatWidget";
-import LayoutShell    from "./components/LayoutShell";
-import OnboardingTour from "./components/OnboardingTour";
+import ChatWidget      from "./components/ChatWidget";
+import LayoutShell     from "./components/LayoutShell";
+import OnboardingTour  from "./components/OnboardingTour";
+import CommandPalette  from "./components/CommandPalette";
 
 export default async function RootLayout({
   children,
@@ -33,6 +34,7 @@ export default async function RootLayout({
         </LayoutShell>
         <ChatWidget />
         <OnboardingTour />
+        <CommandPalette />
       </body>
     </html>
   )

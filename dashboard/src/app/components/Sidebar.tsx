@@ -8,8 +8,9 @@ const NAV_SECTIONS = [
   {
     label: "MAIN",
     items: [
+      { label: "Office",    href: "/office"    },
       { label: "Dashboard", href: "/dashboard" },
-      { label: "Work OS",   href: "/work"       },
+      { label: "Work OS",   href: "/work"      },
     ],
   },
   {

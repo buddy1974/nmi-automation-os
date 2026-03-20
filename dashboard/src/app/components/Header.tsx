@@ -84,8 +84,32 @@ export default async function Header() {
         />
       )}
 
-      {/* Right: notification bell + user info */}
+      {/* Right: command palette hint + notification bell + user info */}
       <div style={{ display: "flex", alignItems: "center", gap: "16px", flexShrink: 0 }}>
+
+        {session && (
+          <Link
+            href="/office"
+            style={{
+              display:        "inline-flex",
+              alignItems:     "center",
+              gap:            "6px",
+              padding:        "0 12px",
+              height:         "34px",
+              borderRadius:   "8px",
+              background:     "#f8fafc",
+              border:         "1px solid #e2e8f0",
+              textDecoration: "none",
+              fontSize:       "12px",
+              color:          "#94a3b8",
+              flexShrink:     0,
+            }}
+            title="Open Command Palette (Ctrl+K)"
+          >
+            <span>🔍</span>
+            <span style={{ fontSize: 11 }}>Ctrl+K</span>
+          </Link>
+        )}
 
         {session && (
           <Link
