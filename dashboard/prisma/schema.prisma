@@ -482,3 +482,21 @@ model EmailLog {
 
   @@map("email_logs")
 }
+
+// ── Knowledge base ─────────────────────────────────────────────────────────────
+
+model KnowledgeDoc {
+  id        String   @id @default(cuid())
+  title     String
+  category  String
+  content   String   @db.Text
+  source    String?
+  tags      String?
+  active    Boolean  @default(true)
+  createdBy String?  @map("created_by")
+  companyId String?  @map("company_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt      @map("updated_at")
+
+  @@map("knowledge_docs")
+}
