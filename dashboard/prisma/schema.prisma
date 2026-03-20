@@ -501,6 +501,37 @@ model KnowledgeDoc {
   @@map("knowledge_docs")
 }
 
+// ── AI Agents ──────────────────────────────────────────────────────────────────
+
+model AgentConfig {
+  id          String    @id @default(cuid())
+  agentId     String    @unique @map("agent_id")
+  name        String
+  description String?
+  enabled     Boolean   @default(true)
+  schedule    String?
+  config      String?   @db.Text
+  companyId   String?   @map("company_id")
+  lastRunAt   DateTime? @map("last_run_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("agent_configs")
+}
+
+model AgentRun {
+  id        String    @id @default(cuid())
+  agentId   String    @map("agent_id")
+  status    String    @default("running")
+  result    String?   @db.Text
+  error     String?
+  actions   Int       @default(0)
+  companyId String?   @map("company_id")
+  startedAt DateTime  @default(now()) @map("started_at")
+  endedAt   DateTime? @map("ended_at")
+
+  @@map("agent_runs")
+}
+
 // ── WhatsApp messages ──────────────────────────────────────────────────────────
 
 model WhatsAppMessage {

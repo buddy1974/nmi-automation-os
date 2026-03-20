@@ -9,7 +9,6 @@ const NAV_SECTIONS = [
     label: "MAIN",
     items: [
       { label: "Dashboard", href: "/dashboard" },
-      { label: "Briefing",  href: "/briefing"  },
       { label: "Work OS",   href: "/work"       },
     ],
   },
@@ -49,7 +48,9 @@ const NAV_SECTIONS = [
   {
     label: "INTELLIGENCE",
     items: [
-      { label: "Knowledge", href: "/knowledge"    },
+      { label: "Agents",    href: "/agents"        },
+      { label: "Briefing",  href: "/briefing"      },
+      { label: "Knowledge", href: "/knowledge"     },
       { label: "Ask KB",    href: "/knowledge/ask" },
       { label: "AI",        href: "/ai"            },
     ],

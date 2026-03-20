@@ -3,6 +3,14 @@ import { prisma }               from "@/lib/db"
 import { checkRateLimit }       from "@/lib/rateLimit"
 import { classifyEmail }        from "@/lib/emailClassifier"
 import { generateDailyBriefing } from "@/lib/briefing"
+import { runSalesHunter }       from "@/lib/agents/salesHunter"
+import { runReceivables }       from "@/lib/agents/receivables"
+import { runAuthorRelations }   from "@/lib/agents/authorRelations"
+import { runStockIntelligence } from "@/lib/agents/stockIntelligence"
+import { runCompetitiveIntel }  from "@/lib/agents/competitiveIntel"
+import { runHrPulse }           from "@/lib/agents/hrPulse"
+import { runFinancialForecast } from "@/lib/agents/financialForecast"
+import { runDocumentIntel }     from "@/lib/agents/documentIntel"
 
 export const runtime = "nodejs"
 
@@ -123,7 +131,11 @@ async function workflowTaskReminder() {
 
 // ── POST /api/n8n/trigger ─────────────────────────────────────────────────────
 
-const WORKFLOWS = ["email_classify", "stock_alert", "royalty_check", "daily_briefing", "task_reminder"] as const
+const WORKFLOWS = [
+  "email_classify", "stock_alert", "royalty_check", "daily_briefing", "task_reminder",
+  "sales_hunter", "receivables", "author_relations", "stock_intelligence",
+  "competitive_intel", "hr_pulse", "financial_forecast", "document_intel",
+] as const
 type WorkflowName = typeof WORKFLOWS[number]
 
 export async function POST(req: Request) {
@@ -152,11 +164,19 @@ export async function POST(req: Request) {
     let result: unknown
 
     switch (workflow) {
-      case "email_classify":  result = await workflowEmailClassify(payload);  break
-      case "stock_alert":     result = await workflowStockAlert(payload);     break
-      case "royalty_check":   result = await workflowRoyaltyCheck(payload);   break
-      case "daily_briefing":  result = await workflowDailyBriefing();         break
-      case "task_reminder":   result = await workflowTaskReminder();          break
+      case "email_classify":    result = await workflowEmailClassify(payload);  break
+      case "stock_alert":       result = await workflowStockAlert(payload);     break
+      case "royalty_check":     result = await workflowRoyaltyCheck(payload);   break
+      case "daily_briefing":    result = await workflowDailyBriefing();         break
+      case "task_reminder":     result = await workflowTaskReminder();          break
+      case "sales_hunter":      result = await runSalesHunter();                break
+      case "receivables":       result = await runReceivables();                break
+      case "author_relations":  result = await runAuthorRelations();            break
+      case "stock_intelligence":result = await runStockIntelligence();          break
+      case "competitive_intel": result = await runCompetitiveIntel();           break
+      case "hr_pulse":          result = await runHrPulse();                    break
+      case "financial_forecast":result = await runFinancialForecast();          break
+      case "document_intel":    result = await runDocumentIntel();              break
     }
 
     return NextResponse.json({ workflow, result, timestamp: new Date().toISOString() })
