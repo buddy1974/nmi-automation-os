@@ -1,149 +1,221 @@
-// ── Shared inline style constants ─────────────────────────────────────────────
-// Used across all dashboard pages for consistent UI.
-// No Tailwind — inline styles only, consistent with existing codebase.
-
 import type { CSSProperties } from "react"
 
+// ── Design tokens ─────────────────────────────────────────────────────────────
+
+export const C = {
+  bg:         "#f4f6f9",
+  white:      "#ffffff",
+  sidebar:    "#1a1a2e",
+  accent:     "#2563eb",
+  textPri:    "#1e293b",
+  textSec:    "#64748b",
+  border:     "#e2e8f0",
+  borderLight:"#f1f5f9",
+}
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
 export const S = {
-  // ── Page wrapper ──────────────────────────────────────────────────────────
   page: {
-    padding:    "28px 32px",
+    padding:    "32px",
+    background: C.bg,
+    minHeight:  "100vh",
     fontFamily: "Arial, sans-serif",
-    maxWidth:   "1200px",
-    color:      "#111",
+    color:      C.textPri,
   } satisfies CSSProperties,
 
-  // ── Page header ───────────────────────────────────────────────────────────
   heading: {
-    margin:     "0 0 4px",
-    fontSize:   "22px",
-    fontWeight: 700,
-    color:      "#1a1a2e",
+    fontSize:     "28px",
+    fontWeight:   700,
+    color:        "#1a1a2e",
+    margin:       "0 0 4px",
+    lineHeight:   1.2,
   } satisfies CSSProperties,
 
   subtitle: {
-    margin:   "0 0 24px",
-    color:    "#64748b",
-    fontSize: "13px",
+    fontSize:     "14px",
+    color:        C.textSec,
+    margin:       "0 0 24px",
   } satisfies CSSProperties,
 
-  // ── Summary stat bar ──────────────────────────────────────────────────────
+  sectionTitle: {
+    fontSize:     "16px",
+    fontWeight:   700,
+    color:        "#1a1a2e",
+    margin:       "32px 0 12px",
+    paddingBottom:"8px",
+    borderBottom: `1px solid ${C.border}`,
+  } satisfies CSSProperties,
+
+  // ── KPI cards ───────────────────────────────────────────────────────────────
+
   statBar: {
-    display:       "flex",
-    gap:           "12px",
-    marginBottom:  "28px",
-    flexWrap:      "wrap",
+    display:      "flex",
+    flexWrap:     "wrap",
+    gap:          "16px",
+    marginBottom: "32px",
   } satisfies CSSProperties,
 
   statCard: {
-    background:   "#f8fafc",
-    border:       "1px solid #e2e8f0",
+    background:   C.white,
+    border:       `1px solid ${C.border}`,
     borderRadius: "8px",
-    padding:      "14px 20px",
-    minWidth:     "140px",
+    padding:      "20px",
+    minWidth:     "150px",
+    flex:         "1 1 150px",
+  } satisfies CSSProperties,
+
+  statValue: {
+    fontSize:   "32px",
+    fontWeight: 700,
+    color:      C.accent,
+    lineHeight: 1,
+    marginBottom:"4px",
   } satisfies CSSProperties,
 
   statLabel: {
     fontSize:      "11px",
-    color:         "#94a3b8",
     textTransform: "uppercase",
-    letterSpacing: "0.5px",
-    marginBottom:  "4px",
+    letterSpacing: "1px",
+    color:         C.textSec,
   } satisfies CSSProperties,
 
-  statValue: {
-    fontSize:   "22px",
-    fontWeight: 700,
-    color:      "#1a1a2e",
-  } satisfies CSSProperties,
+  // ── Table ───────────────────────────────────────────────────────────────────
 
-  // ── Section heading ───────────────────────────────────────────────────────
-  sectionTitle: {
-    fontSize:   "15px",
-    fontWeight: 700,
-    margin:     "28px 0 12px",
-    color:      "#1a1a2e",
-    borderBottom: "1px solid #e2e8f0",
-    paddingBottom: "6px",
-  } satisfies CSSProperties,
-
-  // ── Table ─────────────────────────────────────────────────────────────────
   tableWrap: {
-    overflowX:    "auto",
+    background:   C.white,
+    border:       `1px solid ${C.border}`,
+    borderRadius: "8px",
+    overflow:     "hidden",
     marginBottom: "8px",
   } satisfies CSSProperties,
 
   table: {
-    width:           "100%",
-    borderCollapse:  "collapse",
-    fontSize:        "13px",
+    width:          "100%",
+    borderCollapse: "collapse",
   } satisfies CSSProperties,
 
   th: {
-    padding:      "10px 14px",
-    textAlign:    "left",
-    fontWeight:   700,
-    color:        "#475569",
-    background:   "#f1f5f9",
-    borderBottom: "2px solid #e2e8f0",
-    whiteSpace:   "nowrap",
+    background:    "#f8fafc",
+    padding:       "12px 16px",
+    textAlign:     "left",
+    fontSize:      "12px",
+    fontWeight:    600,
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
+    color:         C.textSec,
+    borderBottom:  `2px solid ${C.border}`,
+    whiteSpace:    "nowrap",
   } satisfies CSSProperties,
 
   td: {
-    padding:      "10px 14px",
-    borderBottom: "1px solid #f1f5f9",
-    verticalAlign: "top",
+    padding:      "12px 16px",
+    fontSize:     "14px",
+    color:        C.textPri,
+    borderBottom: `1px solid ${C.borderLight}`,
+    verticalAlign:"top",
   } satisfies CSSProperties,
 
-  rowEven: { background: "#ffffff" } satisfies CSSProperties,
+  rowEven: { background: C.white    } satisfies CSSProperties,
   rowOdd:  { background: "#f8fafc" } satisfies CSSProperties,
 
-  // ── Badges ────────────────────────────────────────────────────────────────
-  badge: (color: string): CSSProperties => ({
-    display:      "inline-block",
-    padding:      "2px 8px",
-    borderRadius: "4px",
-    fontSize:     "11px",
-    fontWeight:   700,
-    color:        "#fff",
-    background:   color,
-    whiteSpace:   "nowrap",
-  }),
+  // ── Alert boxes ─────────────────────────────────────────────────────────────
 
-  // ── Alert row ─────────────────────────────────────────────────────────────
-  alertBox: {
-    background:   "#fef2f2",
-    border:       "1px solid #fca5a5",
-    borderLeft:   "4px solid #dc2626",
-    borderRadius: "6px",
-    padding:      "10px 14px",
+  alertRed: {
+    padding:      "12px 16px",
+    borderRadius: "8px",
+    borderLeft:   "4px solid #ef4444",
+    background:   "#fee2e2",
+    color:        "#991b1b",
+    fontSize:     "14px",
     marginBottom: "8px",
-    fontSize:     "13px",
-    color:        "#7f1d1d",
+  } satisfies CSSProperties,
+
+  alertOrange: {
+    padding:      "12px 16px",
+    borderRadius: "8px",
+    borderLeft:   "4px solid #f97316",
+    background:   "#fff7ed",
+    color:        "#9a3412",
+    fontSize:     "14px",
+    marginBottom: "8px",
+  } satisfies CSSProperties,
+
+  alertBlue: {
+    padding:      "12px 16px",
+    borderRadius: "8px",
+    borderLeft:   "4px solid #2563eb",
+    background:   "#dbeafe",
+    color:        "#1d4ed8",
+    fontSize:     "14px",
+    marginBottom: "8px",
   } satisfies CSSProperties,
 
   successText: {
-    color:      "#16a34a",
+    color:      "#166534",
     fontWeight: 600,
+    fontSize:   "14px",
   } satisfies CSSProperties,
 
   mutedText: {
-    color: "#94a3b8",
+    color:    C.textSec,
+    fontSize: "13px",
   } satisfies CSSProperties,
 
-  // ── KPI card (owner/exec) ─────────────────────────────────────────────────
+  // ── KPI accent card (owner) ──────────────────────────────────────────────────
+
   kpiCard: (accent: string): CSSProperties => ({
-    background:   "#ffffff",
-    border:       "1px solid #e5e7eb",
+    background:   C.white,
+    border:       `1px solid ${C.border}`,
     borderTop:    `4px solid ${accent}`,
-    borderRadius: "12px",
-    padding:      "20px 24px",
-    boxShadow:    "0 1px 4px rgba(0,0,0,0.05)",
+    borderRadius: "8px",
+    padding:      "20px",
     flex:         "1 1 180px",
   }),
 }
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 /** Zebra row style by index */
 export function row(i: number): CSSProperties {
   return i % 2 === 0 ? S.rowEven : S.rowOdd
+}
+
+/** Pill badge — soft semantic colours */
+export function badge(
+  variant: "green" | "red" | "orange" | "blue" | "grey",
+  text?: string,
+): CSSProperties {
+  const map: Record<string, [string, string]> = {
+    green:  ["#dcfce7", "#166534"],
+    red:    ["#fee2e2", "#991b1b"],
+    orange: ["#fff7ed", "#9a3412"],
+    blue:   ["#dbeafe", "#1d4ed8"],
+    grey:   ["#f1f5f9", "#475569"],
+  }
+  const [bg, color] = map[variant]
+  return {
+    display:      "inline-block",
+    borderRadius: "999px",
+    padding:      "2px 10px",
+    fontSize:     "12px",
+    fontWeight:   600,
+    background:   bg,
+    color,
+    whiteSpace:   "nowrap",
+  }
+}
+
+/** Pick badge variant by status string */
+export function statusBadge(status: string): CSSProperties {
+  const greens  = ["active","paid","approved","delivered","in_stock","printed","yes"]
+  const reds    = ["cancelled","rejected","suspended","inactive","overdue","no","missing"]
+  const oranges = ["pending","partial","reviewing","editing","planned","warning","unpaid"]
+  const blues   = ["issued","confirmed","printing","ready_for_print","reviewing","submitted"]
+
+  if (greens.some(s  => status.toLowerCase().includes(s))) return badge("green")
+  if (reds.some(s    => status.toLowerCase().includes(s))) return badge("red")
+  if (oranges.some(s => status.toLowerCase().includes(s))) return badge("orange")
+  if (blues.some(s   => status.toLowerCase().includes(s))) return badge("blue")
+  return badge("grey")
 }
