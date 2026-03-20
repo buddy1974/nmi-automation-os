@@ -1,8 +1,9 @@
 import "./globals.css";
 import { cookies }    from "next/headers"
 import { getSession } from "@/lib/auth"
-import Sidebar from "./components/Sidebar";
-import Header  from "./components/Header";
+import Sidebar     from "./components/Sidebar";
+import Header      from "./components/Header";
+import ChatWidget  from "./components/ChatWidget";
 
 export default async function RootLayout({
   children,
@@ -40,6 +41,8 @@ export default async function RootLayout({
           </div>
 
         </div>
+
+        <ChatWidget />
       </body>
     </html>
   )

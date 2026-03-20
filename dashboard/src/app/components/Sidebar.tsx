@@ -6,7 +6,6 @@ import styles      from "./Sidebar.module.css"
 
 const NAV = [
   { label: "Dashboard",    href: "/dashboard"    },
-  { label: "AI Assistant", href: "/ai"           },
   { label: "Orders",       href: "/orders"       },
   { label: "Sales",      href: "/sales"      },
   { label: "Customers",  href: "/customers"  },
