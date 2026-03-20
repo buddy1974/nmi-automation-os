@@ -3,6 +3,7 @@ import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { S, row, badge } from "@/lib/ui"
+import OwnerCharts, { type CompanyChartData, type MonthlyChartData } from "@/app/components/OwnerCharts"
 
 export const dynamic = "force-dynamic"
 
@@ -25,9 +26,15 @@ export default async function OwnerPage() {
   const session = await getSession(jar.get("nmi_session")?.value)
   if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
 
+  const sixMonthsAgo = new Date()
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5)
+  sixMonthsAgo.setDate(1)
+  sixMonthsAgo.setHours(0, 0, 0, 0)
+
   const [
     revenueAgg, orderCount, activeWorkerCount, companies, workers,
     lowStockProducts, unpaidRoyalties, printReadyManuscripts, performanceRecords,
+    recentOrders,
   ] = await Promise.all([
     prisma.order.aggregate({ _sum: { total: true } }),
     prisma.order.count(),
@@ -41,7 +48,30 @@ export default async function OwnerPage() {
     prisma.royalty.findMany({ where: { status: "unpaid" }, select: { id: true, author: true, book: true, amount: true } }),
     prisma.manuscript.findMany({ where: { readyForPrint: true }, select: { id: true, title: true, author: true } }),
     prisma.performanceRecord.findMany({ select: { workerId: true, scorePercent: true, totalScore: true } }),
+    prisma.order.findMany({
+      where:  { date: { gte: sixMonthsAgo } },
+      select: { date: true, total: true },
+    }),
   ])
+
+  // Build 6-month revenue trend (fill missing months with 0)
+  const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  const monthMap = new Map<string, number>()
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date()
+    d.setMonth(d.getMonth() - i)
+    const key = `${d.getFullYear()}-${d.getMonth()}`
+    monthMap.set(key, 0)
+  }
+  for (const o of recentOrders) {
+    const d   = new Date(o.date)
+    const key = `${d.getFullYear()}-${d.getMonth()}`
+    if (monthMap.has(key)) monthMap.set(key, (monthMap.get(key) ?? 0) + Number(o.total))
+  }
+  const monthlyRevenue: MonthlyChartData[] = [...monthMap.entries()].map(([key, amount]) => {
+    const [year, month] = key.split("-").map(Number)
+    return { month: `${MONTH_NAMES[month]} ${String(year).slice(2)}`, amount }
+  })
 
   const totalRevenue       = Number(revenueAgg._sum.total ?? 0)
   const activeCompanyCount = companies.length
@@ -56,6 +86,10 @@ export default async function OwnerPage() {
       return { id: c.id, name: c.name, city: c.city, revenue: Number(rev._sum.total ?? 0), orders, workers: workerCnt }
     })
   )
+
+  const chartCompanies: CompanyChartData[] = companyBreakdown.map(c => ({
+    name: c.name, revenue: c.revenue, orders: c.orders, workers: c.workers,
+  }))
 
   type Decision = { severity: "high" | "medium" | "low"; message: string }
   const decisions: Decision[] = []
@@ -100,6 +134,9 @@ export default async function OwnerPage() {
         <KpiCard label="Active Workers"   value={fmt(activeWorkerCount)}     sub="status = active"         accent="#7c3aed" />
         <KpiCard label="Active Companies" value={fmt(activeCompanyCount)}    sub="in the system"           accent="#f97316" />
       </div>
+
+      {/* ── Analytics Charts ─────────────────────────────────────────────────── */}
+      <OwnerCharts companies={chartCompanies} monthlyRevenue={monthlyRevenue} />
 
       {/* ── AI Decisions ─────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>AI Decisions &amp; Alerts ({decisions.length})</h2>
