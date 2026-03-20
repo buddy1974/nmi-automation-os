@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "backup": "npx tsx scripts/backup-seed-data.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

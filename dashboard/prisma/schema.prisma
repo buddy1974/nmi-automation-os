@@ -432,3 +432,53 @@ model Task {
 
   @@map("tasks")
 }
+
+// ── HR Evaluation Engine ───────────────────────────────────────────────────────
+
+model EvaluationSession {
+  id               String   @id @default(cuid())
+  workerId         String   @map("worker_id")
+  workerName       String   @default("") @map("worker_name")
+  evaluatorId      String?  @map("evaluator_id")
+  period           String
+  type             String   @default("quarterly")
+  commitment       Int      @default(0)
+  courage          Int      @default(0)
+  focus            Int      @default(0)
+  openness         Int      @default(0)
+  respect          Int      @default(0)
+  taskCompletion   Int      @default(0)
+  deadlineScore    Int      @default(0)
+  qualityScore     Int      @default(0)
+  latenessCount    Int      @default(0)
+  sickDaysCount    Int      @default(0)
+  avgTaskHours     Float    @default(0)
+  aiRating         String?  @map("ai_rating")
+  aiSummary        String?  @map("ai_summary")
+  aiRecommendation String?  @map("ai_recommendation")
+  totalScore       Float    @default(0)
+  rating           String   @default("pending")
+  companyId        String?  @map("company_id")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@map("evaluation_sessions")
+}
+
+// ── Email logs ─────────────────────────────────────────────────────────────────
+
+model EmailLog {
+  id         String   @id @default(cuid())
+  from       String
+  subject    String
+  body       String?
+  category   String
+  priority   String   @default("normal")
+  department String?
+  summary    String?
+  routedTo   String?  @map("routed_to")
+  handled    Boolean  @default(false)
+  companyId  String?  @map("company_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("email_logs")
+}
