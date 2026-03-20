@@ -21,8 +21,9 @@ const NAV = [
   { label: "Manuscripts",href: "/manuscripts"},
   { label: "Authors",    href: "/authors"    },
   { label: "Printing",   href: "/printing"   },
-  { label: "System",     href: "/system"     },
-  { label: "Owner",      href: "/owner"      },
+  { label: "System",        href: "/system"        },
+  { label: "Notifications", href: "/notifications" },
+  { label: "Owner",         href: "/owner"         },
 ]
 
 export default function Sidebar() {

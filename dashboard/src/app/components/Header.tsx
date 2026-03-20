@@ -2,6 +2,7 @@ import { cookies }          from "next/headers"
 import { getSession }        from "@/lib/auth"
 import { prisma }            from "@/lib/db"
 import CompanySelector       from "@/components/CompanySelector"
+import Link                  from "next/link"
 
 const OWNER_ROLES = ["admin", "owner", "manager"]
 
@@ -23,6 +24,11 @@ export default async function Header() {
     const c = await prisma.company.findUnique({ where: { id: session.companyId } })
     companyName = c?.name
   }
+
+  // Unread notification count
+  const unreadCount = session
+    ? await prisma.notification.count({ where: { read: false } })
+    : 0
 
   return (
     <div style={{
@@ -51,9 +57,55 @@ export default async function Header() {
         />
       )}
 
-      {/* Right: user info */}
-      <div style={{ fontSize: "13px", color: "#555", flexShrink: 0, fontFamily: "Arial, sans-serif" }}>
-        {session ? `${session.name} · ${session.role}` : "Not logged in"}
+      {/* Right: notification bell + user info */}
+      <div style={{ display: "flex", alignItems: "center", gap: "16px", flexShrink: 0 }}>
+
+        {session && (
+          <Link
+            href="/notifications"
+            style={{
+              position:       "relative",
+              display:        "inline-flex",
+              alignItems:     "center",
+              justifyContent: "center",
+              width:          "34px",
+              height:         "34px",
+              borderRadius:   "8px",
+              background:     unreadCount > 0 ? "#fef2f2" : "#f8fafc",
+              border:         `1px solid ${unreadCount > 0 ? "#fecaca" : "#e2e8f0"}`,
+              textDecoration: "none",
+              fontSize:       "18px",
+              flexShrink:     0,
+            }}
+            title={unreadCount > 0 ? `${unreadCount} unread notifications` : "Notifications"}
+          >
+            🔔
+            {unreadCount > 0 && (
+              <span style={{
+                position:      "absolute",
+                top:           "-5px",
+                right:         "-5px",
+                minWidth:      "16px",
+                height:        "16px",
+                padding:       "0 4px",
+                borderRadius:  "999px",
+                background:    "#ef4444",
+                color:         "#fff",
+                fontSize:      "10px",
+                fontWeight:    700,
+                lineHeight:    "16px",
+                textAlign:     "center",
+              }}>
+                {unreadCount > 99 ? "99+" : unreadCount}
+              </span>
+            )}
+          </Link>
+        )}
+
+        <div style={{ fontSize: "13px", color: "#555", fontFamily: "Arial, sans-serif" }}>
+          {session ? `${session.name} · ${session.role}` : "Not logged in"}
+        </div>
+
       </div>
 
     </div>

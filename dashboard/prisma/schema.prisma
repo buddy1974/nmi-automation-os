@@ -382,3 +382,19 @@ model AuditLog {
 
   @@map("audit_logs")
 }
+
+// ── Notifications ──────────────────────────────────────────────────────────────
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  message   String
+  severity  String   @default("info")
+  read      Boolean  @default(false)
+  userId    String?  @map("user_id")
+  companyId String?  @map("company_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("notifications")
+}
