@@ -1,7 +1,8 @@
-import { NextResponse }   from "next/server"
-import { prisma }         from "@/lib/db"
-import { checkRateLimit } from "@/lib/rateLimit"
-import { classifyEmail }  from "@/lib/emailClassifier"
+import { NextResponse }          from "next/server"
+import { prisma }               from "@/lib/db"
+import { checkRateLimit }       from "@/lib/rateLimit"
+import { classifyEmail }        from "@/lib/emailClassifier"
+import { generateDailyBriefing } from "@/lib/briefing"
 
 export const runtime = "nodejs"
 
@@ -78,41 +79,18 @@ async function workflowRoyaltyCheck(payload: Record<string, unknown>) {
 }
 
 async function workflowDailyBriefing() {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  const [orders, invoices, tasks, unreadNotifs, urgentEmails] = await Promise.all([
-    prisma.order.count({ where: { date: { gte: today } } }),
-    prisma.invoice.findMany({ select: { amount: true, paid: true, status: true } }),
-    prisma.task.count({ where: { status: { not: "done" } } }),
-    prisma.notification.count({ where: { read: false } }),
-    prisma.emailLog.count({ where: { priority: "urgent", handled: false } }),
-  ])
-
-  const revenue  = invoices.reduce((s, i) => s + Number(i.amount), 0)
-  const paid     = invoices.reduce((s, i) => s + Number(i.paid), 0)
-  const unpaid   = revenue - paid
-  const dateStr  = today.toISOString().slice(0, 10)
-
-  const message = [
-    `Orders today: ${orders}`,
-    `Total revenue: ${revenue.toLocaleString()} XAF`,
-    `Unpaid invoices: ${unpaid.toLocaleString()} XAF`,
-    `Open tasks: ${tasks}`,
-    `Unread alerts: ${unreadNotifs}`,
-    `Urgent emails: ${urgentEmails}`,
-  ].join(" · ")
+  const { briefing, data } = await generateDailyBriefing()
 
   await prisma.notification.create({
     data: {
-      type:     "n8n_daily_briefing",
-      title:    `Daily Briefing — ${dateStr}`,
-      message,
-      severity: urgentEmails > 0 || unreadNotifs > 5 ? "medium" : "info",
+      type:     "daily_briefing",
+      title:    `CEO Morning Briefing — ${data.date}`,
+      message:  briefing,
+      severity: data.urgentNotifs > 0 || data.urgentEmails > 0 ? "high" : "info",
     },
   })
 
-  return { date: dateStr, orders, revenue, unpaid, openTasks: tasks, unreadNotifs, urgentEmails }
+  return { date: data.date, briefing: briefing.slice(0, 200) + "…", data }
 }
 
 async function workflowTaskReminder() {
