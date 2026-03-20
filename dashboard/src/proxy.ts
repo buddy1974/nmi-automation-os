@@ -28,6 +28,15 @@ function canAccess(role: string, pathname: string): boolean {
   )
 }
 
+// ── Security headers applied to every response ────────────────────────────────
+function withSecurityHeaders(res: NextResponse): NextResponse {
+  res.headers.set("X-Frame-Options", "DENY")
+  res.headers.set("X-Content-Type-Options", "nosniff")
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin")
+  res.headers.set("X-XSS-Protection", "1; mode=block")
+  return res
+}
+
 // ── Proxy (auth guard) ────────────────────────────────────────────────────────
 
 export async function proxy(req: NextRequest) {
@@ -39,19 +48,19 @@ export async function proxy(req: NextRequest) {
     if (token) {
       try {
         await jwtVerify(token, secret)
-        return NextResponse.redirect(new URL("/dashboard", req.url))
+        return withSecurityHeaders(NextResponse.redirect(new URL("/dashboard", req.url)))
       } catch {
         // Invalid token — let them stay on /login
       }
     }
-    return NextResponse.next()
+    return withSecurityHeaders(NextResponse.next())
   }
 
   const token = req.cookies.get("nmi_session")?.value
 
   // Not logged in → login page
   if (!token) {
-    return NextResponse.redirect(new URL("/login", req.url))
+    return withSecurityHeaders(NextResponse.redirect(new URL("/login", req.url)))
   }
 
   try {
@@ -60,16 +69,16 @@ export async function proxy(req: NextRequest) {
 
     // Logged in but role not allowed → back to dashboard
     if (!canAccess(role, pathname)) {
-      return NextResponse.redirect(new URL("/dashboard", req.url))
+      return withSecurityHeaders(NextResponse.redirect(new URL("/dashboard", req.url)))
     }
 
-    return NextResponse.next()
+    return withSecurityHeaders(NextResponse.next())
 
   } catch {
     // Token expired or tampered → clear + redirect to login
     const res = NextResponse.redirect(new URL("/login", req.url))
     res.cookies.delete("nmi_session")
-    return res
+    return withSecurityHeaders(res)
   }
 }
 
