@@ -2,7 +2,7 @@ import { cookies }    from "next/headers"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany, directFilter, perfFilter } from "@/lib/companyFilter"
-import { S, row }     from "@/lib/ui"
+import { S, row, badge, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -11,10 +11,8 @@ export default async function HRPage() {
   const session = await getSession(jar.get("nmi_session")?.value)
   const cid     = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
 
-  const companyWhere = directFilter(cid)
-
   const [workers, performanceRecords] = await Promise.all([
-    prisma.worker.findMany({ where: companyWhere, orderBy: { name: "asc" } }),
+    prisma.worker.findMany({ where: directFilter(cid), orderBy: { name: "asc" } }),
     prisma.performanceRecord.findMany({
       where:   perfFilter(cid),
       include: { worker: { select: { name: true } } },
@@ -36,47 +34,44 @@ export default async function HRPage() {
 
   return (
     <div style={S.page}>
-
       <h1 style={S.heading}>HR / PeopleOS</h1>
       <p style={S.subtitle}>Workers, performance records and compliance alerts — company-scoped</p>
 
-      {/* ── Summary bar ──────────────────────────────────────────────────── */}
+      {/* ── Summary bar ─────────────────────────────────────────────────────── */}
       <div style={S.statBar}>
-        {[
-          { label: "Total Workers",          value: workers.length },
-          { label: "Active",                 value: activeCount },
-          { label: "Base Salary Total (XAF)",value: totalSalary.toLocaleString() },
-          { label: "Performance Records",    value: performanceRecords.length },
-          { label: "Alerts",                 value: missingCnps.length + missingSalary.length + lowPerformers.length },
-        ].map(s => (
-          <div key={s.label} style={S.statCard}>
-            <div style={S.statLabel}>{s.label}</div>
-            <div style={S.statValue}>{s.value}</div>
+        <div style={S.statCard}><div style={S.statValue}>{workers.length}</div><div style={S.statLabel}>Total Workers</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{activeCount}</div><div style={S.statLabel}>Active</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{totalSalary.toLocaleString()}</div><div style={S.statLabel}>Base Salary Total (XAF)</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{performanceRecords.length}</div><div style={S.statLabel}>Performance Records</div></div>
+        <div style={S.statCard}>
+          <div style={{ ...S.statValue, color: missingCnps.length + missingSalary.length + lowPerformers.length > 0 ? "#ef4444" : "#16a34a" }}>
+            {missingCnps.length + missingSalary.length + lowPerformers.length}
           </div>
-        ))}
+          <div style={S.statLabel}>Alerts</div>
+        </div>
       </div>
 
-      {/* ── AI Alerts ────────────────────────────────────────────────────── */}
+      {/* ── AI Alerts ────────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>AI Alerts</h2>
       {missingCnps.length === 0 && missingSalary.length === 0 && lowPerformers.length === 0 ? (
         <p style={S.successText}>✓ No HR alerts</p>
       ) : (
         <>
           {missingCnps.map(w => (
-            <div key={`cnps-${w.id}`} style={S.alertBox}>⚠ {w.name} — CNPS number missing ({w.contractType})</div>
+            <div key={`cnps-${w.id}`} style={S.alertRed}>⚠ {w.name} — CNPS number missing ({w.contractType})</div>
           ))}
           {missingSalary.map(w => (
-            <div key={`sal-${w.id}`} style={S.alertBox}>⚠ {w.name} — Base salary not set (CDI)</div>
+            <div key={`sal-${w.id}`} style={S.alertOrange}>⚠ {w.name} — Base salary not set (CDI)</div>
           ))}
           {lowPerformers.map(r => (
-            <div key={`perf-${r.id}`} style={S.alertBox}>
+            <div key={`perf-${r.id}`} style={S.alertOrange}>
               ⚠ {r.worker.name} — Low performance: {r.scorePercent.toFixed(1)}% — {r.rating ?? "unrated"} ({r.period})
             </div>
           ))}
         </>
       )}
 
-      {/* ── Workers ──────────────────────────────────────────────────────── */}
+      {/* ── Workers ──────────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>Workers ({workers.length})</h2>
       {workers.length === 0 ? (
         <p style={S.mutedText}>No workers found</p>
@@ -94,11 +89,9 @@ export default async function HRPage() {
                   <td style={S.td}>{w.department || "—"}</td>
                   <td style={S.td}>{w.contractType}</td>
                   <td style={S.td}>{Number(w.salaryBase).toLocaleString()}</td>
-                  <td style={S.td}>{w.cnpsNumber || <span style={{ color: "#dc2626" }}>missing</span>}</td>
+                  <td style={S.td}>{w.cnpsNumber || <span style={{ color: "#ef4444" }}>missing</span>}</td>
                   <td style={S.td}>
-                    <span style={S.badge(w.status === "active" ? "#16a34a" : w.status === "suspended" ? "#dc2626" : "#888")}>
-                      {w.status}
-                    </span>
+                    <span style={statusBadge(w.status)}>{w.status}</span>
                   </td>
                 </tr>
               ))}
@@ -107,7 +100,7 @@ export default async function HRPage() {
         </div>
       )}
 
-      {/* ── Performance ──────────────────────────────────────────────────── */}
+      {/* ── Performance ──────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>Performance Records ({performanceRecords.length})</h2>
       {performanceRecords.length === 0 ? (
         <p style={S.mutedText}>No performance records yet — use HR &gt; Performance to add evaluations</p>
@@ -124,7 +117,7 @@ export default async function HRPage() {
                   <td style={S.td}>{r.period}</td>
                   <td style={S.td}>{r.totalScore.toFixed(1)}</td>
                   <td style={S.td}>
-                    <span style={S.badge(r.scorePercent >= 80 ? "#16a34a" : r.scorePercent >= 50 ? "#d97706" : "#dc2626")}>
+                    <span style={badge(r.scorePercent >= 80 ? "green" : r.scorePercent >= 50 ? "orange" : "red")}>
                       {r.scorePercent.toFixed(1)}%
                     </span>
                   </td>
@@ -136,7 +129,6 @@ export default async function HRPage() {
           </table>
         </div>
       )}
-
     </div>
   )
 }

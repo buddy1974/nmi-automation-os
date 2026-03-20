@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/db"
-import { S, row } from "@/lib/ui"
+import { prisma }      from "@/lib/db"
+import { S, row, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -16,10 +16,10 @@ export default async function RoyaltiesPage() {
       <p style={S.subtitle}>Author royalty tracking — global (not company-scoped)</p>
 
       <div style={S.statBar}>
-        <div style={S.statCard}><div style={S.statLabel}>Total Records</div><div style={S.statValue}>{royalties.length}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Unpaid (XAF)</div><div style={{ ...S.statValue, color: "#dc2626" }}>{unpaidTotal.toLocaleString()}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Paid (XAF)</div><div style={{ ...S.statValue, color: "#16a34a" }}>{paidTotal.toLocaleString()}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Unpaid Items</div><div style={{ ...S.statValue, color: "#d97706" }}>{unpaidCount}</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{royalties.length}</div><div style={S.statLabel}>Total Records</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#ef4444" }}>{unpaidTotal.toLocaleString()}</div><div style={S.statLabel}>Unpaid (XAF)</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{paidTotal.toLocaleString()}</div><div style={S.statLabel}>Paid (XAF)</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#f97316" }}>{unpaidCount}</div><div style={S.statLabel}>Unpaid Items</div></div>
       </div>
 
       {royalties.length === 0 ? <p style={S.mutedText}>No royalties recorded</p> : (
@@ -33,7 +33,7 @@ export default async function RoyaltiesPage() {
                   <td style={S.td}>{r.book || "—"}</td>
                   <td style={S.td}>{Number(r.amount).toLocaleString()}</td>
                   <td style={{ ...S.td, ...S.mutedText }}>{new Date(r.date).toLocaleDateString()}</td>
-                  <td style={S.td}><span style={S.badge(r.status === "paid" ? "#16a34a" : "#dc2626")}>{r.status}</span></td>
+                  <td style={S.td}><span style={statusBadge(r.status)}>{r.status}</span></td>
                 </tr>
               ))}
             </tbody>

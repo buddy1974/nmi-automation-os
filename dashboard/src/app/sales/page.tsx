@@ -2,17 +2,9 @@ import { cookies }    from "next/headers"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany, directFilter } from "@/lib/companyFilter"
-import { S, row }     from "@/lib/ui"
+import { S, row, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
-
-const STATUS_COLOR: Record<string, string> = {
-  pending:   "#d97706",
-  confirmed: "#2563eb",
-  shipped:   "#7c3aed",
-  delivered: "#16a34a",
-  cancelled: "#dc2626",
-}
 
 export default async function SalesPage() {
   const jar     = await cookies()
@@ -33,17 +25,16 @@ export default async function SalesPage() {
 
   return (
     <div style={S.page}>
-
       <h1 style={S.heading}>Sales</h1>
       <p style={S.subtitle}>All orders — company-scoped, sorted by most recent</p>
 
       <div style={S.statBar}>
-        <div style={S.statCard}><div style={S.statLabel}>Total Orders</div><div style={S.statValue}>{orders.length}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Total Revenue (XAF)</div><div style={{ ...S.statValue, color: "#16a34a" }}>{totalRevenue.toLocaleString()}</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{orders.length}</div><div style={S.statLabel}>Total Orders</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{totalRevenue.toLocaleString()}</div><div style={S.statLabel}>Total Revenue (XAF)</div></div>
         {Object.entries(statusCounts).map(([status, count]) => (
           <div key={status} style={S.statCard}>
+            <div style={S.statValue}>{count}</div>
             <div style={S.statLabel}>{status}</div>
-            <div style={{ ...S.statValue, fontSize: "18px" }}>{count}</div>
           </div>
         ))}
       </div>
@@ -55,17 +46,15 @@ export default async function SalesPage() {
           </thead>
           <tbody>
             {orders.length === 0 ? (
-              <tr><td colSpan={6} style={{ ...S.td, textAlign: "center", color: "#94a3b8" }}>No orders found</td></tr>
+              <tr><td colSpan={6} style={{ ...S.td, textAlign: "center" }}><span style={S.mutedText}>No orders found</span></td></tr>
             ) : (
               orders.map((o, i) => (
                 <tr key={o.id} style={row(i)}>
-                  <td style={{ ...S.td, fontWeight: 600 }}>{o.number}</td>
+                  <td style={{ ...S.td, fontWeight: 600, color: "#2563eb" }}>{o.number}</td>
                   <td style={S.td}>{o.customerName}</td>
                   <td style={S.td}>{o.branch?.name ?? "—"}</td>
                   <td style={S.td}>{new Date(o.date).toLocaleDateString()}</td>
-                  <td style={S.td}>
-                    <span style={S.badge(STATUS_COLOR[o.status] ?? "#888")}>{o.status}</span>
-                  </td>
+                  <td style={S.td}><span style={statusBadge(o.status)}>{o.status}</span></td>
                   <td style={{ ...S.td, fontWeight: 600 }}>{Number(o.total).toLocaleString()}</td>
                 </tr>
               ))

@@ -1,21 +1,13 @@
-import { prisma } from "@/lib/db"
-import { S, row } from "@/lib/ui"
+import { prisma }      from "@/lib/db"
+import { S, row, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
-
-const STATUS_COLOR: Record<string, string> = {
-  planned:  "#888",
-  printing: "#2563eb",
-  printed:  "#7c3aed",
-  received: "#d97706",
-  in_stock: "#16a34a",
-}
 
 export default async function PrintingPage() {
   const jobs = await prisma.printingJob.findMany({ orderBy: { date: "desc" } })
 
-  const totalCost      = jobs.reduce((s, j) => s + Number(j.cost), 0)
-  const totalUnits     = jobs.reduce((s, j) => s + j.quantity, 0)
+  const totalCost       = jobs.reduce((s, j) => s + Number(j.cost), 0)
+  const totalUnits      = jobs.reduce((s, j) => s + j.quantity, 0)
   const inProgressCount = jobs.filter(j => j.status === "printing").length
 
   return (
@@ -24,10 +16,10 @@ export default async function PrintingPage() {
       <p style={S.subtitle}>Print job tracker — all books in production pipeline</p>
 
       <div style={S.statBar}>
-        <div style={S.statCard}><div style={S.statLabel}>Total Jobs</div><div style={S.statValue}>{jobs.length}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Total Units</div><div style={S.statValue}>{totalUnits.toLocaleString()}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Total Cost (XAF)</div><div style={{ ...S.statValue, color: "#dc2626" }}>{totalCost.toLocaleString()}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>In Progress</div><div style={{ ...S.statValue, color: "#2563eb" }}>{inProgressCount}</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{jobs.length}</div><div style={S.statLabel}>Total Jobs</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{totalUnits.toLocaleString()}</div><div style={S.statLabel}>Total Units</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#ef4444" }}>{totalCost.toLocaleString()}</div><div style={S.statLabel}>Total Cost (XAF)</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#2563eb" }}>{inProgressCount}</div><div style={S.statLabel}>In Progress</div></div>
       </div>
 
       {jobs.length === 0 ? (
@@ -46,7 +38,7 @@ export default async function PrintingPage() {
                   <td style={S.td}>{Number(j.cost).toLocaleString()}</td>
                   <td style={S.td}>{j.printer || "—"}</td>
                   <td style={{ ...S.td, ...S.mutedText }}>{new Date(j.date).toLocaleDateString()}</td>
-                  <td style={S.td}><span style={S.badge(STATUS_COLOR[j.status] ?? "#888")}>{j.status.replace(/_/g," ")}</span></td>
+                  <td style={S.td}><span style={statusBadge(j.status)}>{j.status.replace(/_/g," ")}</span></td>
                 </tr>
               ))}
             </tbody>

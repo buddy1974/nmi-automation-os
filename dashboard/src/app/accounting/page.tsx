@@ -2,7 +2,7 @@ import { cookies }    from "next/headers"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany, directFilter } from "@/lib/companyFilter"
-import { S, row }     from "@/lib/ui"
+import { S, row, badge, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -28,16 +28,16 @@ export default async function AccountingPage() {
       <p style={S.subtitle}>Revenue, costs, royalties and profit — company-scoped revenue</p>
 
       {/* ── Global Report ─────────────────────────────────────────────────── */}
-      <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "32px" }}>
+      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "32px" }}>
         {[
-          { label: "Revenue (XAF)",   value: totalRevenue,   color: "#16a34a" },
-          { label: "Costs (XAF)",     value: totalCosts,     color: "#dc2626" },
-          { label: "Royalties (XAF)", value: totalRoyalties, color: "#d97706" },
-          { label: "Profit (XAF)",    value: totalProfit,    color: totalProfit >= 0 ? "#16a34a" : "#dc2626" },
+          { label: "Revenue (XAF)",   value: totalRevenue,   accent: "#16a34a" },
+          { label: "Costs (XAF)",     value: totalCosts,     accent: "#ef4444" },
+          { label: "Royalties (XAF)", value: totalRoyalties, accent: "#f97316" },
+          { label: "Profit (XAF)",    value: totalProfit,    accent: totalProfit >= 0 ? "#16a34a" : "#ef4444" },
         ].map(k => (
-          <div key={k.label} style={{ ...S.kpiCard(k.color), flex: "1 1 160px" }}>
-            <div style={{ fontSize: "11px", color: "#888", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>{k.label}</div>
-            <div style={{ fontSize: "22px", fontWeight: 700, color: k.color }}>{k.value.toLocaleString()}</div>
+          <div key={k.label} style={S.kpiCard(k.accent)}>
+            <div style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>{k.label}</div>
+            <div style={{ fontSize: "26px", fontWeight: 700, color: k.accent }}>{k.value.toLocaleString()}</div>
           </div>
         ))}
       </div>
@@ -52,8 +52,8 @@ export default async function AccountingPage() {
               {costs.map((c, i) => (
                 <tr key={c.id} style={row(i)}>
                   <td style={{ ...S.td, fontWeight: 600 }}>{c.book || "—"}</td>
-                  <td style={S.td}><span style={S.badge("#64748b")}>{c.type}</span></td>
-                  <td style={{ ...S.td, color: "#dc2626", fontWeight: 600 }}>{Number(c.amount).toLocaleString()}</td>
+                  <td style={S.td}><span style={badge("grey")}>{c.type}</span></td>
+                  <td style={{ ...S.td, color: "#ef4444", fontWeight: 600 }}>{Number(c.amount).toLocaleString()}</td>
                   <td style={{ ...S.td, ...S.mutedText }}>{new Date(c.date).toLocaleDateString()}</td>
                   <td style={S.td}>{c.notes || "—"}</td>
                 </tr>
@@ -76,7 +76,7 @@ export default async function AccountingPage() {
                   <td style={S.td}>{r.book || "—"}</td>
                   <td style={S.td}>{Number(r.amount).toLocaleString()}</td>
                   <td style={{ ...S.td, ...S.mutedText }}>{new Date(r.date).toLocaleDateString()}</td>
-                  <td style={S.td}><span style={S.badge(r.status === "paid" ? "#16a34a" : "#dc2626")}>{r.status}</span></td>
+                  <td style={S.td}><span style={statusBadge(r.status)}>{r.status}</span></td>
                 </tr>
               ))}
             </tbody>

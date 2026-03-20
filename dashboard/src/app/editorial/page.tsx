@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/db"
-import { S, row } from "@/lib/ui"
+import { prisma }      from "@/lib/db"
+import { S, row, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -26,13 +26,13 @@ export default async function EditorialPage() {
       <p style={S.subtitle}>Manuscripts, authors and royalties — global editorial pipeline</p>
 
       <div style={S.statBar}>
-        <div style={S.statCard}><div style={S.statLabel}>Manuscripts</div><div style={S.statValue}>{manuscripts.length}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Authors</div><div style={S.statValue}>{authors.length}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Royalties Owed (XAF)</div><div style={{ ...S.statValue, color: "#dc2626" }}>{totalRoyaltiesOwed.toLocaleString()}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Unpaid Items</div><div style={{ ...S.statValue, color: "#d97706" }}>{unpaidRoyalties.length}</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{manuscripts.length}</div><div style={S.statLabel}>Manuscripts</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{authors.length}</div><div style={S.statLabel}>Authors</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#ef4444" }}>{totalRoyaltiesOwed.toLocaleString()}</div><div style={S.statLabel}>Royalties Owed (XAF)</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#f97316" }}>{unpaidRoyalties.length}</div><div style={S.statLabel}>Unpaid Items</div></div>
       </div>
 
-      {/* ── Manuscripts ────────────────────────────────────────────────────── */}
+      {/* ── Manuscripts ──────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>Manuscripts ({manuscripts.length})</h2>
       {manuscripts.length === 0 ? <p style={S.mutedText}>No manuscripts recorded</p> : (
         <div style={S.tableWrap}>
@@ -43,7 +43,7 @@ export default async function EditorialPage() {
                 <tr key={m.id} style={row(i)}>
                   <td style={{ ...S.td, fontWeight: 600 }}>{m.title}</td>
                   <td style={S.td}>{m.author || "—"}</td>
-                  <td style={S.td}><span style={{ color: "#2563eb", fontWeight: 600 }}>{m.status.replace(/_/g," ")}</span></td>
+                  <td style={S.td}><span style={statusBadge(m.status)}>{m.status.replace(/_/g," ")}</span></td>
                   <td style={S.td}>{m.editor || <span style={S.mutedText}>unassigned</span>}</td>
                   <td style={S.td}>v{m.version}</td>
                   <td style={{ ...S.td, ...S.mutedText }}>{new Date(m.date).toLocaleDateString()}</td>
@@ -54,7 +54,7 @@ export default async function EditorialPage() {
         </div>
       )}
 
-      {/* ── Authors ────────────────────────────────────────────────────────── */}
+      {/* ── Authors ──────────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>Authors ({authors.length})</h2>
       {authors.length === 0 ? <p style={S.mutedText}>No authors recorded</p> : (
         <div style={S.tableWrap}>
@@ -67,7 +67,7 @@ export default async function EditorialPage() {
                   <td style={S.td}>{a.email || "—"}</td>
                   <td style={S.td}>{a.phone || "—"}</td>
                   <td style={S.td}>{a.bookCount}</td>
-                  <td style={{ ...S.td, color: a.totalOwed > 0 ? "#dc2626" : "#16a34a", fontWeight: 600 }}>
+                  <td style={{ ...S.td, color: a.totalOwed > 0 ? "#ef4444" : "#16a34a", fontWeight: 600 }}>
                     {a.totalOwed > 0 ? a.totalOwed.toLocaleString() : "—"}
                   </td>
                 </tr>
@@ -77,7 +77,7 @@ export default async function EditorialPage() {
         </div>
       )}
 
-      {/* ── Royalties Due ──────────────────────────────────────────────────── */}
+      {/* ── Royalties Due ────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>Royalties Due ({unpaidRoyalties.length})</h2>
       {unpaidRoyalties.length === 0 ? <p style={S.successText}>✓ All royalties settled</p> : (
         <div style={S.tableWrap}>
@@ -88,7 +88,7 @@ export default async function EditorialPage() {
                 <tr key={r.id} style={row(i)}>
                   <td style={{ ...S.td, fontWeight: 600 }}>{r.author}</td>
                   <td style={S.td}>{r.book || "—"}</td>
-                  <td style={{ ...S.td, color: "#dc2626", fontWeight: 600 }}>{Number(r.amount).toLocaleString()}</td>
+                  <td style={{ ...S.td, color: "#ef4444", fontWeight: 600 }}>{Number(r.amount).toLocaleString()}</td>
                   <td style={S.td}>{new Date(r.date).toLocaleDateString()}</td>
                 </tr>
               ))}

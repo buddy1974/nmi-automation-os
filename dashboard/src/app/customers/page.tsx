@@ -2,7 +2,7 @@ import { cookies }    from "next/headers"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
-import { S, row }     from "@/lib/ui"
+import { S, row, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
@@ -24,8 +24,8 @@ export default async function CustomersPage() {
       <p style={S.subtitle}>All customers — filtered by company via order history</p>
 
       <div style={S.statBar}>
-        <div style={S.statCard}><div style={S.statLabel}>Total Customers</div><div style={S.statValue}>{customers.length}</div></div>
-        <div style={S.statCard}><div style={S.statLabel}>Active</div><div style={{ ...S.statValue, color: "#16a34a" }}>{activeCount}</div></div>
+        <div style={S.statCard}><div style={S.statValue}>{customers.length}</div><div style={S.statLabel}>Total Customers</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{activeCount}</div><div style={S.statLabel}>Active</div></div>
       </div>
 
       {customers.length === 0 ? (
@@ -44,9 +44,7 @@ export default async function CustomersPage() {
                   <td style={S.td}>{c.address || "—"}</td>
                   <td style={S.td}>{c.type}</td>
                   <td style={S.td}>{c.region || "—"}</td>
-                  <td style={S.td}>
-                    <span style={S.badge(c.status === "active" ? "#16a34a" : "#888")}>{c.status}</span>
-                  </td>
+                  <td style={S.td}><span style={statusBadge(c.status)}>{c.status}</span></td>
                 </tr>
               ))}
             </tbody>

@@ -1,25 +1,15 @@
-import { prisma } from "@/lib/db"
-import { S, row } from "@/lib/ui"
+import { prisma }      from "@/lib/db"
+import { S, row, statusBadge } from "@/lib/ui"
 
 export const dynamic = "force-dynamic"
 
 const STATUS_ORDER = ["submitted","reviewing","editing","approved","rejected","ready_for_print","printing"]
 
-const STATUS_COLOR: Record<string, string> = {
-  submitted:      "#888",
-  reviewing:      "#2563eb",
-  editing:        "#d97706",
-  approved:       "#16a34a",
-  rejected:       "#dc2626",
-  ready_for_print:"#7c3aed",
-  printing:       "#0891b2",
-}
-
 export default async function ManuscriptsPage() {
   const manuscripts = await prisma.manuscript.findMany({ orderBy: { date: "desc" } })
 
-  const printQueue     = manuscripts.filter(m => m.readyForPrint)
-  const countByStatus  = STATUS_ORDER.map(s => ({ status: s, count: manuscripts.filter(m => m.status === s).length }))
+  const printQueue    = manuscripts.filter(m => m.readyForPrint)
+  const countByStatus = STATUS_ORDER.map(s => ({ status: s, count: manuscripts.filter(m => m.status === s).length }))
 
   return (
     <div style={S.page}>
@@ -32,13 +22,13 @@ export default async function ManuscriptsPage() {
           ...countByStatus.filter(s => s.count > 0).map(s => ({ label: s.status, value: s.count })),
         ] as { label: string; value: number }[]).map(s => (
           <div key={s.label} style={S.statCard}>
+            <div style={S.statValue}>{s.value}</div>
             <div style={S.statLabel}>{s.label.replace(/_/g," ")}</div>
-            <div style={{ ...S.statValue, fontSize: "20px" }}>{s.value}</div>
           </div>
         ))}
       </div>
 
-      {/* ── Print Queue ────────────────────────────────────────────────────── */}
+      {/* ── Print Queue ──────────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>Print Queue ({printQueue.length})</h2>
       {printQueue.length === 0 ? (
         <p style={S.mutedText}>No manuscripts ready for print</p>
@@ -65,7 +55,7 @@ export default async function ManuscriptsPage() {
         </div>
       )}
 
-      {/* ── All Manuscripts ────────────────────────────────────────────────── */}
+      {/* ── All Manuscripts ──────────────────────────────────────────────────── */}
       <h2 style={S.sectionTitle}>All Manuscripts ({manuscripts.length})</h2>
       {manuscripts.length === 0 ? (
         <p style={S.mutedText}>No manuscripts recorded</p>
@@ -82,9 +72,7 @@ export default async function ManuscriptsPage() {
                   <td style={S.td}>{m.author || "—"}</td>
                   <td style={S.td}>{m.subject || "—"}</td>
                   <td style={S.td}>{m.level} {m.class}</td>
-                  <td style={S.td}>
-                    <span style={S.badge(STATUS_COLOR[m.status] ?? "#888")}>{m.status.replace(/_/g," ")}</span>
-                  </td>
+                  <td style={S.td}><span style={statusBadge(m.status)}>{m.status.replace(/_/g," ")}</span></td>
                   <td style={S.td}>v{m.version}</td>
                   <td style={S.td}>{m.editor || "—"}</td>
                   <td style={{ ...S.td, ...S.mutedText }}>{new Date(m.date).toLocaleDateString()}</td>
