@@ -129,7 +129,7 @@ export default function EmailTable({ emails }: Props) {
                   </td>
                   <td style={{ padding: "10px 12px", fontSize: 12, color: "#6b7280", whiteSpace: "nowrap" }}>{e.routedTo ?? "—"}</td>
                   <td style={{ padding: "10px 12px", fontSize: 12, color: "#9ca3af", whiteSpace: "nowrap" }}>
-                    {new Date(e.createdAt).toLocaleDateString()}
+                    {String(e.createdAt).slice(0, 10)}
                   </td>
                   <td style={{ padding: "10px 12px" }}>
                     {!e.handled && (

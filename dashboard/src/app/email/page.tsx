@@ -85,7 +85,7 @@ export default async function EmailPage() {
           <Link href="/email/compose" style={{ color: "#2563eb" }}>Test the classifier →</Link>
         </div>
       ) : (
-        <EmailTable emails={emails} />
+        <EmailTable emails={emails.map(e => ({ ...e, createdAt: e.createdAt.toISOString() }))} />
       )}
     </div>
   )
