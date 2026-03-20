@@ -320,6 +320,23 @@ model User {
   @@map("users")
 }
 
+// ── Distributors ──────────────────────────────────────────────────────────────
+
+model Distributor {
+  id        String   @id @default(cuid())
+  name      String
+  region    String
+  city      String
+  phone     String?
+  email     String?
+  address   String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  companyId String?  @map("company_id")
+
+  @@map("distributors")
+}
+
 // ── Performance records (PeopleOS AI) ────────────────────────────────────────
 
 model PerformanceRecord {
