@@ -28,6 +28,7 @@ const NAV = [
   { label: "System",        href: "/system"        },
   { label: "Notifications", href: "/notifications" },
   { label: "Email",         href: "/email"         },
+  { label: "Automation",    href: "/n8n"           },
   { label: "Owner",         href: "/owner"         },
 ]
 
