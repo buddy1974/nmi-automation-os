@@ -89,7 +89,7 @@ export default function ChatWidget() {
         .w-panel{ animation: wPop .2s ease; }
         .w-chip:hover { background:#1e293b !important; color:#e2e8f0 !important; }
         .w-send:hover:not(:disabled) { background:#1d4ed8 !important; }
-        .w-fab:hover  { background:#2563eb !important; transform:scale(1.05); }
+        .w-fab:hover  { background:#1d4ed8 !important; transform:scale(1.05); }
       `}</style>
 
       {/* ── Expanded panel ──────────────────────────────────────────── */}
@@ -303,26 +303,29 @@ export default function ChatWidget() {
         className="w-fab"
         title={open ? "Close assistant" : "Open NMI Intelligence"}
         style={{
-          position:      "fixed",
-          bottom:        24,
-          right:         24,
-          zIndex:        9999,
-          width:         60,
-          height:        60,
-          borderRadius:  "50%",
-          background:    "#1a1a2e",
-          border:        "none",
-          cursor:        "pointer",
-          display:       "flex",
-          alignItems:    "center",
-          justifyContent:"center",
-          fontSize:      "24px",
-          color:         "#fff",
-          boxShadow:     "0 4px 16px rgba(0,0,0,0.28)",
-          transition:    "all .2s",
+          position:       "fixed",
+          bottom:         24,
+          right:          24,
+          zIndex:         9999,
+          height:         48,
+          padding:        "0 20px",
+          borderRadius:   "999px",
+          background:     "#2563eb",
+          border:         "none",
+          cursor:         "pointer",
+          display:        "flex",
+          alignItems:     "center",
+          justifyContent: "center",
+          gap:            "7px",
+          fontSize:       "13px",
+          fontWeight:     700,
+          color:          "#fff",
+          boxShadow:      "0 4px 16px rgba(37,99,235,0.5)",
+          transition:     "all .2s",
+          whiteSpace:     "nowrap",
         }}
       >
-        {open ? "✕" : "✦"}
+        {open ? <>✕ <span>Close</span></> : <><span>✦</span><span>Ask AI</span></>}
       </button>
     </>
   )
