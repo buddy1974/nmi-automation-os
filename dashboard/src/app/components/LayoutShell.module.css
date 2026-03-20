@@ -1,0 +1,88 @@
+.shell {
+  display:   flex;
+  height:    100vh;
+  overflow:  hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+
+.sidebarWrap {
+  flex-shrink: 0;
+  overflow-y:  auto;
+  z-index:     50;
+}
+
+/* ── Main area ───────────────────────────────────────────────────────────── */
+
+.main {
+  flex:            1;
+  display:         flex;
+  flex-direction:  column;
+  overflow:        hidden;
+}
+
+.topBar {
+  display:     flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.hamburger {
+  display:    none;            /* hidden on desktop */
+  align-items:center;
+  justify-content: center;
+  width:      48px;
+  background: #0f172a;
+  border:     none;
+  color:      #f1f5f9;
+  font-size:  22px;
+  cursor:     pointer;
+  flex-shrink:0;
+}
+
+.headerWrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.content {
+  flex:       1;
+  overflow-y: auto;
+}
+
+.backdrop {
+  display:  none;
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .sidebarWrap {
+    position:   fixed;
+    top:        0;
+    left:       -220px;
+    height:     100%;
+    transition: left 0.25s ease;
+  }
+
+  .sidebarOpen {
+    left: 0;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .backdrop {
+    display:    block;
+    position:   fixed;
+    inset:      0;
+    background: rgba(0,0,0,0.5);
+    z-index:    40;
+  }
+
+  .content {
+    padding: 0;
+  }
+}

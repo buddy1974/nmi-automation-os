@@ -4,6 +4,8 @@ import { getSession } from "@/lib/auth"
 import Sidebar     from "./components/Sidebar";
 import Header      from "./components/Header";
 import ChatWidget  from "./components/ChatWidget";
+import LayoutShell    from "./components/LayoutShell";
+import OnboardingTour from "./components/OnboardingTour";
 
 export default async function RootLayout({
   children,
@@ -25,24 +27,12 @@ export default async function RootLayout({
 
   return (
     <html>
-      <body>
-        <div style={{ display: "flex", height: "100vh" }}>
-
-          <Sidebar />
-
-          <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-
-            <Header />
-
-            <main style={{ flex: 1, padding: 20, overflowY: "auto" }}>
-              {children}
-            </main>
-
-          </div>
-
-        </div>
-
+      <body style={{ margin: 0 }}>
+        <LayoutShell sidebar={<Sidebar />} header={<Header />}>
+          {children}
+        </LayoutShell>
         <ChatWidget />
+        <OnboardingTour />
       </body>
     </html>
   )

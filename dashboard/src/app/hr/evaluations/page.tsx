@@ -1,10 +1,13 @@
 import Link            from "next/link"
 import { cookies }    from "next/headers"
+import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
 
 export const dynamic = "force-dynamic"
+
+const ALLOWED = ["owner", "admin", "manager", "hr"]
 
 function scoreColor(score: number) {
   if (score >= 90) return "#16a34a"
@@ -27,7 +30,8 @@ function ratingBg(rating: string): { bg: string; color: string } {
 export default async function EvaluationsPage() {
   const jar     = await cookies()
   const session = await getSession(jar.get("nmi_session")?.value)
-  const cid     = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
+  if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
+  const cid     = resolveCompany(session, jar.get("nmi_company")?.value)
 
   const evals = await prisma.evaluationSession.findMany({
     where:   cid ? { companyId: cid } : {},

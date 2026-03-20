@@ -1,11 +1,17 @@
 import Link            from "next/link"
 import { cookies }    from "next/headers"
+import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
 import EmailTable     from "./EmailTable"
 
 export const dynamic = "force-dynamic"
+
+import type { Metadata } from "next"
+export const metadata: Metadata = { title: "Email Intelligence — NMI Automation OS" }
+
+const ALLOWED = ["owner", "admin"]
 
 function statCard(label: string, value: number | string, color = "#374151") {
   return (
@@ -19,7 +25,8 @@ function statCard(label: string, value: number | string, color = "#374151") {
 export default async function EmailPage() {
   const jar     = await cookies()
   const session = await getSession(jar.get("nmi_session")?.value)
-  const cid     = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
+  if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
+  const cid     = resolveCompany(session, jar.get("nmi_company")?.value)
 
   const emails = await prisma.emailLog.findMany({
     where:   cid ? { companyId: cid } : {},

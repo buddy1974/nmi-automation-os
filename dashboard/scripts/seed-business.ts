@@ -73,6 +73,7 @@ async function main() {
     { name: "Dr. Martin Fomba",      phone: "+237 677 100 200", email: "m.fomba@uy1.cm" },
     { name: "Prof. Alice Nkemdirim", phone: "+237 677 200 300", email: "a.nkemdirim@univ-dschang.cm" },
     { name: "Dr. Samuel Mbarga",     phone: "+237 677 300 400", email: "s.mbarga@nmi.cm" },
+    { name: "Tabe John Tambe",       phone: "",                 email: "tabe.tambe@nmieducation.com" },
   ]
 
   const authors = []
@@ -254,6 +255,7 @@ async function main() {
     { author: "Prof. Alice Nkemdirim", book: "English, Class 5",                               amount:  62500, date: new Date("2025-05-31"), status: "unpaid" },
     { author: "Dr. Samuel Mbarga",     book: "Sciences and Technology, Class 3",               amount:  25000, date: new Date("2025-02-28"), status: "paid"   },
     { author: "Dr. Samuel Mbarga",     book: "Sciences & Technology Activity Book — Class 4",  amount:  45000, date: new Date("2025-10-31"), status: "unpaid" },
+    { author: "Tabe John Tambe",       book: "Handwriting Class 1, Handwriting Class 2, English Class 1, English Class 2", amount: 150000, date: new Date("2025-08-31"), status: "unpaid" },
   ]
 
   for (const r of royaltiesSpec) {

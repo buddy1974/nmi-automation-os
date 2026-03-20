@@ -1,7 +1,26 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npm install:*)",
+      "Bash(node:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npx vercel:*)",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:www.nmieducation.com)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" \"https://www.nmieducation.com/catalogue/category/school\")",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" \"https://www.nmieducation.com/authors\")",
+      "Bash(python3 -c \"import sys,html,json; raw=sys.stdin.read\\(\\); decoded=html.unescape\\(raw\\); parsed=json.loads\\(decoded\\); print\\(json.dumps\\(parsed, indent=2, ensure_ascii=False\\)\")",
+      "Bash(echo \"TMPDIR=$TMPDIR\")",
+      "Bash(TMPDIR=\"/c/Users/loneb/AppData/Local/Temp\")",
+      "Bash(OUTDIR=\"/c/Users/loneb/Documents/ai-software-dev/projects/nmi-automation-os\")",
+      "Bash(__NEW_LINE_a6e9b3f7606edc98__ node -e \":*)",
+      "Bash(python -c \":*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(./node_modules/.bin/tsc --noEmit)"
     ]
   }
 }

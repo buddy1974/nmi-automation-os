@@ -1,11 +1,17 @@
 import Link            from "next/link"
 import { cookies }    from "next/headers"
+import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
 import WATable        from "./WATable"
 
 export const dynamic = "force-dynamic"
+
+import type { Metadata } from "next"
+export const metadata: Metadata = { title: "WhatsApp — NMI Automation OS" }
+
+const ALLOWED = ["owner", "admin"]
 
 function detectLang(text: string): "French" | "English" | "Other" {
   const frWords = /\b(bonjour|merci|combien|coûte|livre|commande|veux|soumettre|comment|je|vous|nous|est|les|des|une|pour)\b/i
@@ -33,9 +39,10 @@ function statusBadge(status: string) {
 }
 
 export default async function WhatsAppPage() {
-  const jar    = await cookies()
+  const jar     = await cookies()
   const session = await getSession(jar.get("nmi_session")?.value)
-  const cid    = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
+  if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
+  const cid     = resolveCompany(session, jar.get("nmi_company")?.value)
 
   const msgs = await prisma.whatsAppMessage.findMany({
     where:   cid ? { companyId: cid } : {},

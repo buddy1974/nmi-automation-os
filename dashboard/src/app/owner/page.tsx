@@ -4,8 +4,11 @@ import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { S, row, badge } from "@/lib/ui"
 import OwnerCharts, { type CompanyChartData, type MonthlyChartData } from "@/app/components/OwnerCharts"
+import PrintButton  from "@/app/components/PrintButton"
+import type { Metadata } from "next"
 
 export const dynamic = "force-dynamic"
+export const metadata: Metadata = { title: "Owner Intelligence — NMI Automation OS" }
 
 const ALLOWED = ["admin", "owner"]
 
@@ -122,7 +125,10 @@ export default async function OwnerPage() {
 
   return (
     <div style={S.page}>
-      <h1 style={S.heading}>Owner Intelligence Dashboard</h1>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4 }}>
+        <h1 style={{ ...S.heading, margin: 0 }}>Owner Intelligence Dashboard</h1>
+        <PrintButton />
+      </div>
       <p style={S.subtitle}>
         Real-time command centre — {activeCompanyCount} active compan{activeCompanyCount !== 1 ? "ies" : "y"} · {fmt(orderCount)} total orders
       </p>

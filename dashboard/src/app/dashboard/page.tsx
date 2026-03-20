@@ -3,9 +3,13 @@ import Link                     from "next/link"
 import { prisma }               from "@/lib/db"
 import { getSession }           from "@/lib/auth"
 import { resolveCompany, directFilter } from "@/lib/companyFilter"
-import { S, row, statusBadge }  from "@/lib/ui"
+import { S, row }               from "@/lib/ui"
+import DashboardLive            from "./DashboardLive"
+import SystemStatus             from "@/app/components/SystemStatus"
+import type { Metadata }        from "next"
 
 export const dynamic = "force-dynamic"
+export const metadata: Metadata = { title: "Dashboard — NMI Automation OS" }
 
 export default async function DashboardPage() {
   const jar     = await cookies()
@@ -14,34 +18,26 @@ export default async function DashboardPage() {
   const cw      = directFilter(cid)
 
   const [
-    orderCount, revenueAgg, activeWorkers, pendingInvoices,
     lowStock, printReady, unpaidRoyalties, missingCnps,
   ] = await Promise.all([
-    prisma.order.count({ where: cw }),
-    prisma.order.aggregate({ _sum: { total: true }, where: cw }),
-    prisma.worker.count({ where: { ...cw, status: "active" } }),
-    prisma.invoice.count({ where: { ...cw, status: { not: "paid" } } }),
     prisma.product.findMany({ where: { stock: { lt: 10 } }, orderBy: { stock: "asc" }, select: { code: true, title: true, stock: true } }),
     prisma.manuscript.findMany({ where: { readyForPrint: true }, select: { id: true, title: true, author: true } }),
     prisma.royalty.findMany({ where: { status: "unpaid" }, select: { id: true, author: true, book: true, amount: true } }),
     prisma.worker.findMany({ where: { ...cw, cnpsNumber: "", contractType: { in: ["CDI","CDD"] } }, select: { id: true, name: true, contractType: true } }),
   ])
 
-  const totalRevenue = Number(revenueAgg._sum.total ?? 0)
-  const hasAlerts    = lowStock.length > 0 || unpaidRoyalties.length > 0 || missingCnps.length > 0
+  const hasAlerts = lowStock.length > 0 || unpaidRoyalties.length > 0 || missingCnps.length > 0
 
   return (
     <div style={S.page}>
       <h1 style={S.heading}>Dashboard</h1>
-      <p style={S.subtitle}>Live overview — {session?.name ?? "Guest"} · {session?.role ?? ""}</p>
 
-      {/* KPI row */}
-      <div style={S.statBar}>
-        <div style={S.statCard}><div style={S.statValue}>{orderCount}</div><div style={S.statLabel}>Orders</div></div>
-        <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{totalRevenue.toLocaleString()}</div><div style={S.statLabel}>Revenue (XAF)</div></div>
-        <div style={S.statCard}><div style={S.statValue}>{activeWorkers}</div><div style={S.statLabel}>Active Workers</div></div>
-        <div style={S.statCard}><div style={{ ...S.statValue, color: pendingInvoices > 0 ? "#f97316" : "#2563eb" }}>{pendingInvoices}</div><div style={S.statLabel}>Pending Invoices</div></div>
-        <div style={S.statCard}><div style={{ ...S.statValue, color: printReady.length > 0 ? "#7c3aed" : "#2563eb" }}>{printReady.length}</div><div style={S.statLabel}>Print Ready</div></div>
+      {/* Live KPIs + welcome banner — auto-refreshes every 60s */}
+      <DashboardLive name={session?.name ?? "Guest"} />
+
+      {/* System status */}
+      <div style={{ marginBottom: 24 }}>
+        <SystemStatus />
       </div>
 
       {/* Alerts */}

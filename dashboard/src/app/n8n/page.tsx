@@ -1,10 +1,16 @@
 import { cookies }    from "next/headers"
+import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { headers }    from "next/headers"
 import WorkflowTester from "./WorkflowTester"
 
 export const dynamic = "force-dynamic"
+
+import type { Metadata } from "next"
+export const metadata: Metadata = { title: "Automation — NMI Automation OS" }
+
+const ALLOWED = ["owner", "admin"]
 
 const WORKFLOW_DEFS = [
   { name: "email_classify", trigger: "Webhook / Gmail",   desc: "Classify and route incoming emails via AI" },
@@ -33,6 +39,7 @@ function typeBadge(type: string) {
 export default async function N8nPage() {
   const jar     = await cookies()
   const session = await getSession(jar.get("nmi_session")?.value)
+  if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
   const hdrs    = await headers()
 
   const host       = hdrs.get("host") ?? "localhost:3000"

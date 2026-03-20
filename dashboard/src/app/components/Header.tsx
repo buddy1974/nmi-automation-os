@@ -6,6 +6,33 @@ import Link                  from "next/link"
 
 const OWNER_ROLES = ["admin", "owner", "manager"]
 
+const ROLE_COLORS: Record<string, { bg: string; color: string }> = {
+  owner:   { bg: "#fdf4ff", color: "#9333ea" },
+  admin:   { bg: "#eff6ff", color: "#2563eb" },
+  manager: { bg: "#fff7ed", color: "#ea580c" },
+  hr:      { bg: "#f0fdfa", color: "#0d9488" },
+  staff:   { bg: "#f9fafb", color: "#6b7280" },
+}
+
+function RoleBadge({ role }: { role: string }) {
+  const s = ROLE_COLORS[role] ?? ROLE_COLORS.staff
+  return (
+    <span style={{
+      background:   s.bg,
+      color:        s.color,
+      border:       `1px solid ${s.color}33`,
+      borderRadius: "999px",
+      padding:      "2px 10px",
+      fontSize:     "11px",
+      fontWeight:   700,
+      textTransform:"uppercase",
+      letterSpacing:"0.05em",
+    }}>
+      {role}
+    </span>
+  )
+}
+
 export default async function Header() {
   const jar             = await cookies()
   const session         = await getSession(jar.get("nmi_session")?.value)
@@ -102,9 +129,12 @@ export default async function Header() {
           </Link>
         )}
 
-        <div style={{ fontSize: "13px", color: "#555", fontFamily: "Arial, sans-serif" }}>
-          {session ? `${session.name} · ${session.role}` : "Not logged in"}
-        </div>
+        {session && (
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "13px", color: "#374151", fontWeight: 600 }}>{session.name}</span>
+            <RoleBadge role={session.role} />
+          </div>
+        )}
 
       </div>
 

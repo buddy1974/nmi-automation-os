@@ -1,6 +1,6 @@
 .sidebar {
   width: 220px;
-  min-height: 100vh;
+  height: 100vh;
   background: #0f172a;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,7 @@
   gap: 10px;
   padding: 24px 20px 20px;
   border-bottom: 1px solid #1e293b;
+  flex-shrink: 0;
 }
 
 .brand img {
@@ -32,21 +33,44 @@
   text-transform: uppercase;
 }
 
+/* ── Nav ─────────────────────────────────────────────────────────────────── */
+
 .nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 10px 24px;
+}
+
+.section {
+  margin-bottom: 4px;
+}
+
+.sectionLabel {
+  font-size:      0.63rem;
+  font-weight:    700;
+  color:          #334155;
+  letter-spacing: 0.12em;
+  padding:        10px 14px 4px;
+  text-transform: uppercase;
+}
+
+.sectionList {
   list-style: none;
-  display: flex;
+  padding:    0;
+  margin:     0;
+  display:    flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 16px 10px;
+  gap: 1px;
 }
 
 .link {
   display: block;
-  padding: 10px 14px;
+  padding: 8px 14px;
   color: #94a3b8;
   border-radius: 6px;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   transition: background 0.15s, color 0.15s;
+  text-decoration: none;
 }
 
 .link:hover {

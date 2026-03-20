@@ -1,10 +1,13 @@
 import Link            from "next/link"
 import { cookies }    from "next/headers"
+import { redirect }   from "next/navigation"
 import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
 
 export const dynamic = "force-dynamic"
+
+const ALLOWED = ["owner", "admin"]
 
 const CATEGORIES = ["All", "HR", "Finance", "Editorial", "Sales", "Distribution", "Printing", "Legal"]
 
@@ -35,8 +38,9 @@ export default async function KnowledgePage({
   const sp       = await searchParams
   const jar      = await cookies()
   const session  = await getSession(jar.get("nmi_session")?.value)
-  const cid      = session ? resolveCompany(session, jar.get("nmi_company")?.value) : undefined
-  const isPriv   = session?.role === "admin" || session?.role === "owner"
+  if (!session || !ALLOWED.includes(session.role)) redirect("/dashboard")
+  const cid      = resolveCompany(session, jar.get("nmi_company")?.value)
+  const isPriv   = session.role === "admin" || session.role === "owner"
 
   const where: Record<string, unknown> = { active: true }
   if (!isPriv && cid) where.companyId = cid

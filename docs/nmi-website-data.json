@@ -1,0 +1,2368 @@
+{
+  "scraped_at": "2026-03-20",
+  "source": "https://www.nmieducation.com",
+  "books": {
+    "school": [
+      {
+        "id": 76,
+        "slug": "erwachen-eveil-deutsch-4e",
+        "title": "ERWACHEN Éveil Deutsch 4e",
+        "category": "school",
+        "language": "Deutsch",
+        "price": "#",
+        "isbn": "978-9956-0-1206-0",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "&nbsp;Les collections Erwachen/Éveil et Exzellent Deutsch, conformes aux nouveaux programmes et fondées sur l’Approche Par les Compétences, proposent une méthode innovante adaptée aux réalités des jeunes Africains. Elles offrent un apprentissage dynamique de l’allemand à travers un vocabulaire riche, des techniques de prononciation appropriées, de nombreux exercices d’application, de révision et de préparation aux évaluations, ainsi qu’un lexique détachable.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//All 4e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 75,
+        "slug": "erwachen-eveil-deutsch-3e",
+        "title": "ERWACHEN Éveil Deutsch 3e",
+        "category": "school",
+        "language": "Deutsch",
+        "price": "#",
+        "isbn": "978-9956-0-1207-7",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "&nbsp;Les collections Erwachen/Éveil et Exzellent Deutsch, conformes aux nouveaux programmes et fondées sur l’Approche Par les Compétences, proposent une méthode innovante adaptée aux réalités des jeunes Africains. Elles offrent un apprentissage dynamique de l’allemand à travers un vocabulaire riche, des techniques de prononciation appropriées, de nombreux exercices d’application, de révision et de préparation aux évaluations, ainsi qu’un lexique détachable.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//All 3e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Troisième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 74,
+        "slug": "despatar-eveil-espanol-libro-del-alumno-3e",
+        "title": "DESPATAR Éveil Español  Libro del alumno 3e",
+        "category": "school",
+        "language": "Español",
+        "price": "#",
+        "isbn": "978-9956-0-1205-3",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Christian Tiako"
+        ],
+        "description": "Les manuels des collections « Éveil et Excellencia en Espaňol » ont été conçus à partir d’outils et documents originaux et variés, tirés du contexte local africain et du monde hispanique global pour ses caractéristiques linguistiques et culturelles. La structure des manuels de cette collection permet d’implémenter de manière efficace l’approche par les compétences avec entrée par les situations de vie.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//espa 3e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Troisième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 73,
+        "slug": "despatar-eveil-espanol-libro-del-alumno-4e",
+        "title": "DESPATAR Éveil Español  Libro del alumno 4e",
+        "category": "school",
+        "language": "Español",
+        "price": "#",
+        "isbn": "978-9956-0-1204-6",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Christian Tiako"
+        ],
+        "description": "Les manuels des collections « Éveil et Excellencia en Espaňol » ont été conçus à partir d’outils et documents originaux et variés, tirés du contexte local africain et du monde hispanique global pour ses caractéristiques linguistiques et culturelles. La structure des manuels de cette collection permet d’implémenter de manière efficace l’approche par les compétences avec entrée par les situations de vie.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//espa 4e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 71,
+        "slug": "prime-biology-learners-book-4-5",
+        "title": "PRIME Biology Learner’s Book 4 & 5",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1235-0",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Biology is a series of books designed to introduce learners to fundamental biology concepts, fostering awareness of human beings and their surroundings. It aims to equip individuals with the ability to solve daily problems, including health-related issues and income generation. While following the National Syllabuses for the first cycle, some topics are explored more deeply for enhanced understanding and problem-solving skills. Real-life examples and illustrations are included to help learners appreciate biology and encourage curiosity for further knowledge.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Biology 4&5.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 4",
+          "Form 5"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 70,
+        "slug": "prime-biology-learners-book-3",
+        "title": "PRIME Biology Learner’s Book 3",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1234-3",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Biology is a series of books designed to introduce learners to fundamental biology concepts, fostering awareness of human beings and their surroundings. It aims to equip individuals with the ability to solve daily problems, including health-related issues and income generation. While following the National Syllabuses for the first cycle, some topics are explored more deeply for enhanced understanding and problem-solving skills. Real-life examples and illustrations are included to help learners appreciate biology and encourage curiosity for further knowledge.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Biology 3.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 3"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 69,
+        "slug": "prime-biology-learners-book-2",
+        "title": "PRIME Biology Learner’s Book 2",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1233-6",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Biology is a series of books designed to introduce learners to fundamental biology concepts, fostering awareness of human beings and their surroundings. It aims to equip individuals with the ability to solve daily problems, including health-related issues and income generation. While following the National Syllabuses for the first cycle, some topics are explored more deeply for enhanced understanding and problem-solving skills. Real-life examples and illustrations are included to help learners appreciate biology and encourage curiosity for further knowledge.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Biology 2.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 2"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 68,
+        "slug": "prime-biology-learners-book-1",
+        "title": "PRIME Biology Learner’s Book 1",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1232-9",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Biology is a series of books designed to introduce learners to fundamental biology concepts, fostering awareness of human beings and their surroundings. It aims to equip individuals with the ability to solve daily problems, including health-related issues and income generation. While following the National Syllabuses for the first cycle, some topics are explored more deeply for enhanced understanding and problem-solving skills. Real-life examples and illustrations are included to help learners appreciate biology and encourage curiosity for further knowledge.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Biology 1.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 1"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 67,
+        "slug": "prime-chemistry-learners-book-4-5",
+        "title": "PRIME Chemistry Learner’s Book 4 & 5",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1243-5",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Chemistry is a series of textbooks designed to help learners acquire skills needed for success by 2035. It addresses challenges in existing texts by offering clear, quality content and adapting to learners' environments through real-life situations. The books follow the Competency-Based Approach (CBA) pedagogical paradigm, aiming to raise awareness of the physical and chemical environment. The course is integrated to enhance learners' competencies in line with the new CBA teaching and evaluation syllabuses.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Chemistry 4&5.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 4",
+          "Form 5"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 66,
+        "slug": "prime-chemistry-learners-book-3",
+        "title": "PRIME Chemistry Learner’s Book 3",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1242-8",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Chemistry is a series of textbooks designed to help learners acquire skills needed for success by 2035. It addresses challenges in existing texts by offering clear, quality content and adapting to learners' environments through real-life situations. The books follow the Competency-Based Approach (CBA) pedagogical paradigm, aiming to raise awareness of the physical and chemical environment. The course is integrated to enhance learners' competencies in line with the new CBA teaching and evaluation syllabuses.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Chemistry 3.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 3"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 65,
+        "slug": "prime-chemistry-learners-book-2",
+        "title": "PRIME Chemistry Learner’s Book 2",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1241-1",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Chemistry is a series of textbooks designed to help learners acquire skills needed for success by 2035. It addresses challenges in existing texts by offering clear, quality content and adapting to learners' environments through real-life situations. The books follow the Competency-Based Approach (CBA) pedagogical paradigm, aiming to raise awareness of the physical and chemical environment. The course is integrated to enhance learners' competencies in line with the new CBA teaching and evaluation syllabuses.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Chemistry 2.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 2"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 64,
+        "slug": "prime-chemistry-learners-book-1",
+        "title": "PRIME Chemistry Learner’s Book 1",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1240-4",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Chemistry is a series of textbooks designed to help learners acquire skills needed for success by 2035. It addresses challenges in existing texts by offering clear, quality content and adapting to learners' environments through real-life situations. The books follow the Competency-Based Approach (CBA) pedagogical paradigm, aiming to raise awareness of the physical and chemical environment. The course is integrated to enhance learners' competencies in line with the new CBA teaching and evaluation syllabuses.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Chemistry 1.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 1"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 63,
+        "slug": "prime-computer-science-form-3",
+        "title": "PRIME Computer Science Form 3",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1246-6",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Computer Science is a series of books written to help learners acquire basic concepts and skills that will provide the necessary impetus and aptitude to fit into a contemporary world of Information Technology and enable them to become critical, effective and independent users of ICT. They should also be able to benefit from the opportunities and advantages that ICT can provide to support learning in other areas of the curriculum.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Computer science 3.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 3"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 62,
+        "slug": "prime-computer-science-form-2",
+        "title": "PRIME Computer Science Form 2",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1245-9",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Computer Science is a series of books written to help learners acquire basic concepts and skills that will provide the necessary impetus and aptitude to fit into a contemporary world of Information Technology and enable them to become critical, effective and independent users of ICT. They should also be able to benefit from the opportunities and advantages that ICT can provide to support learning in other areas of the curriculum.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Computer science 2.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 2"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 61,
+        "slug": "prime-computer-science-learners-book-1",
+        "title": "PRIME Computer Science Learner’s Book 1",
+        "category": "school",
+        "language": "Anglais",
+        "price": null,
+        "isbn": "978-9956-0-1244-2",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Prime Computer Science is a series of books written to help learners acquire basic concepts and skills that will provide the necessary impetus and aptitude to fit into a contemporary world of Information Technology and enable them to become critical, effective and independent users of ICT. They should also be able to benefit from the opportunities and advantages that ICT can provide to support learning in other areas of the curriculum.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Computer scicence 1.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 1"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 60,
+        "slug": "eveil-en-informatique-4e",
+        "title": "Éveil en Informatique 4e",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1195-7",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 4,
+          "name": "Eveil Informatique",
+          "slug": "eveil-informatique",
+          "description": "<p>anything</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "Les collections « Éveil et L’Excellence en Informatique » ont été soigneusement conçue par un groupe d’auteurs rompus à la tâche pour faciliter une prise en main effective de l’ordinateur et une maîtrise de l’environnement informatique par les élèves et enseignants. Avec ces ouvrages d’informatique, élèves et enseignants disposent ainsi d’un outil complémentaire devant leur permettre de se placer dans les meilleures conditions d’apprentissage et de réussite pour les uns et de transmission de connaissances pour les autres.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Info 4e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 59,
+        "slug": "eveil-en-informatique-5e",
+        "title": "Éveil en Informatique 5e",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1194-0",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 4,
+          "name": "Eveil Informatique",
+          "slug": "eveil-informatique",
+          "description": "<p>anything</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "Les collections « Éveil et L’Excellence en Informatique » ont été soigneusement conçue par un groupe d’auteurs rompus à la tâche pour faciliter une prise en main effective de l’ordinateur et une maîtrise de l’environnement informatique par les élèves et enseignants. Avec ces ouvrages d’informatique, élèves et enseignants disposent ainsi d’un outil complémentaire devant leur permettre de se placer dans les meilleures conditions d’apprentissage et de réussite pour les uns et de transmission de connaissances pour les autres.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Info 5e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Cinquième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 58,
+        "slug": "eveil-en-informatique-6e",
+        "title": "Éveil en Informatique 6e",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1193-3",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 4,
+          "name": "Eveil Informatique",
+          "slug": "eveil-informatique",
+          "description": "<p>anything</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "Les collections « Éveil et L’Excellence en Informatique » ont été soigneusement conçue par un groupe d’auteurs rompus à la tâche pour faciliter une prise en main effective de l’ordinateur et une maîtrise de l’environnement informatique par les élèves et enseignants. Avec ces ouvrages d’informatique, élèves et enseignants disposent ainsi d’un outil complémentaire devant leur permettre de se placer dans les meilleures conditions d’apprentissage et de réussite pour les uns et de transmission de connaissances pour les autres.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Info 6e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Sixième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 57,
+        "slug": "eveil-en-svteehb-3e",
+        "title": "Éveil en SVTEEHB 3e ",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1200-8",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Les collections « Éveil et L’Excellence en Sciences » mettent à la disposition de l’apprenant un livre adapté à l’Approche Par les Compétences avec Entrée par des Situations de Vie. De la situation de vie envisageable aux activités d’intégration en passant par les activités d’installation des ressources bien choisies dans l’environnement de l’apprenant, la présentation de chaque module rend le nouveau paradigme accessible aux apprenants ainsi qu’aux enseignants.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//SVTEEHB 3e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Troisième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 56,
+        "slug": "eveil-en-svteehb-4e",
+        "title": "Éveil en SVTEEHB 4e ",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1199-5",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Les collections « Éveil et L’Excellence en Sciences » mettent à la disposition de l’apprenant un livre adapté à l’Approche Par les Compétences avec Entrée par des Situations de Vie. De la situation de vie envisageable aux activités d’intégration en passant par les activités d’installation des ressources bien choisies dans l’environnement de l’apprenant, la présentation de chaque module rend le nouveau paradigme accessible aux apprenants ainsi qu’aux enseignants.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//SVTEEHB 4e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 55,
+        "slug": "eveil-en-sciences-5e",
+        "title": "Éveil en Sciences 5e ",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1198-8",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Ango Yves Patrick"
+        ],
+        "description": "Les collections « Éveil et L’Excellence en Sciences » mettent à la disposition de l’apprenant un livre adapté à l’Approche Par les Compétences avec Entrée par des Situations de Vie. De la situation de vie envisageable aux activités d’intégration en passant par les activités d’installation des ressources bien choisies dans l’environnement de l’apprenant, la présentation de chaque module rend le nouveau paradigme accessible aux apprenants ainsi qu’aux enseignants.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Sciences 5e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Cinquième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 54,
+        "slug": "eveil-en-sciences-6e",
+        "title": "Éveil en Sciences 6e ",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1197-1",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Ango Yves Patrick"
+        ],
+        "description": "Les collections « Éveil et L’Excellence en Sciences » mettent à la disposition de l’apprenant un livre adapté à l’Approche Par les Compétences avec Entrée par des Situations de Vie. De la situation de vie envisageable aux activités d’intégration en passant par les activités d’installation des ressources bien choisies dans l’environnement de l’apprenant, la présentation de chaque module rend le nouveau paradigme accessible aux apprenants ainsi qu’aux enseignants.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Sciences 6e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Sixième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 53,
+        "slug": "eveil-en-anglais-5e",
+        "title": "Eveil en anglais - 5è",
+        "category": "school",
+        "language": "Anglais",
+        "price": "4000",
+        "isbn": "978-9956-0-1225-1",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 2,
+          "name": "Eveil en Anglais",
+          "slug": "eveil-en-anglais",
+          "description": "<p>This Series, <strong>“Eveil Anglais”</strong> is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) require-ments as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.</p>"
+        },
+        "publicationDate": null,
+        "authors": [
+          "Ngwang Helvetia Ebwane",
+          "Promboh Eunice Pamela"
+        ],
+        "description": "This Series, “Eveil Anglais” is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) requirements as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Anglais 5e.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Cinquième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 52,
+        "slug": "prime-in-french-form-4",
+        "title": "Prime in French Form 4",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1211-4",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Kang Dickson"
+        ],
+        "description": "Prime in French Form 4 s’inspire des apports de plusieurs approches de l’enseignement deslangues étrangères et surtout de l’approche par les compétences avec entrée par dessituations de vie (APC/ESV). La collection « Prime in French » est un merveilleuxmélange de la beauté, de l’environnement des élèves et des situations de communicationde tous les jours d’une part et la pédagogie pratique d’autre part. Les leçonssont structurées de façon à couvrir toutes les aptitudes de la communication : lalecture, l’expression orale et l’expression écrite.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//French 4.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 4"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 51,
+        "slug": "prime-in-french-form-3",
+        "title": "Prime in French Form 3",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1210-7",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Kang Dickson"
+        ],
+        "description": "Prime in French Form 3 s’inspire des apports de plusieurs approches de l’enseignement deslangues étrangères et surtout de l’approche par les compétences avec entrée par dessituations de vie (APC/ESV). La collection « Prime in French » est un merveilleuxmélange de la beauté, de l’environnement des élèves et des situations de communicationde tous les jours d’une part et la pédagogie pratique d’autre part. Les leçonssont structurées de façon à couvrir toutes les aptitudes de la communication : lalecture, l’expression orale et l’expression écrite.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//French 3.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 3"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 50,
+        "slug": "prime-in-french-form-2",
+        "title": "Prime in French Form 2",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1209-1",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Kang Dickson"
+        ],
+        "description": "Prime in French Form 2 s’inspire des apports de plusieurs approches de l’enseignement deslangues étrangères et surtout de l’approche par les compétences avec entrée par dessituations de vie (APC/ESV). La collection « Prime in French » est un merveilleuxmélange de la beauté, de l’environnement des élèves et des situations de communicationde tous les jours d’une part et la pédagogie pratique d’autre part. Les leçonssont structurées de façon à couvrir toutes les aptitudes de la communication : lalecture, l’expression orale et l’expression écrite.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//French 2.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 2"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 49,
+        "slug": "prime-in-french-form-1",
+        "title": "Prime in French Form 1",
+        "category": "school",
+        "language": "Français",
+        "price": null,
+        "isbn": "978-9956-0-1208-4",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Kang Dickson"
+        ],
+        "description": "Prime in French Form 1 s’inspire des apports de plusieurs approches de l’enseignement deslangues étrangères et surtout de l’approche par les compétences avec entrée par dessituations de vie (APC/ESV). La collection « Prime in French » est un merveilleuxmélange de la beauté, de l’environnement des élèves et des situations de communicationde tous les jours d’une part et la pédagogie pratique d’autre part. Les leçonssont structurées de façon à couvrir toutes les aptitudes de la communication : lalecture, l’expression orale et l’expression écrite.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Frecnh 1.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 1"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 47,
+        "slug": "prime-english-learners-book-5",
+        "title": "PRIME English Learner’s book 5",
+        "category": "school",
+        "language": "Anglais",
+        "price": "4500",
+        "isbn": "978-9956-0-1223-7",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis",
+          "Asongkeng Félix"
+        ],
+        "description": "Prime English 5 is an exciting course for learners of English Language. It comes to straighten and implement the theory, processes and outcomes of CBA in an insider manner that is lucid, dynamic, practical, and student-centred as was envisaged by the introducers of the method. The communicative approach is successfully integrated with the tried and tested methods of traditional language teaching. Prime English includes several special features: All skills required in the curriculum are covered at an appropriate language level and with content relevant to the learner.&amp;nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//English language-5.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 5"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 46,
+        "slug": "prime-english-learners-book-4",
+        "title": "PRIME English Learner’s book 4",
+        "category": "school",
+        "language": "Anglais",
+        "price": "4200",
+        "isbn": "978-9956-0-1222-0",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis",
+          "Asongkeng Félix",
+          "Ngwesa Queentha"
+        ],
+        "description": "Prime English 4 is an exciting course for learners of English Language. It comes to straighten and implement the theory, processes and outcomes of CBA in an insider manner that is lucid, dynamic, practical, and student-centred as was envisaged by the introducers of the method. The communicative approach is successfully integrated with the tried and tested methods of traditional language teaching. Prime English includes several special features: All skills required in the curriculum are covered at an appropriate language level and with content relevant to the learner.&amp;nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//English language-4.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 4"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 45,
+        "slug": "prime-english-learners-book-3",
+        "title": "PRIME English Learner’s book 3",
+        "category": "school",
+        "language": "Anglais",
+        "price": "3800",
+        "isbn": "978-9956-0-1221-3",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis",
+          "Ngwang Helvetia Ebwane"
+        ],
+        "description": "Prime English 3 is an exciting course for learners of English Language. It comes to straighten and implement the theory, processes and outcomes of CBA in an insider manner that is lucid, dynamic, practical, and student-centred as was envisaged by the introducers of the method. The communicative approach is successfully integrated with the tried and tested methods of traditional language teaching. Prime English includes several special features: All skills required in the curriculum are covered at an appropriate language level and with content relevant to the learner.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//English language-3.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 3"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 44,
+        "slug": "prime-english-learners-book-2",
+        "title": "PRIME English Learner’s book 2",
+        "category": "school",
+        "language": "Anglais",
+        "price": "3800",
+        "isbn": "978-9956-0-1220-6",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis",
+          "Elias Shubisi Che ",
+          "Ngwesa Queentha",
+          "Mispa Bessem Epitime "
+        ],
+        "description": "Prime English 2 is an exciting course for learners of English Language. It comes to straighten and implement the theory, processes and outcomes of CBA in an insider manner that is lucid, dynamic, practical, and student-centred as was envisaged by the introducers of the method. The communicative approach is successfully integrated with the tried and tested methods of traditional language teaching. Prime English includes several special features: All skills required in the curriculum are covered at an appropriate language level and with content relevant to the learner.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//English language-2.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 2"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 43,
+        "slug": "prime-english-learners-book-1",
+        "title": "PRIME English Learner’s book 1",
+        "category": "school",
+        "language": "Anglais",
+        "price": "3800",
+        "isbn": "978-9956-0-1219-0",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis",
+          "Elias Shubisi Che ",
+          "Ngwesa Queentha",
+          "Mispa Bessem Epitime "
+        ],
+        "description": "Prime English 1 is an exciting course for learners of English Language. It comes to straighten and implement the theory, processes and outcomes of CBA in an insider manner that is lucid, dynamic, practical, and student-centred as was envisaged by the introducers of the method. The communicative approach is successfully integrated with the tried and tested methods of traditional language teaching. Prime English includes several special features: All skills required in the curriculum are covered at an appropriate language level and with content relevant to the learner.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//English language-1.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 1"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 17,
+        "slug": "eveil-en-anglais-4e",
+        "title": "Eveil en anglais - 4è",
+        "category": "school",
+        "language": "Anglais",
+        "price": "4000",
+        "isbn": "978-9956-0-1226-8",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 2,
+          "name": "Eveil en Anglais",
+          "slug": "eveil-en-anglais",
+          "description": "<p>This Series, <strong>“Eveil Anglais”</strong> is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) require-ments as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.</p>"
+        },
+        "publicationDate": null,
+        "authors": [
+          "Ngwang Helvetia Ebwane",
+          "Promboh Eunice Pamela"
+        ],
+        "description": "This Series, “Eveil Anglais” is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) requirements as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHW37BJJ6X57HQ6CJGQC0JW.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enseignants",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 16,
+        "slug": "eveil-allemand-4eme",
+        "title": "Eveil en Allemand - 4ème",
+        "category": "school",
+        "language": "Français",
+        "price": "4500",
+        "isbn": null,
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 1,
+          "name": "Eveil en Allemand",
+          "slug": "eveil-en-allemand",
+          "description": "<p>Conforme aux nouveaux programmes en vigueur, la collection « <strong>Erwachen/Éveil Deutsch </strong>» met l’accent sur l’Approche par les Compétences et comporte des atouts indéniables. Ces manuels ont une méthode innovante et adaptée aux réalités quotidiennes des jeunes africains ; de nombreux exercices d’application ; un vocabulaire enrichi et diversifié ; des techniques de prononciation ajustée à l’apprenant ; de nombreux exercices de révision et de consolidation des acquis ; un lexique riche, varié et diversifié ; un recueil de mots traduits détachable à la fin de l’ouvrage ; des exercices d’entrainement et d’accompagnement vers les évaluations, une approche orientée vers l’autonomisation de l’apprenant. Avec les manuels de la collection « <strong>Erwachen/Éveil Deutsch </strong>», la langue allemande épouse vos attentes et vos envies. Ainsi, l’apprentissage ne peut être que passionnant.</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "description à venir",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHVZ8NENDYY1W5Y7AS5Z3SX.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 15,
+        "slug": "eveil-allemand-3eme",
+        "title": "Eveil en Allemand - 3ème",
+        "category": "school",
+        "language": "Français",
+        "price": "4500",
+        "isbn": null,
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 1,
+          "name": "Eveil en Allemand",
+          "slug": "eveil-en-allemand",
+          "description": "<p>Conforme aux nouveaux programmes en vigueur, la collection « <strong>Erwachen/Éveil Deutsch </strong>» met l’accent sur l’Approche par les Compétences et comporte des atouts indéniables. Ces manuels ont une méthode innovante et adaptée aux réalités quotidiennes des jeunes africains ; de nombreux exercices d’application ; un vocabulaire enrichi et diversifié ; des techniques de prononciation ajustée à l’apprenant ; de nombreux exercices de révision et de consolidation des acquis ; un lexique riche, varié et diversifié ; un recueil de mots traduits détachable à la fin de l’ouvrage ; des exercices d’entrainement et d’accompagnement vers les évaluations, une approche orientée vers l’autonomisation de l’apprenant. Avec les manuels de la collection « <strong>Erwachen/Éveil Deutsch </strong>», la langue allemande épouse vos attentes et vos envies. Ainsi, l’apprentissage ne peut être que passionnant.</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "Ma description",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHVWVXS2F2CZYK1GGBWM50K.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 14,
+        "slug": "eveil-en-anglais-6e",
+        "title": "Eveil en anglais - 6è",
+        "category": "school",
+        "language": "Anglais",
+        "price": "4000",
+        "isbn": "978-9956-0-1224-4",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 2,
+          "name": "Eveil en Anglais",
+          "slug": "eveil-en-anglais",
+          "description": "<p>This Series, <strong>“Eveil Anglais”</strong> is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) require-ments as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.</p>"
+        },
+        "publicationDate": null,
+        "authors": [
+          "Ngwang Helvetia Ebwane",
+          "Promboh Eunice Pamela"
+        ],
+        "description": "This Series, “Eveil Anglais” is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) requirements as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHVKX16MZ6FEY5EPS0VT2WZ.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 13,
+        "slug": "eveil-informatique-3eme",
+        "title": "Eveil informatique - 3ème",
+        "category": "school",
+        "language": "Français",
+        "price": "4000",
+        "isbn": "978-9956-0-1196-4",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 4,
+          "name": "Eveil Informatique",
+          "slug": "eveil-informatique",
+          "description": "<p>anything</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "Les collections « Éveil et L’Excellence en Informatique » ont été soigneusement conçue par un groupe d’auteurs rompus à la tâche pour faciliter une prise en main effective de l’ordinateur et une maîtrise de l’environnement informatique par les élèves et enseignants. Avec ces ouvrages d’informatique, élèves et enseignants disposent ainsi d’un outil complémentaire devant leur permettre de se placer dans les meilleures conditions d’apprentissage et de réussite pour les uns et de transmission de connaissances pour les autres.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHVHB13CP3DJ1EW3F7W1T5N.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Troisième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 12,
+        "slug": "eveil-en-anglais-3e",
+        "title": "Eveil en anglais - 3è",
+        "category": "school",
+        "language": "Anglais",
+        "price": "4500",
+        "isbn": "978-9956-0-1227-5",
+        "pages": null,
+        "support": "paper",
+        "collection": {
+          "id": 2,
+          "name": "Eveil en Anglais",
+          "slug": "eveil-en-anglais",
+          "description": "<p>This Series, <strong>“Eveil Anglais”</strong> is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) require-ments as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.</p>"
+        },
+        "publicationDate": null,
+        "authors": [
+          "Ngwang Helvetia Ebwane",
+          "Promboh Eunice Pamela"
+        ],
+        "description": "This Series, “Eveil Anglais” is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) requirements as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHVEEKY5N1PE00QR3QMHYYB.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [
+          "Troisième"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 11,
+        "slug": "eveil-informatique-5eme",
+        "title": "Eveil informatique 5ème",
+        "category": "school",
+        "language": "Français",
+        "price": "#",
+        "isbn": null,
+        "pages": null,
+        "support": "digital",
+        "collection": {
+          "id": 4,
+          "name": "Eveil Informatique",
+          "slug": "eveil-informatique",
+          "description": "<p>anything</p>"
+        },
+        "publicationDate": null,
+        "authors": [],
+        "description": "ce guide est très utile pour les enseignants",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHGBJ0A9N7AMRB91KK5CQMY6.jpeg",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [
+          "Cinquième"
+        ],
+        "new": "No"
+      }
+    ],
+    "literature": [
+      {
+        "id": 10,
+        "slug": "foundation-pillars",
+        "title": "Foundation Pillars",
+        "category": "literature",
+        "language": "Anglais",
+        "price": "5000",
+        "isbn": "9789956501514",
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis"
+        ],
+        "description": "Chief Atem the paramount ruler of the Nforteik Chiefdom is caught between ancestral practices, of the law and the revolutionary views of a new breed of young emancipated women who are championing the cause against female circumcision, breasts ironing and other questionable cultural practices. The complexity of his dilemma will produce sparks within his council, \u001freworks action that will leave no reader indi\u001eerent. It is a thrilling, absorbing story \u001flled with suspense and humour.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHG2985C5GBYVF0E2MMBD1B2.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 9,
+        "slug": "a-questionnable-culture",
+        "title": "A Questionnable Culture ?",
+        "category": "literature",
+        "language": "Anglais",
+        "price": "2000",
+        "isbn": "9789956501492",
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Egbe Besong Elvis"
+        ],
+        "description": "Chief Atem the paramount ruler of the Nforteik Chiefdom is caught between ancestral practices, of the law and the revolutionary views of a new breed of young emancipated women who are championing the cause against female circumcision, breasts ironing and other questionable cultural practices. The complexity of his dilemma will produce sparks within his council, reworks action that will leave no reader indifferent. It is a thrilling, absorbing story filled with suspense and humour.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHG26WPRPHBZ4N3SEKC7A8E6.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 8,
+        "slug": "authentic-poetry-book-3",
+        "title": "Authentic Poetry - Book 3",
+        "category": "literature",
+        "language": "Anglais",
+        "price": "3500",
+        "isbn": null,
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2020-01-01",
+        "authors": [
+          "Egbe Besong Elvis"
+        ],
+        "description": "Description",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHG22GBV6TYMS9K0QJ1KKDVR.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 7,
+        "slug": "authentic-poetry-book-2",
+        "title": "Authentic Poetry - Book 2",
+        "category": "literature",
+        "language": "Anglais",
+        "price": "3500",
+        "isbn": null,
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2020-01-01",
+        "authors": [
+          "Egbe Besong Elvis"
+        ],
+        "description": "Description ici",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHG20BBH2XVHRZ5VY8C99NC2.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 6,
+        "slug": "authentic-poetry-book-1",
+        "title": "Authentic Poetry - Book 1",
+        "category": "literature",
+        "language": "Anglais",
+        "price": "3500",
+        "isbn": "9956502960",
+        "pages": null,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": "2020-01-01",
+        "authors": [
+          "Egbe Besong Elvis"
+        ],
+        "description": "Poetry that meets the needs of learners in a challenging 21st Classroom as prescribed by the new trend: The Competency Based Approach is the major focus of the poems in this series. With appropriate real-life situations, split into modules, learners will find the poems interesting, sing-song and morally edifying.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHG1Y91N4TK9P38X635TB1CC.png",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [
+          "Form 1"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 5,
+        "slug": "septembre-fou",
+        "title": "Septembre Fou",
+        "category": "literature",
+        "language": "Français",
+        "price": "3500",
+        "isbn": "978-9956-0-1249-7",
+        "pages": 84,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2024-08-01",
+        "authors": [
+          "Christian Tiako",
+          "Botomogne"
+        ],
+        "description": "L’adolescence, connue comme le passage de l’enfance à l’âge adulte, apporte un lot de changement autant physique que psychologique chez l’adolescent. Pour les comprendre, il faut les écouter et leur donner une attention particulière.",
+        "summary": "L’adolescence, connue comme le passage de l’enfance à l’âge adulte, apporte un lot de changement autant physique que psychologique chez l’adolescent.",
+        "cover": "https://www.nmieducation.com/storage/01JHFWPEMS8Y63QQ1Q7BK40WW0.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/romans-et-nouvelles/septembre-fou-3758233",
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 4,
+        "slug": "royaume-bantou",
+        "title": "Royaume Bantou",
+        "category": "literature",
+        "language": "Français",
+        "price": "4000",
+        "isbn": "978-9956-0-1252-7",
+        "pages": 150,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2024-08-01",
+        "authors": [
+          "Christian Tiako"
+        ],
+        "description": "Dans la socio-culture africaine, le rite d’intronisation ou de succession à une autorité traditionnelle demande un certain nombre de choses. Dans une société en perte de ses valeurs ancestrales, il est urgent que l’on revienne à l’apprentissage tel que nous le propose cette pièce de théâtre.",
+        "summary": "Dans la socio-culture africaine, le rite d’intronisation ou de succession à une autorité traditionnelle demande un certain nombre de choses.",
+        "cover": "https://www.nmieducation.com/storage/01JHFW2GJET4PJ1KC9P7X8ZQ3Z.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/romans-et-nouvelles/royaume-bantou-3758231",
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 3,
+        "slug": "mi-grands",
+        "title": "Mi-Grands",
+        "category": "literature",
+        "language": "Français",
+        "price": "3500",
+        "isbn": "978-9956-0-1251-0",
+        "pages": 76,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2024-08-01",
+        "authors": [
+          "Logmo I de Semndjock Léonard"
+        ],
+        "description": "Sensibiliser sur le phénomène de l’immigration clandestine de la jeunesse africaine à la recherche de l’Eldorado occidental est le réel enjeu de cette pièce théâtrale. Partagé entre tristesse et désarroi dus aux sévices que subissent ses enfants chaque jour, l’Afrique a besoin de conscientiser ses enfants afin d’éviter ces morts dans le désert et la Méditerrané chaque jour.",
+        "summary": "Sensibiliser sur le phénomène de l’immigration clandestine de la jeunesse africaine à la recherche de l’Eldorado occidental est le réel enjeu de cette pièce théâtrale.",
+        "cover": "https://www.nmieducation.com/storage/01JHFVRX5E6AG21ZQECG93C4ZS.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/romans-et-nouvelles/mi-grands-3758232",
+        "amazon_url": "#",
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 2,
+        "slug": "l-ivresse-du-pardon",
+        "title": "L'ivresse du pardon",
+        "category": "literature",
+        "language": "Français",
+        "price": "6000",
+        "isbn": "978-9956-0-1255-8",
+        "pages": 226,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2024-08-01",
+        "authors": [
+          "David Engbwang Engbwang"
+        ],
+        "description": "Flop de Nga et Alice, jeune couple heureux se voit du jour au lendemain briser par un scandale d’infidélité causé par Zolo, la sœur cadette de Alice. Entre l’harmonie d’antan et le calvaire de cette situation dont l’issue semble incertaine, s’ajoute le décès brutal de Zolo. Alors, la seule solution pour Alice est de pardonner à tous pour retrouver la paix et la sérénité dans la famille.",
+        "summary": "Flop de Nga et Alice, jeune couple heureux se voit du jour au lendemain briser par un scandale d’infidélité causé par Zolo, la sœur cadette de Alice.",
+        "cover": "https://www.nmieducation.com/storage/01JHFVCCJEZ70Q7SR9AY035W69.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/romans-et-nouvelles/l-ivresse-du-pardon-3758234",
+        "amazon_url": "https://www.amazon.com/LIVRESSE-PARDON-French-David-Engbwang-ebook/dp/B0DYV2H28J/r",
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 1,
+        "slug": "le-prix-de-la-betise",
+        "title": "Le prix de la bêtise",
+        "category": "literature",
+        "language": "Français",
+        "price": "5000",
+        "isbn": "978-9956-0-1253-4",
+        "pages": 171,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2024-07-01",
+        "authors": [
+          "David Engbwang Engbwang"
+        ],
+        "description": "Le Prix de la Bêtise retrace l’itinéraire de Bidjabo, haut fonctionnaire à la retraite qui, durant toute sa carrière administrative, aura incarné le prototype du mauvais agent public. La retraite survenue, il se retrouve dans un état de dénuement total, confronté aux difficultés qu’il a lui-même infligées aux usagers pendant sa période d’activités...",
+        "summary": "Le Prix de la Bêtise raconte l’histoire de Bidjabo, un ancien fonctionnaire qui, après une carrière marquée par l'incompétence et la maltraitance des usagers, se retrouve dans un état de misère, confronté aux conséquences de ses actions passées.",
+        "cover": "https://www.nmieducation.com/storage/01JHFSX4HZZHBJPX0033NTRXR4.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/romans-et-nouvelles/le-prix-de-la-betise-3758229",
+        "amazon_url": null,
+        "audience": "Grand Public",
+        "classrooms": [],
+        "new": "No"
+      }
+    ],
+    "kids": [
+      {
+        "id": 82,
+        "slug": "tous-citoyens-hitoires-citoyennes-racontees-par-des-enfants",
+        "title": "Tous citoyens Hitoires citoyennes racontées par des enfants",
+        "category": "kids",
+        "language": "Français",
+        "price": "3500",
+        "isbn": "978-9956-27-850-3",
+        "pages": 36,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": "2026-01-03",
+        "authors": [],
+        "description": "Ce recueil de dix histoires illustrées aborde des thèmes actuels tels que le civisme, l’écologie et la solidarité. À travers des récits imagés et des morales pédagogiques, les auteurs, agées entre 11 et 17 ans, visent le réarmement moral de la jeunesse tout en invitant les adultes à une prise de conscience. Véritable miroir de nos comportements quotidiens, cet ouvrage cherche à promouvoir les valeurs éthiques nécessaires à la consolidation du vivre-ensemble&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Tous citoyens COVER.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 80,
+        "slug": "the-peace-plant",
+        "title": "The Peace Plant",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "3500",
+        "isbn": "978-9956-27-788-9",
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2025-08-01",
+        "authors": [],
+        "description": "The humans break their promise by continuously invading and misusing the forest, so the animals decide to send them a warning. The humans do not heed it, so the animals attack. This leads to fierce battles. Lucky, a selfless monkey, is worried of the effects of these battles to the ecosystem and humanity. So, together with other animals, he goes on a mission in search of the Peace Plant, which is planted at the entrance of the forest by both parties, marking an end to the war. They promise to always respect the forest and the environment.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//the peace plant cover.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 79,
+        "slug": "the-holy-robber",
+        "title": "The Holy Robber",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "3500",
+        "isbn": "978-9956-27-789-6",
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2025-08-01",
+        "authors": [],
+        "description": "&nbsp;Ban, a notorious thief, breaks into a mansion and meets Aya, a terminally ill girl. Despite knowing he’s a thief, she offers him coffee and kindness. They share their painful stories and form an unlikely friendship, spending joyful days together. One day, Ban returns to find Aya has died. Grief-stricken, he vows to change and live a better life in her memory.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//cover redim-1.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 78,
+        "slug": "zuza-the-tortoise-who-changed-the-odds",
+        "title": "Zuza, the Tortoise Who Changed the Odds",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "4000",
+        "isbn": "978-9956-27-790-2",
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2025-08-01",
+        "authors": [
+          "Ngwani Cynthia"
+        ],
+        "description": "&nbsp;Zuza, a shy tortoise in the jungle, dreams of playing football but is mocked for being slow. Just as he’s about to give up, Tika offers to train him. With months of hard work and support, Zuza learns to embrace his strengths. During the Jungle Tournament, he’s benched and ridiculed, but gets one chance—and scores the winning goal, earning the respect of all.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Zuza cover.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 77,
+        "slug": "the-philanthropist",
+        "title": "The Philanthropist",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "3500",
+        "isbn": "978-9956-27-786-5",
+        "pages": null,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2025-08-01",
+        "authors": [],
+        "description": "&nbsp;Tem, once an orphan, builds an orphanage to offer shelter and education. One day, he finds an abandoned girl, Mbong, who grows into a beloved, intelligent, and lively child. As years pass, the orphanage faces financial struggles and a deadly waterborne disease outbreak. Many children, including Mbong, fall ill. At the hospital, the doctors show little concern, and the children eventually die. The orphanage is left in deep sorrow and mourning.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//the philanthropist cover.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 42,
+        "slug": "ze-la-panthere-et-ntomba-le-mouton",
+        "title": "Ze la panthère et Ntomba le mouton",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-27-766-7",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "ZOUBIG"
+        ],
+        "description": "Après une chasse fructueuse, Ze la Panthère décide de confier son bien, un jeune bouc, à son voisin Ntomba le Mouton pour que ce dernier l’aide à veiller sur lui jusqu’à ce qu’il devienne grand. En effet, Ze pensait qu’au fil du temps il mettrait bas et donnerait de nombreux petits. Ainsi, avec le consentement de Ntomba, le bouc grandit chez lui, si bien qu’il devint gras et dodu. Des années après, lorsque Ze la Panthère vint récupérer son bien, il se mit dans une grande colère parce que le Mouton ne lui remit aucun cabri.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Ze la panthère et Ntomba le mouton.webp",
+        "youscribe_url": null,
+        "amazon_url": "https://www.amazon.com/Ze-Panthere-Ntomba-Mouton-French-ebook/dp/B0DTJHW98R/r",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 41,
+        "slug": "lecole-des-modeles",
+        "title": "L'École des modèles",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1121-6",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Christian Tiako"
+        ],
+        "description": "L’école des modèles est un recueil de 8 histoires en rapport avec des situations de vie réelle qui éveillent la conscience du jeune lecteur et lui inculquent les valeurs nécessaires à son accomplissement. Par ailleurs, des questions de réflexion sont prévues à la fin de chaque histoire pour s’assurer de sa compréhension par l’enfant.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//l'ecole-modele.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/l-ecole-des-modeles-3744379",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 40,
+        "slug": "stories-and-wonders",
+        "title": "Stories and wonders",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1134-6",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Asongkeng Félix"
+        ],
+        "description": "A collection of eight stories on several themes, accompanied by a series of three questions each. This creates an interactive environment for both learners and teachers to enable children to better understand the stories.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Stories-and-Wonders.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/stories-and-wonders-3744385",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 39,
+        "slug": "stories-and-marvels",
+        "title": "Stories and Marvels",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "3000",
+        "isbn": "978-9956-0-1135-3",
+        "pages": 32,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Ngwani Cynthia"
+        ],
+        "description": "A collection of children’s stories which are culturally oriented and have useful moral lessons.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Plan de travail 1 copie 3.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/stories-and-marvels-3744386",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 38,
+        "slug": "atos-aventures",
+        "title": "Ato's Aventures",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1098-5",
+        "pages": 24,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Asongkeng Félix"
+        ],
+        "description": "Recueil de contes africains pour les enfants",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Ato's-Aventures.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 37,
+        "slug": "tales-from-home",
+        "title": "Tales from Home",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1097-4",
+        "pages": 25,
+        "support": "paper",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Asongkeng Félix"
+        ],
+        "description": "Recueil de contes africains pour les enfants",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Tales-from-Home.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 36,
+        "slug": "kindness-a-healing-balm",
+        "title": "Kindness, a healing balm",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1139-1",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Ngwani Cynthia"
+        ],
+        "description": "Kandjo is a young greedy kid who scares away anyone who tries to be friends with him. His parents enrol him in a more decent school where he meets new people. He later became best friends with Nginyu whom he had also tried to scare way but couldn’t succeed.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Kindness-a-healing-balm.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/kindness-a-healing-balm-3744373",
+        "amazon_url": "https://www.amazon.com/Kindness-Healing-Balm-Ngwani-Cynthia-ebook/dp/B0DSZX33YB/",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 34,
+        "slug": "les-contes-de-chez-nous",
+        "title": "Les Contes de chez nous",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1082-0",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Kang Dickson"
+        ],
+        "description": "Idéal pour les amoureux de livres ludiques et éducatifs, Les contes de chez nous est un recueil de 8 récits, qui apprennent à l’enfant de bonnes manières tout en lui permettant de s’amuser. L’auteur propose également à la fin de chaque histoire des questions pour évaluer la compréhension de l’histoire par le lecteur.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Les contes de chez nous@4x.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/les-contes-de-chez-nous-3744382",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 33,
+        "slug": "mon-projet-de-vie",
+        "title": "Mon Projet de vie",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1081-3",
+        "pages": 32,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Botomogne"
+        ],
+        "description": "Il s’agit d’un recueil de huit (8) nouvelles présentant à l’enfant des thématiques en rapport avec la maison, le village et la ville, l’école, les métiers, les voyages, lasanté, les jeux et les communications. Afin de s’assurer de la bonne compréhension du message véhiculé par l’histoire, il y a, à la fin de chaque histoire des questions de réflexion.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Mon-Projet-de-vie@4x.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/mon-projet-de-vie-3744381",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 32,
+        "slug": "la-course-de-lespoir",
+        "title": "La Course de l'espoir",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1122-3",
+        "pages": 34,
+        "support": "digital",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Botomogne"
+        ],
+        "description": "Recueil de huit nouvelles, La course de l’espoir édifie le petit lecteur sur les réalités quotidiennes. Les thématiques qui y sont abordées sont entre autres : la nature, le village, les professions, les voyages, la santé, l’espace. Il met aussi à la disposition de ce dernier des questions d’évaluation de la compréhension ainsi qu’un lexique de langue.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//La-course-de-l'espoir@4x.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/la-course-de-l-espoir-3744376",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 31,
+        "slug": "pourquoi-le-mille-pattes-a-beaucoup-de-pattes",
+        "title": "Pourquoi le mille pattes a beaucoup de pattes",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1143-8",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Logmo I de Semndjock Léonard"
+        ],
+        "description": "Ngo Kolo est un mille-pattes qui raffolait des chaussures, mais ne disposait pourtant que de 4 pattes. Sa soif d’avoir encore plus de chaussures chaque jour le conduisit à un chemin de non-retour jusqu’aujourd’hui.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Covers11.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/pourquoi-le-mille-pattes-a-beaucoup-de-pattes-3744384",
+        "amazon_url": "https://www.amazon.com/Pourquoi-mille-pattes-beaucoup-pattes-French-ebook/dp/B0DTBPDDNV/",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 30,
+        "slug": "la-grenouille-grise-qui-voulait-devenir-verte",
+        "title": "La grenouille grise qui voulait devenir verte ?",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1142-1",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Logmo I de Semndjock Léonard"
+        ],
+        "description": "Piglop Piglop est une jeune grenouille grise qui n’aimait pas sa couleur de peau et voulait par tous les moyens possibles devenir verte. Dans sa quête pour changer la couleur de sa peau, elle fit une découverte qui changea sa manière de penser.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Covers9.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/la-grenouille-grise-qui-voulait-devenir-verte-3744378",
+        "amazon_url": "https://www.amazon.com/Pourquoi-mille-pattes-beaucoup-pattes-French-ebook/dp/B0DTBPDDNV/",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 29,
+        "slug": "la-petite-albinos",
+        "title": "La petite albinos",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1145-2",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Vanessa Nomo"
+        ],
+        "description": "Âgée de 9 ans, Saphia est une petite fille albinos issue d’une famille pauvre. Pour sa première expérience scolaire, ses parents décident de l’inscrire à l’École publique de Nomayos où elle ne sera pas au bout de ses surprises.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//La-petite-albinos.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/la-petite-albinos-3744377",
+        "amazon_url": "https://www.amazon.com/petite-albinos-French-Vanessa-Nomo-ebook/dp/B0DSLQTGYJ/",
+        "audience": "Parents",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 28,
+        "slug": "explore-animal-sounds-with-little-nain",
+        "title": "Explore Animal Sounds With Little Nain",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1137-7",
+        "pages": 32,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Nsah Mala"
+        ],
+        "description": "What Little Nain Hears Explore Sound Animals with Little Nain is a rhyme written in twelve stanzas. It presents different animals and the sounds they make in their respective environments in Africa. The author aims at making children familiar with these sounds made by animals, and also aims at presenting the beauty of Africa to the world at large.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//Explore Animal Sounds - cover.webp",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/explore-animal-sounds-with-little-nain-3744372",
+        "amazon_url": "https://www.amazon.com/Explore-Animal-Sounds-Little-Nain-ebook/dp/B0DR35HQCD/r",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 27,
+        "slug": "la-femme-a-la-jambe-coupee",
+        "title": "La femme à la jambe coupée",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-27-767-4",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2024-12-01",
+        "authors": [
+          "ZOUBIG"
+        ],
+        "description": "Ada était la plus belle jeune femme de la contrée. Plus elle grandissait, plus sa beauté rayonnait et attirait les regards, davantage ceux de ses multiples prétendants. Or, parmi ces derniers on comptait Noah, son cousin. Suite au désintérêt d’Ada à ses avances, celui-ci, en colère, lui coupa une jambe. Brisée, elle se réfugia dans le village voisin avec l’aide de sa soeur. Toujours aussi envoûtante, l’information se répandit rapidement dans le village, à un tel point que même le roi voulu faire la connaissance de cette ravissante inconnue, ce qui contraria la reine.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//La femme a la jambe coupée.webp",
+        "youscribe_url": null,
+        "amazon_url": "https://www.amazon.com/femme-%C3%A0-jambe-coup%C3%A9e-French-ebook/dp/B0D1P8W1KB/r",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "Yes"
+      },
+      {
+        "id": 23,
+        "slug": "mouche-et-moustique-a-qui-la-faute",
+        "title": "Mouche et Moustique: à qui la faute ?",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1141-4",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Aminatou Bello"
+        ],
+        "description": "Un matin comme les autres, Mouche alla avec son ami Moustique à la cueillette des mangues. Durant celle-ci, la jalousie de Moustique les mènera à une succession d’événements qui mettra en péril bon nombre et les fera même convoquer dans la cour du sultan.&nbsp;",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHZ65V427ZEC058W66G8P47.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/mouche-et-moustique-a-qui-la-faute-3744383",
+        "amazon_url": "#",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 22,
+        "slug": "bouba-et-le-monstre",
+        "title": "Bouba et le monstre",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1140-7",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Aminatou Bello"
+        ],
+        "description": "Dans un village nommé Bonguel, un monstre sème la terreur en s’installant au milieu de la route. Bouba, un homme de petite taille décide de lui régler son compte.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHZ47GXN8X4ZYATSWCG625E.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/bouba-et-le-monstre-3744374",
+        "amazon_url": "#",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 21,
+        "slug": "coq-le-vaillant-et-lezard-le-paresseux",
+        "title": "Coq le vaillant et lézard le paresseux",
+        "category": "kids",
+        "language": "Français",
+        "price": "2500",
+        "isbn": "978-9956-0-1144-5",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Aminatou Bello"
+        ],
+        "description": "Dans la basse-cour vivaient Coq le vaillant et Lézard le paresseux. Coq le vaillant travaillait avec beaucoup d’acharnement et de sérieux, tandis que Lézard le paresseux aimait mieux fainéanter à longueur de journée, se moquant de Coq le vaillant. Lorsque la saison des orages arriva, alors que tous les animaux l’avaient prévu, Lézard le paresseux n’avait pas d’échappatoire.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHZ2PSXH2AR43647779KVTV.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/coq-le-vaillant-et-lezard-le-parresseux-3744375",
+        "amazon_url": "#",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 20,
+        "slug": "la-graine-du-roi",
+        "title": "La graine du roi",
+        "category": "kids",
+        "language": "Français",
+        "price": "3500",
+        "isbn": "978-9956-0-1173-5",
+        "pages": 52,
+        "support": "both",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [
+          "Danielle Magoua"
+        ],
+        "description": "À Malakadou, vivaient un roi et sa fille bien aimée. Le moment venu pour elle de se marier, son père le roi lança un défi aux hommes du village. Cependant, ceux-ci ignoraient qu’il s’agissait d’une ruse.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHY90BYY4776J2PBW8KNCY5.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/la-graine-du-roi-3744380",
+        "amazon_url": "#",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 19,
+        "slug": "the-jungle",
+        "title": "The Jungle",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1138-4",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Asongkeng Félix"
+        ],
+        "description": "A grandmother narrates a story on how animals once lived together in peace and harmony but later split into domestic and wild animals.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHY6JBEF0R42EFJJ1D9HSE9.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/the-jungle-3744387",
+        "amazon_url": null,
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      },
+      {
+        "id": 18,
+        "slug": "a-special-birthday-wish",
+        "title": "A Special birthday wish",
+        "category": "kids",
+        "language": "Anglais",
+        "price": "2500",
+        "isbn": "978-9956-0-1136-0",
+        "pages": 24,
+        "support": "both",
+        "collection": null,
+        "publicationDate": "2022-01-01",
+        "authors": [
+          "Asongkeng Félix"
+        ],
+        "description": "Yah is an intelligent young girl who helps her classmates in need. On her birthday, she makes a very thoughtful wish.",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JHHXZ9REM3Q3YQ3CNXZH5QJE.png",
+        "youscribe_url": "https://www.youscribe.com/catalogue/ebooks/litterature/contes/a-special-birthday-wish-3744371",
+        "amazon_url": "https://www.amazon.com/Special-Birthday-Wish-Asongkeng-Felix-ebook/dp/B0DPSRBBR8/",
+        "audience": "Enfants",
+        "classrooms": [],
+        "new": "No"
+      }
+    ],
+    "guides": [
+      {
+        "id": 26,
+        "slug": "prime-english",
+        "title": "Prime English",
+        "category": "guides",
+        "language": "Anglais",
+        "price": "#",
+        "isbn": null,
+        "pages": null,
+        "support": "digital",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Ma description",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage//WhatsApp Image 2025-03-03 at 15.52.43.webp",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enseignants",
+        "classrooms": [
+          "Class 5"
+        ],
+        "new": "No"
+      },
+      {
+        "id": 24,
+        "slug": "guide-pct-4eme",
+        "title": "Guide PCT 4ème",
+        "category": "guides",
+        "language": "Français",
+        "price": "#",
+        "isbn": null,
+        "pages": null,
+        "support": "digital",
+        "collection": null,
+        "publicationDate": null,
+        "authors": [],
+        "description": "Ce guide donne le nécessaire aux enseignants",
+        "summary": "",
+        "cover": "https://www.nmieducation.com/storage/01JJ9109N1T1R8GSGBFTW7NYJ7.jpeg",
+        "youscribe_url": null,
+        "amazon_url": null,
+        "audience": "Enseignants",
+        "classrooms": [
+          "Quatrième"
+        ],
+        "new": "No"
+      }
+    ]
+  },
+  "totals": {
+    "school": 39,
+    "literature": 10,
+    "kids": 26,
+    "guides": 2,
+    "authors": 27,
+    "all_books": 77
+  },
+  "authors": [
+    {
+      "id": 1,
+      "name": "David Engbwang Engbwang",
+      "slug": "david-engbwang-engbwang",
+      "profession": null,
+      "biography": "jus testing",
+      "photo": "https://www.nmieducation.com/storage/authors/01JNNNM2VAZD078GVM75VK7ZRB.webp",
+      "books": []
+    },
+    {
+      "id": 2,
+      "name": "Logmo I de Semndjock Léonard",
+      "slug": "logmo-i-de-semndjock-leonard",
+      "profession": null,
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JNNNFK6WSNZ5AS9QHWQ62DNH.webp",
+      "books": []
+    },
+    {
+      "id": 3,
+      "name": "Egbe Besong Elvis",
+      "slug": "egbe-besong-elvis",
+      "profession": null,
+      "biography": "Egbe Besong Elvis is indeed a remarkable figure in Cameroonian literature, with his diverse contributions spanning across teaching, writing, and social critique. His works, particularly in the realms of literature and education, demonstrate his dedication to improving the quality of education and challenging societal norms.Through his books, such as Mastering English Series and Prime English Series, Egbe has made significant strides in improving English literacy and education for students in Cameroon. His Authentic Poetry Series and Pearls of Dawn reflect his deep engagement with the arts, showcasing his talent not only as an educator but also as a creative writer.Moreover, his plays like A Questionable Culture and Brain Hostage highlight his role in sparking dialogue on cultural and societal issues, encouraging readers and audiences to question and critically engage with their surroundings.Egbe's commitment to his family and his local community further underscores his dedication to making a positive impact. His work exemplifies the power of literature to drive social change and inspire future generations.Would you like to explore any particular aspect of Egbe's work or achievements further?",
+      "photo": "https://www.nmieducation.com/storage/authors/01JNNTXV95P1HCHACY6N0N0HDN.webp",
+      "books": []
+    },
+    {
+      "id": 4,
+      "name": "Christian Tiako",
+      "slug": "christian-tiako",
+      "profession": null,
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP24DKF8BDNJEMZ2NTWXSZZT.webp",
+      "books": []
+    },
+    {
+      "id": 5,
+      "name": "Aminatou Bello",
+      "slug": "aminatou-bello",
+      "profession": "Auteur",
+      "biography": "Aminatou Bello est une écrivaine de culture peuhle. Elle est originaire du Nord-Cameroun. Elle écrit des contes pour enfants. Aminatou est lauréate du prix SANALIEN 2023 (Salon National du livre pour enfants et de littérature jeunesse du Cameroun). Elle s’inscrit dans la diffusion de la littérature locale pour enfants en valorisant les aspects relatifs au multiculturalisme et multilinguisme au Cameroun ainsi qu’à l’initiation aux techniques de l’écriture spécifique à la littérature jeunesse.&nbsp; Actuellement, elle se bat à épouser son travail dans l’éducation à sa grande passion pour l’écriture, où la jeunesse reste toujours au centre de ses intérêts.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JPSN0VWW4PVT7Y17K5TBWTCT.webp",
+      "books": []
+    },
+    {
+      "id": 6,
+      "name": "Asongkeng Félix",
+      "slug": "asongkeng-felix",
+      "profession": "Enseignant",
+      "biography": "&nbsp;Born in Fontem, Lebialem Division, Southwest Cameroon, Asongkeng Felix spent his childhood in Muyuka, where he completed his primary education at Catholic School Ikata. He pursued his secondary and high school studies at Government Bilingual High School Muyuka and Cameroon College of Arts and Sciences Kumba, earning his Advanced Level Certificate. He later obtained a Master's degree in English Language from the University of Buea in 2011 and trained as an English and Literature teacher at the Higher Teacher's Training College (ENS) Yaoundé in 2012. Asongkeng has over a decade of teaching experience and currently serves as the Head of the English Department at Government Bilingual High School Ekounou, Yaoundé. He is also pursuing graduate studies in Applied Linguistics at the University of Buea.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JNQYM2VTK1KAYTKKE7SHAP5Q.webp",
+      "books": []
+    },
+    {
+      "id": 7,
+      "name": "Danielle Magoua",
+      "slug": "danielle-magoua",
+      "profession": null,
+      "biography": "Danielle MAGOUA, originaire du Cameroun, a un parcours académique diversifié notamment en Relations Internationales et en Management de Projet. Amoureuse de lecture et de la culture; elle s'engage à préserver et transmettre les valeurs africaines a travers l'écriture, ce qui l’a inspirée à écrire LA GRAINE DU ROI.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JNNMR4EQYANA00TR9W2Y976E.webp",
+      "books": []
+    },
+    {
+      "id": 8,
+      "name": "Nformi Adeline",
+      "slug": "nformi-adeline",
+      "profession": "Enseignante",
+      "biography": "&nbsp;Nformi Adeline Muwar, born in Mangi-Ndu Subdivision, is an experienced teacher with a career spanning primary and nursery education. She completed her education at Government High School Nkambe and the Government Teachers' Training College Nkambe. Nformi taught at Cameroon International School and later joined the Ministry of Basic Education, serving in the Far North and Centre regions of Cameroon. She is also an examiner, editor, and evaluator of educational materials. Nformi aspires to become a notable author while continuing her work as a classroom teacher.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP24QBTW4SAKQ1Y9NSKQ2QM0.webp",
+      "books": []
+    },
+    {
+      "id": 9,
+      "name": "Mbah Grace",
+      "slug": "mbah-grace",
+      "profession": "Enseignante",
+      "biography": "Born on the 12th of March 1971 in Bessi Batibo-NorthWest Region. Obtained a first degree from the University of Yaoundé I and a Higher teacher training diploma in 2000 from ENS Yaoundé in science education with specialty being English Didactics. Entered the teaching field as a teacher trainer in the year 2000, thus 25 years of experience as a trainer of trainers.Spent six years in the teacher training college as a classroom teacher. Became a pedagogic adviser, giving in-service training to teachers in the subdivisional Inspectorate of Basic Education of Yaoundé III. Have been a PAREC TRAINER. Presently in the Divisional Delegation of Basic Education for Mfoundi as one of the key resource persons&nbsp; and facilitator.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP25BS0XBYX4TBBDGVCRG026.webp",
+      "books": []
+    },
+    {
+      "id": 10,
+      "name": "Ngwang Helvetia Ebwane",
+      "slug": "ngwang-helvetia-ebwane",
+      "profession": "Enseignante",
+      "biography": "&nbsp;Helvetia holds a Master's Degree in Translation (2015–2017), a DIPES II (2010–2013), a Diploma in Project Management (2008–2009), and a Bachelor of Arts in Bilingual Letters (French and English) (2004–2007). With 17 years of experience in education and nine years in language and literature teaching, she has made significant contributions to language teaching and communication in Cameroon. Helvetia teaches English and French as second languages, guiding students through literary exploration as a Literature in English teacher. She has authored workbooks in both languages and co-authored two English language textbooks for the French sub-system of education. Additionally, she works as a translator, specializing in French to English translations for the Ministry of Arts and Culture, ensuring effective communication and cultural exchange.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP25EKHXY7ACWW2CWEAXSE05.webp",
+      "books": []
+    },
+    {
+      "id": 11,
+      "name": "Alfred Yeran Chilla",
+      "slug": "alfred-yeran-chilla",
+      "profession": "Enseignant",
+      "biography": "Alfred Yeran Chilla was born in Kumbo Bui Division of the North West Region of Cameroon on the 10th of February 1974. He attended Government School Njavnyuy where he obtained his First School Leaving Certificate (F S L C). He then attended Government High School Kumbo (GHS) now Government Bilingual High School Kumbo (GBHS) where he did his secondary and high school and obtained his GCE Ordinary and Advanced levels respectively. He then continued to Government Teachers Training College (GTTC)&nbsp; Kumbo and graduated with a Teacher's Grade One Certificate (CAPIEMP) in 2003. He taught in private schools in Yaoundé from 2003 to 2009, the year he was recruited by the Cameroon Government and posted in the North Region precisely in the Mayo-Rey Division as an English Teacher in French Schools. He was later transferred to Yaoundé in 2018 as a classroom teacher where he is currently serving.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP25HDYG0D7RTXJRN2D2J8B6.webp",
+      "books": []
+    },
+    {
+      "id": 12,
+      "name": "Che Fuh James Muyah",
+      "slug": "che-fuh-james-muyah",
+      "profession": "Enseignant",
+      "biography": "&nbsp;Che Fuh James Muyah, has an extensive academic and teaching career. He completed his primary education at RCM Mambu, RCM Boys School Mankon, and PS Bamessing Ndop. From 1975 to 1982, he attended Grammar School (GHS) Mamfe. He taught Physics, Chemistry, and Mathematics at National Comprehensive Secondary School (NCSS) Limbe from 1982 to 1984. Che Fuh later trained at ENS University of Yaoundé, specializing in Physics and Chemistry, graduating in 1987. He then taught at CES Bilingue (now GBHS Bafoussam) for 30 years, focusing on Physics until his appointment as Surveillance General at GBHS Bazou. He retired on October 26, 2020, and resides in Ntenefor Nkwen, Foncha Street.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP25MXJ8MGY04DBNQHJENXWN.webp",
+      "books": []
+    },
+    {
+      "id": 13,
+      "name": "Chia Primus  Fujua ",
+      "slug": "chia-primus-fujua",
+      "profession": "Enseignant",
+      "biography": "&nbsp;Born on August 25, 1970, in Njinikom, Boyo Division, Chia Primus Fujua completed his primary and secondary education in Njinikom and attended GBHS Bamenda for high school. He later studied at the University of Yaoundé I and pursued professional studies at ENS Yaoundé. With extensive experience as an English language teacher in the public sector, he serves as the Chief Examiner for 0530 English Language. He is currently the Principal of GHS Ibal Acha, Belo, and President of the Boyo College of Principals. He is also a skilled writer and research consultant specializing in examination techniques and preparing learners for certificate examinations.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP25SD2W02ASX28G66F3RG9A.webp",
+      "books": []
+    },
+    {
+      "id": 14,
+      "name": "Elias Shubisi Che ",
+      "slug": "elias-shubisi-che",
+      "profession": "Enseignant",
+      "biography": "Elias Shubisi Che was born on the 2nd of July 1976 in Kumba, Elias Shubisi Che, stems from Bafut in Mezam Division-North West Region of Cameroon.Postgraduate in English Modern Letters from the University of Yaounde I with option; Translation: English and French and a holder of a Higher Diploma from State School of Higher Institute of Public Management Yaoundé.A seasoned Principal in Commercial, Technical and General Education in secondary schools both French and English sub-systems of Education. He has been a consultant with AMO Services of the Ministries of Agriculture and that of Livestock, Fisheries and Animal Husbandry under a C2D programme. A fervent lover of tradition and cultural values.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP25ZNB0JKP381XC918VNZSC.webp",
+      "books": []
+    },
+    {
+      "id": 15,
+      "name": "Vanessa Nomo",
+      "slug": "vanessa-nomo",
+      "profession": "Auteur",
+      "biography": "Simonne Vanessa LEUMANI est auteure et spécialiste de l’édition, de la communication et du marketing digital. Titulaire de plusieurs masters, elle a écrit trois livres illustrés pour enfants, inspirés des contes africains et porteurs de valeurs de partage et de solidarité.Ancienne responsable d’édition dans une maison d’édition de la place, elle possède une solide expérience en gestion éditoriale et en communication. Elle développe actuellement une expertise dans le management de projets numériques, alliant innovation et nouvelles technologies pour repenser les pratiques éditoriales et enrichir l’expérience des lecteurs.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP2M6NJJVV5G1CDFNCEYC2GR.webp",
+      "books": []
+    },
+    {
+      "id": 16,
+      "name": "Ndeh Richard Nforbeneh ",
+      "slug": "ndeh-richard-nforbeneh",
+      "profession": "Enseignant",
+      "biography": "&nbsp;Ndeh Richard Nforbeneh, born in 1967 in Bambui, North West Region, hails from Bebah village in Menchum Division. He is a certified teacher with a distinguished academic background, including a 'Diplôme Supérieur de Professeur de Français à l’Etranger' from the University of Franche-Comté in France (1988) and a 'DI.P.E.S 1' bilingual teaching certificate from ENS Bambili (1991). Over his 33-year teaching career, he has taught English and French at various schools, including Lycée de Rey Bouba, CES de Nkolondom, and Government Bilingual High School Yaoundé (Essos). In 2017, he was appointed Senior Discipline Master at GBHS Kourom, and in 2022, he became the Vice Principal at GBHS Foumbot, where he currently serves as both Vice Principal and a French language teacher.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP26CAEJR08KS7FH3GXWV9EK.webp",
+      "books": []
+    },
+    {
+      "id": 17,
+      "name": "Tambe Thaddeus Ndip",
+      "slug": "tambe-thaddeus-ndip",
+      "profession": "Enseignant",
+      "biography": "&nbsp;Born on February 22, 1964, in Mamfe, Tambe Thaddeus Ndip completed his primary education at St. Anthony Primary School Mamfe and Presbyterian Primary School Diche 1-Widikum between 1968 and 1975. He attended GHS Mamfe for his secondary and high school education from 1976 to 1983. He later studied at the University of Yaoundé 1 and ENS Annex Bambili, obtaining a DIPES 1 in Physics/Chemistry between 1986 and 1989.&nbsp; With 34 years of teaching experience in Physics and 33 years as a GCE examiner (1 year for 'O' Level and 32 years for 'A' Level), he also served as a Computer Monitor from 2002 to 2004. He later taught Computer Science at GBHS Bamenda and was appointed Regional Pedagogic Inspector for Computer Science in 2010.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP26F4T5XY5NV3DC65KT6ETE.webp",
+      "books": []
+    },
+    {
+      "id": 18,
+      "name": "Ango Yves Patrick",
+      "slug": "ango-yves-patrick",
+      "profession": "Enseignant",
+      "biography": "&nbsp;Ango Yves Patrick, âgé de 45 ans, est un universitaire camerounais originaire de Meyomessi, dans la région du Sud. Titulaire d’un doctorat en chimie organique et chimie des substances naturelles, il est marié et père de quatre enfants. Diplômé des concours professionnels DIPES 1 et 2 en chimie, il enseigne actuellement la chimie au Département de Pharmacotoxicologie et Pharmacocinétique à la Faculté de Médecine et des Sciences Biomédicales de l’Université de Yaoundé 1. Il est également auteur et co-auteur de plusieurs manuels scolaires, notamment la série L’Excellence en physique et chimie pour le secondaire, publiés par NMI Education, et inscrits officiellement dans le programme scolaire du Cameroun de 2017 à 2024. Son travail contribue de manière significative à l’avancement de l’enseignement des sciences dans le pays.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP26KE2KZ6RZ9M1BWYBEHQRP.webp",
+      "books": []
+    },
+    {
+      "id": 19,
+      "name": "Botomogne",
+      "slug": "botomogne",
+      "profession": "Enseignant",
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP298B5PQXJEF356XGJT9NX4.webp",
+      "books": []
+    },
+    {
+      "id": 20,
+      "name": "Kang Dickson",
+      "slug": "kang-dickson",
+      "profession": "Enseignant",
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP291N6Z608WTAX2J6TDBSHD.webp",
+      "books": []
+    },
+    {
+      "id": 22,
+      "name": "Ngwani Cynthia",
+      "slug": "ngwani-cynthia",
+      "profession": null,
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP2K0V0FZE8B3DKG41EJ67T1.webp",
+      "books": []
+    },
+    {
+      "id": 23,
+      "name": "Nsah Mala",
+      "slug": "nsah-mala",
+      "profession": "Auteur",
+      "biography": "&nbsp;Nsah Mala, a Cameroonian scholar, excelled in Literature and won national recognition in 2009. He earned a PhD in Comparative Literature from Aarhus University in 2022, focusing on the Congo Basin's environmental challenges. His work, blending ecocriticism and postcolonial studies, earned him the 2022 Prix de thèses francophones. Nsah is a postdoctoral fellow at Université de Lille and a 2023 Next Generation Foresight Practitioner.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP28WG82TV788HG5EMG4GF83.webp",
+      "books": []
+    },
+    {
+      "id": 24,
+      "name": "ZOUBIG",
+      "slug": "zoubig",
+      "profession": "Enseignant",
+      "biography": "Né le 02 juin 1981 à Yaoundé, dernier né d’une famille de 10 enfants. C’est certainement cet atmosphère qui aura forgé mon amour de la lecture et partant le désir d’écrire comme les grands noms de la littérature française. Après l’obtention d’un Master de langue française option syntaxe du français, je publie ma première œuvre intitulée ; Les chants de l’enfer aux éditions Edilivre. Après cette publication j’écris encore quelques œuvres non encore publiées parmi lesquelles plusieurs autres contes, des romans et des textes poétiques.",
+      "photo": "https://www.nmieducation.com/storage/authors/01JP794JXZACCYGT7VBQ92AD8X.webp",
+      "books": []
+    },
+    {
+      "id": 25,
+      "name": "Promboh Eunice Pamela",
+      "slug": "promboh-eunice-pamela",
+      "profession": "Enseignante",
+      "biography": "&nbsp;Promboh Eunice Pamela is a Cameroonian educator with over 12 years of professional experience. She holds a Bachelor's degree in Bilingual Letters and a Master's degree in Linguistics from the University of Yaoundé I. She further specialized in Bilingual Letters with a DIPES 2 from the Higher Teachers' Training College in Yaoundé. For over a decade, she has been a dedicated teacher at GBHS Mbalngong, contributing significantly to the academic development of her students. A married mother of three, she balances her professional and personal life with grace, continuing to thrive in both her career and family life.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JPPQ8HYWF4X4XV83X2GQ3372.webp",
+      "books": []
+    },
+    {
+      "id": 26,
+      "name": "Tchatchouang Louis C.",
+      "slug": "tchatchouang-louis-c",
+      "profession": "Enseignant",
+      "biography": "&nbsp;chatchouang Louis C. est né le 26 décembre 1967 à Batoufam, dans la région de l'Ouest Cameroun. Il a suivi son parcours scolaire à l'école publique de Djeleng I à Bafoussam, avant de poursuivre ses études secondaires au CES de Bafoussam (actuel lycée bilingue de Bafoussam), au Lycée classique de Bafoussam et au Collège de la Réunification. Il a ensuite entamé des études supérieures à l'Université de Yaoundé, à l’École Normale Supérieure de Yaoundé, puis à l’Université de Yaoundé I, où il obtient un Master en Éducation spécialisée. Sur le plan professionnel, il a occupé divers postes, notamment celui de Directeur de la Boulangerie pâtisserie La Caravelle, Chef du service commercial des établissements MELI, et Chef du service commercial de la minoterie MINOCAM de l’Ouest Cameroun. Par la suite, il a travaillé comme enseignant à l’ENIEG d’Akonolinga, puis comme Cadre d’Appui au Service du Personnel et de la Solde à la Délégation Régionale de l’Éducation de Base du Centre, avant de devenir Cadre d’Appui au Service de l’Accueil, du Courrier, de Liaison et de la Traduction de la même Délégation. Il a également été Chef de Service par intérim à la Délégation Régionale de l’Éducation de Base du Centre et Coordonnateur Pédagogique dans plusieurs écoles bilingues telles que Lucky Kids Bilingual School, Sainte Hélène Chapi Chapo et Blessing Bilingual International Nursery and Primary School.&nbsp;",
+      "photo": "https://www.nmieducation.com/storage/authors/01JPPQXD7BT39RT9X6M5JR7QSA.webp",
+      "books": []
+    },
+    {
+      "id": 27,
+      "name": "Ngwesa Queentha",
+      "slug": "ngwesa-queentha",
+      "profession": "Enseignante",
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JPPRKTZ58BE2P10DP5TP7AA8.webp",
+      "books": []
+    },
+    {
+      "id": 28,
+      "name": "Mispa Bessem Epitime ",
+      "slug": "mispa-bessem-epitime",
+      "profession": "Enseignante",
+      "biography": "",
+      "photo": "https://www.nmieducation.com/storage/authors/01JPPRV0GTCHGQZ0QXBWA0MNA5.webp",
+      "books": []
+    }
+  ],
+  "metadata": {
+    "languages": [
+      {
+        "id": 1,
+        "name": "Anglais",
+        "status": "published",
+        "flag": null
+      },
+      {
+        "id": 2,
+        "name": "Français",
+        "status": "published",
+        "flag": null
+      },
+      {
+        "id": 3,
+        "name": "Español",
+        "status": "published",
+        "flag": null
+      },
+      {
+        "id": 4,
+        "name": "Deutsch",
+        "status": "published",
+        "flag": null
+      }
+    ],
+    "subjects": [
+      null,
+      "english",
+      "computer_science",
+      "german",
+      "physics",
+      "french",
+      "science",
+      "chemistry",
+      "biology",
+      "spanish"
+    ],
+    "classrooms": [
+      [],
+      [
+        "form_1"
+      ],
+      null,
+      [
+        "cinquieme"
+      ],
+      [
+        "troisieme"
+      ],
+      [
+        "quatrieme"
+      ],
+      [
+        "class_5"
+      ],
+      [
+        "form_2"
+      ],
+      [
+        "form_3"
+      ],
+      [
+        "form_4"
+      ],
+      [
+        "form_5"
+      ],
+      [
+        "sixieme"
+      ],
+      [
+        "form_4",
+        "form_5"
+      ]
+    ],
+    "themes": [
+      "novel",
+      "drama",
+      "short_story",
+      "poetry",
+      null,
+      "folktale",
+      "childrens_fiction",
+      "picture_book",
+      "young_adult"
+    ],
+    "collections": [
+      {
+        "id": 1,
+        "name": "Eveil en Allemand",
+        "slug": "eveil-en-allemand",
+        "description": "<p>Conforme aux nouveaux programmes en vigueur, la collection « <strong>Erwachen/Éveil Deutsch </strong>» met l’accent sur l’Approche par les Compétences et comporte des atouts indéniables. Ces manuels ont une méthode innovante et adaptée aux réalités quotidiennes des jeunes africains ; de nombreux exercices d’application ; un vocabulaire enrichi et diversifié ; des techniques de prononciation ajustée à l’apprenant ; de nombreux exercices de révision et de consolidation des acquis ; un lexique riche, varié et diversifié ; un recueil de mots traduits détachable à la fin de l’ouvrage ; des exercices d’entrainement et d’accompagnement vers les évaluations, une approche orientée vers l’autonomisation de l’apprenant. Avec les manuels de la collection « <strong>Erwachen/Éveil Deutsch </strong>», la langue allemande épouse vos attentes et vos envies. Ainsi, l’apprentissage ne peut être que passionnant.</p>",
+        "summary": "Avec les manuels de la collection « Erwachen/Éveil Deutsch », la langue allemande épouse vos attentes et vos envies. Ainsi, l’apprentissage ne peut être que passionnant.",
+        "featured_image": "01JHG2V2JXGT7FE48FWKRJ3J3V.png",
+        "images": null,
+        "status": "published",
+        "created_at": "2025-01-13T14:59:44.000000Z",
+        "updated_at": "2025-01-13T16:46:56.000000Z",
+        "deleted_at": null
+      },
+      {
+        "id": 2,
+        "name": "Eveil en Anglais",
+        "slug": "eveil-en-anglais",
+        "description": "<p>This Series, <strong>“Eveil Anglais”</strong> is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e). At each level of the First Cycle, this coursebook meets the Competence Based Approach (CBA) require-ments as prescribed in the National Syllabus. This Series equally provides an outline, at the beginning of each Domain of Life, which clearly states the expected learning outcomes and activities to be carried out; thus, rendering the book easy to explore by both the teacher and the learner.</p>",
+        "summary": "This Series, “Eveil Anglais” is specifically designed for Francophone English Language Learners of the First Cycle (6e- 3e)",
+        "featured_image": "01JHG30DF4RGF91JM0FVRT9B3D.png",
+        "images": null,
+        "status": "published",
+        "created_at": "2025-01-13T15:02:39.000000Z",
+        "updated_at": "2025-01-13T16:46:42.000000Z",
+        "deleted_at": null
+      },
+      {
+        "id": 3,
+        "name": "Eveil en Français",
+        "slug": "eveil-en-francais",
+        "description": "<p>La collection « <strong>Éveil en Français </strong>» est écrite à partir des nouveaux programmes, conforme à l’Approche Par les Compétences avec Entrées par les Situations de Vie (APC/ESV). Ce manuel présente l’avantage de prendre en compte l’EVF/EMP/VI-H/SIDA (Éducation à la Vie Familiale, en Matière de Population et au VIH/SIDA) ; l’EPA (École du Patrimoine Africain) ; l’EF (Éducation Financière). Il est organisé en six modules qui intègrent toutes les activités (lecture méthodique, grammaire, conjugaison, orthographe, vocabulaire, expression écrite et expression orale). Chaque module comporte quatre unités. Les compétences langagières liées aux savoirs notionnels et méthodologiques s’adossent à des situations concrètes. La mise en œuvre part de la réception des textes, passe par la maîtrise des outils de langue et se termine par la Production (écrite et orale).&nbsp;</p>",
+        "summary": "La collection « Éveil en Français » est écrite à partir des nouveaux programmes, conforme à l’Approche Par les Compétences avec Entrées par les Situations de Vie (APC/ESV)",
+        "featured_image": "01JHG3A4TJM0MK8E2SMGVRDFR7.png",
+        "images": null,
+        "status": "published",
+        "created_at": "2025-01-13T15:07:58.000000Z",
+        "updated_at": "2025-01-13T15:07:58.000000Z",
+        "deleted_at": null
+      },
+      {
+        "id": 4,
+        "name": "Eveil Informatique",
+        "slug": "eveil-informatique",
+        "description": "<p>anything</p>",
+        "summary": "anythibg",
+        "featured_image": "01JHGB9YV8R15A4MP9EJSGVHC9.png",
+        "images": null,
+        "status": "published",
+        "created_at": "2025-01-13T17:27:41.000000Z",
+        "updated_at": "2025-01-13T17:27:41.000000Z",
+        "deleted_at": null
+      }
+    ]
+  },
+  "pages": {
+    "become_distributor": {
+      "url": "https://www.nmieducation.com/become-distributor",
+      "note": "Client-side Vue form — no server data in Inertia payload"
+    },
+    "join_us": {
+      "url": "https://www.nmieducation.com/join-us",
+      "note": "Client-side Vue form — no server data in Inertia payload"
+    },
+    "submit_manuscript": {
+      "url": "https://www.nmieducation.com/submit-your-manuscrit",
+      "note": "Client-side Vue form — no server data in Inertia payload"
+    }
+  }
+}
