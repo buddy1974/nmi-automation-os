@@ -500,3 +500,20 @@ model KnowledgeDoc {
 
   @@map("knowledge_docs")
 }
+
+// ── WhatsApp messages ──────────────────────────────────────────────────────────
+
+model WhatsAppMessage {
+  id           String   @id @default(cuid())
+  from         String
+  customerName String?  @map("customer_name")
+  message      String
+  reply        String?
+  status       String   @default("received")
+  handled      Boolean  @default(false)
+  handledBy    String?  @map("handled_by")
+  companyId    String?  @map("company_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("whatsapp_messages")
+}
