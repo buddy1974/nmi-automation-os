@@ -24,8 +24,13 @@ export default async function DistributorsPage() {
 
   return (
     <div style={S.page}>
-      <h1 style={S.heading}>Distributors</h1>
-      <p style={S.subtitle}>Regional distribution network across Cameroon — {distributors.length} partners</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div>
+          <h1 style={S.heading}>Distributors</h1>
+          <p style={S.subtitle}>Regional distribution network across Cameroon — {distributors.length} partners</p>
+        </div>
+        <a href="/import?module=distributors" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+      </div>
 
       {/* ── Stats ──────────────────────────────────────────────────────────── */}
       <div style={S.statBar}>

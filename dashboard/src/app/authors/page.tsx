@@ -8,8 +8,13 @@ export default async function AuthorsPage() {
 
   return (
     <div style={S.page}>
-      <h1 style={S.heading}>Authors</h1>
-      <p style={S.subtitle}>Author registry — global, not company-scoped</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div>
+          <h1 style={S.heading}>Authors</h1>
+          <p style={S.subtitle}>Author registry — global, not company-scoped</p>
+        </div>
+        <a href="/import?module=authors" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+      </div>
 
       <div style={S.statBar}>
         <div style={S.statCard}><div style={S.statLabel}>Total Authors</div><div style={S.statValue}>{authors.length}</div></div>

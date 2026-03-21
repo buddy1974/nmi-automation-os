@@ -46,21 +46,24 @@ export default async function OrdersPage() {
             Manage and track all customer orders — company-scoped
           </p>
         </div>
-        <a
-          href="#new-order"
-          style={{
-            background:     "#1a1a2e",
-            color:          "#fff",
-            borderRadius:   "8px",
-            padding:        "10px 20px",
-            fontSize:       "14px",
-            fontWeight:     700,
-            textDecoration: "none",
-            whiteSpace:     "nowrap",
-          }}
-        >
-          + New Order
-        </a>
+        <div style={{ display: "flex", gap: 10 }}>
+          <a href="/import?module=orders" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>↑ Import</a>
+          <a
+            href="#new-order"
+            style={{
+              background:     "#1a1a2e",
+              color:          "#fff",
+              borderRadius:   "8px",
+              padding:        "10px 20px",
+              fontSize:       "14px",
+              fontWeight:     700,
+              textDecoration: "none",
+              whiteSpace:     "nowrap",
+            }}
+          >
+            + New Order
+          </a>
+        </div>
       </div>
 
       {/* ── Stats bar ───────────────────────────────────────────────────── */}

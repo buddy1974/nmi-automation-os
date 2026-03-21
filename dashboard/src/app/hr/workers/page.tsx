@@ -33,13 +33,18 @@ export default async function WorkersPage() {
   return (
     <div style={{ padding: "32px", fontFamily: "Arial, sans-serif", color: "#111", maxWidth: "1100px" }}>
 
-      <h1 style={{ margin: "0 0 4px", fontSize: "24px" }}>Workers</h1>
-      <p style={{ margin: "0 0 28px", color: "#666", fontSize: "13px" }}>
-        HR — {workers.length} worker{workers.length !== 1 ? "s" : ""} · {activeCount} active
-        {activeCompanyId && <span style={{ marginLeft: "8px", color: "#0891b2", fontWeight: 600 }}>
-          · filtered by company
-        </span>}
-      </p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
+        <div>
+          <h1 style={{ margin: "0 0 4px", fontSize: "24px" }}>Workers</h1>
+          <p style={{ margin: 0, color: "#666", fontSize: "13px" }}>
+            HR — {workers.length} worker{workers.length !== 1 ? "s" : ""} · {activeCount} active
+            {activeCompanyId && <span style={{ marginLeft: "8px", color: "#0891b2", fontWeight: 600 }}>
+              · filtered by company
+            </span>}
+          </p>
+        </div>
+        <a href="/import?module=workers" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+      </div>
 
       {/* Admin/hr/owner can add workers */}
       {["admin", "hr", "owner"].includes(session.role) && (

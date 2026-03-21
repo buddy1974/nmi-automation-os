@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -81,13 +82,23 @@ const S = {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function ImportPage() {
+  const searchParams = useSearchParams()
   const fileRef = useRef<HTMLInputElement>(null)
 
   const [step,        setStep]        = useState<1 | 2 | 3 | 4>(1)
   const [module,      setModule]      = useState("")
-  const [source,      setSource]      = useState<"file" | "sheet" | "">("")
+  const [source,      setSource]      = useState<"file" | "sheet" | "drive" | "">("")
   const [file,        setFile]        = useState<File | null>(null)
   const [sheetUrl,    setSheetUrl]    = useState("")
+
+  // Auto-select module from ?module= query param
+  useEffect(() => {
+    const m = searchParams.get("module")
+    if (m && MODULES.find(mod => mod.id === m)) {
+      setModule(m)
+      setStep(2)
+    }
+  }, [searchParams])
   const [dragging,    setDragging]    = useState(false)
   const [analysing,   setAnalysing]   = useState(false)
   const [analysis,    setAnalysis]    = useState<AnalysisResult | null>(null)
@@ -123,7 +134,7 @@ export default function ImportPage() {
     try {
       let res: Response
 
-      if (source === "sheet") {
+      if (source === "sheet" || source === "drive") {
         res = await fetch("/api/import/google-sheet", {
           method:  "POST",
           headers: { "Content-Type": "application/json" },
@@ -232,11 +243,12 @@ export default function ImportPage() {
             <h2 style={{ margin: 0, fontSize: 16 }}>Step 2 — Choose source</h2>
             <button onClick={() => setStep(1)} style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: 13 }}>← Back</button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 12 }}>
             {[
-              { id: "file",  icon: "📁", label: "Upload File",      sub: "Excel (.xlsx) or CSV" },
-              { id: "sheet", icon: "📊", label: "Google Sheet URL", sub: "Must be publicly accessible" },
-              { id: "tpl",   icon: "📋", label: "Download Template", sub: `Get the ${module} template CSV` },
+              { id: "file",  icon: "📁", label: "Upload File",        sub: "Excel (.xlsx) or CSV" },
+              { id: "sheet", icon: "📊", label: "Google Sheet URL",   sub: "Must be publicly accessible" },
+              { id: "drive", icon: "💾", label: "Google Drive",       sub: "CSV or Sheet from Drive URL" },
+              { id: "tpl",   icon: "📋", label: "Download Template",  sub: `Get the ${module} template CSV` },
             ].map(opt => (
               <button
                 key={opt.id}
@@ -244,7 +256,7 @@ export default function ImportPage() {
                   if (opt.id === "tpl") {
                     window.location.href = `/api/import/template/${module}`
                   } else {
-                    setSource(opt.id as "file" | "sheet")
+                    setSource(opt.id as "file" | "sheet" | "drive")
                     setStep(3)
                   }
                 }}
@@ -271,16 +283,16 @@ export default function ImportPage() {
       {step === 3 && (
         <div style={S.card}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-            <h2 style={{ margin: 0, fontSize: 16 }}>Step 3 — {source === "sheet" ? "Enter Google Sheet URL" : "Upload your file"}</h2>
+            <h2 style={{ margin: 0, fontSize: 16 }}>Step 3 — {source === "sheet" ? "Enter Google Sheet URL" : source === "drive" ? "Enter Google Drive URL" : "Upload your file"}</h2>
             <button onClick={() => setStep(2)} style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: 13 }}>← Back</button>
           </div>
 
-          {source === "sheet" ? (
+          {(source === "sheet" || source === "drive") ? (
             <div>
               <input
                 value={sheetUrl}
                 onChange={e => setSheetUrl(e.target.value)}
-                placeholder="https://docs.google.com/spreadsheets/d/..."
+                placeholder={source === "drive" ? "https://drive.google.com/file/d/... or Sheets URL" : "https://docs.google.com/spreadsheets/d/..."}
                 style={{
                   width: "100%", background: "#0f172a", border: "1px solid #334155",
                   borderRadius: 8, padding: "10px 14px", color: "#f1f5f9", fontSize: 14,
@@ -288,7 +300,9 @@ export default function ImportPage() {
                 }}
               />
               <p style={{ color: "#64748b", fontSize: 12, margin: "0 0 16px" }}>
-                The sheet must be publicly accessible (Share → Anyone with link → Viewer).
+                {source === "drive"
+                  ? "Paste a Google Drive CSV link or Google Sheets URL. The file must be publicly accessible."
+                  : "The sheet must be publicly accessible (Share → Anyone with link → Viewer)."}
               </p>
             </div>
           ) : (
@@ -323,8 +337,8 @@ export default function ImportPage() {
 
           <button
             onClick={analyse}
-            disabled={analysing || (source === "file" && !file) || (source === "sheet" && !sheetUrl)}
-            style={{ ...S.btn("primary"), opacity: (analysing || (source === "file" && !file) || (source === "sheet" && !sheetUrl)) ? 0.5 : 1 }}
+            disabled={analysing || (source === "file" && !file) || ((source === "sheet" || source === "drive") && !sheetUrl)}
+            style={{ ...S.btn("primary"), opacity: (analysing || (source === "file" && !file) || ((source === "sheet" || source === "drive") && !sheetUrl)) ? 0.5 : 1 }}
           >
             {analysing ? "AI is reading your file…" : "Analyse with AI"}
           </button>
