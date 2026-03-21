@@ -40,7 +40,7 @@ export default async function RootLayout({
             marginTop:   "auto",
           }}>
             NMI Automation OS · Developed by{" "}
-            <a href="https://maxpromo.digital" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "none" }}>maxpromo.digital</a>
+            <a href="https://maxpromo.digital" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "none", fontWeight: 600 }}>maxpromo.digital</a>
           </footer>
         </LayoutShell>
         <ChatWidget />
