@@ -67,6 +67,7 @@ const NAV_SECTIONS = [
   {
     label: "ADMIN",
     items: [
+      { label: "Import",        href: "/import"        },
       { label: "System",        href: "/system"        },
       { label: "Notifications", href: "/notifications" },
       { label: "Owner",         href: "/owner"         },

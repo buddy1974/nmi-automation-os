@@ -563,3 +563,20 @@ model WhatsAppMessage {
 
   @@map("whatsapp_messages")
 }
+
+// ── Data Import Logs ──────────────────────────────────────────────────────────
+
+model ImportLog {
+  id         String   @id @default(cuid())
+  module     String
+  source     String
+  totalRows  Int      @default(0) @map("total_rows")
+  imported   Int      @default(0)
+  skipped    Int      @default(0)
+  errors     String?  @db.Text
+  importedBy String?  @map("imported_by")
+  companyId  String?  @map("company_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("import_logs")
+}

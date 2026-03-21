@@ -31,6 +31,16 @@ export default async function RootLayout({
       <body style={{ margin: 0 }}>
         <LayoutShell sidebar={<Sidebar />} header={<Header />}>
           {children}
+          <footer style={{
+            textAlign:   "center",
+            fontSize:    "11px",
+            color:       "#94a3b8",
+            padding:     "16px",
+            borderTop:   "1px solid #e2e8f0",
+            marginTop:   "auto",
+          }}>
+            NMI Automation OS · Developed by maxpromo.digital
+          </footer>
         </LayoutShell>
         <ChatWidget />
         <OnboardingTour />
