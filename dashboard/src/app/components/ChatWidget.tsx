@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, type KeyboardEvent } from "react"
+import { usePathname } from "next/navigation"
 
 type Message  = { role: "user" | "assistant"; content: string }
 type UserInfo = { id: string; name: string; role: string; companyId: string | null }
@@ -10,10 +11,11 @@ const QUICK_CHIPS = ["Business overview", "Stock alerts", "Unpaid royalties"]
 function greeting(name: string): string {
   const h = new Date().getHours()
   const period = h < 12 ? "morning" : h < 18 ? "afternoon" : "evening"
-  return `Good ${period}, ${name}. I'm your NMI Intelligence assistant. What would you like to know today?`
+  return `Good ${period}, ${name}. I'm your NMI Intelligence assistant. What would you like to know today?\n\nI'm here to help you navigate NMI Automation OS. Ask me anything about your business data, or type a command.`
 }
 
 export default function ChatWidget() {
+  const pathname  = usePathname()
   const [open,    setOpen]    = useState(false)
   const [greeted, setGreeted] = useState(false)
   const [user,    setUser]    = useState<UserInfo | null>(null)
@@ -30,6 +32,19 @@ export default function ChatWidget() {
       .then((data: UserInfo | null) => { if (data) setUser(data) })
       .catch(() => {})
   }, [])
+
+  // Auto-open on /dashboard for first-time visit
+  useEffect(() => {
+    if (pathname !== "/dashboard") return
+    if (typeof window === "undefined") return
+    if (localStorage.getItem("nmi_chat_welcomed")) return
+    const t = setTimeout(() => {
+      localStorage.setItem("nmi_chat_welcomed", "true")
+      handleOpen()
+    }, 1500)
+    return () => clearTimeout(t)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, user])
 
   // Auto-scroll
   useEffect(() => {
