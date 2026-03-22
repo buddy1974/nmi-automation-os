@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth"
 import { S, row }     from "@/lib/ui"
 import AgentRunner    from "@/app/components/AgentRunner"
 import AgentToggle    from "./AgentToggle"
+import AgentTerminal  from "@/app/components/AgentTerminal"
 import type { Metadata } from "next"
 
 export const dynamic = "force-dynamic"
@@ -89,8 +90,23 @@ export default async function AgentsPage() {
     take:    20,
   })
 
+  // Serialize dates for client component
+  const serializedRuns = recentRuns.map(r => ({
+    id:        r.id,
+    agentId:   r.agentId,
+    status:    r.status,
+    result:    r.result,
+    error:     r.error,
+    actions:   r.actions,
+    startedAt: r.startedAt.toISOString(),
+    endedAt:   r.endedAt?.toISOString() ?? null,
+  }))
+
   return (
     <div style={S.page}>
+
+      {/* SYS.AGENTS Terminal */}
+      <AgentTerminal initialRuns={serializedRuns} />
 
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
