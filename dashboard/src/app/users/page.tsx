@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic"
 
 const ROLE_COLOR: Record<string, string> = {
   admin:      "#1a1a2e",
-  manager:    "#2563eb",
+  manager:    "#1a73e8",
   accountant: "#d97706",
   editor:     "#7c3aed",
   printer:    "#0891b2",

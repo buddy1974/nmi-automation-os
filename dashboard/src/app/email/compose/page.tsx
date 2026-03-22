@@ -19,14 +19,14 @@ interface Result {
 const PRIORITY_COLORS: Record<string, string> = {
   urgent: "#dc2626",
   high:   "#ea580c",
-  normal: "#2563eb",
+  normal: "#1a73e8",
   low:    "#6b7280",
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
   sales:      "#16a34a",
   hr:         "#9333ea",
-  editorial:  "#2563eb",
+  editorial:  "#1a73e8",
   accounting: "#d97706",
   support:    "#0284c7",
   ceo:        "#1a1a2e",
@@ -144,7 +144,7 @@ export default function ComposeTestPage() {
               <span
                 key={i}
                 onClick={() => { setFrom(ex.from); setSubject(ex.subject); setBody("") }}
-                style={{ display: "block", cursor: "pointer", color: "#2563eb", marginTop: 4, textDecoration: "underline" }}
+                style={{ display: "block", cursor: "pointer", color: "#1a73e8", marginTop: 4, textDecoration: "underline" }}
               >
                 "{ex.subject}"
               </span>
@@ -175,7 +175,7 @@ export default function ComposeTestPage() {
               Saved to email log — ID: <code style={{ fontSize: 11 }}>{result.log.id}</code>
             </div>
 
-            <Link href="/email" style={{ fontSize: 13, color: "#2563eb", textDecoration: "none", fontWeight: 600 }}>
+            <Link href="/email" style={{ fontSize: 13, color: "#1a73e8", textDecoration: "none", fontWeight: 600 }}>
               View in Email Inbox →
             </Link>
           </div>

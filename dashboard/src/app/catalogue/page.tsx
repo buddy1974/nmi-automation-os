@@ -95,7 +95,7 @@ const BOOKS: Book[] = [
 // ── Style helpers ─────────────────────────────────────────────────────────────
 
 const SUBJECT_COLOR: Record<string, string> = {
-  English:           "#2563eb",
+  English:           "#1a73e8",
   French:            "#16a34a",
   Mathematics:       "#f97316",
   Science:           "#7c3aed",
@@ -153,7 +153,7 @@ export default function CataloguePage() {
         <p style={{ fontSize: "14px", color: "#64748b", margin: 0 }}>
           {BOOKS.length} titles across Primary, Secondary, Literature, Kids &amp; Guides
           {cart.length > 0 && (
-            <span style={{ marginLeft: "16px", background: "#2563eb", color: "#fff", borderRadius: "999px", padding: "2px 10px", fontSize: "12px", fontWeight: 600 }}>
+            <span style={{ marginLeft: "16px", background: "#1a73e8", color: "#fff", borderRadius: "999px", padding: "2px 10px", fontSize: "12px", fontWeight: 600 }}>
               {cart.length} in cart
             </span>
           )}

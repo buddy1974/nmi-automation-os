@@ -17,7 +17,7 @@ export default async function RoyaltiesPage() {
           <h1 style={S.heading}>Royalties</h1>
           <p style={S.subtitle}>Author royalty tracking — global (not company-scoped)</p>
         </div>
-        <a href="/import?module=royalties" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+        <a href="/import?module=royalties" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
 
       <div style={S.statBar}>

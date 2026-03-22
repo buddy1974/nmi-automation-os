@@ -50,7 +50,7 @@ export default async function SalesPage() {
             ) : (
               orders.map((o, i) => (
                 <tr key={o.id} style={row(i)}>
-                  <td style={{ ...S.td, fontWeight: 600, color: "#2563eb" }}>{o.number}</td>
+                  <td style={{ ...S.td, fontWeight: 600, color: "#1a73e8" }}>{o.number}</td>
                   <td style={S.td}>{o.customerName}</td>
                   <td style={S.td}>{o.branch?.name ?? "—"}</td>
                   <td style={S.td}>{new Date(o.date).toLocaleDateString()}</td>

@@ -243,7 +243,7 @@ export default function WorkPage() {
           <div style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.5px" }}>
             Today
           </div>
-          <div style={{ fontSize: "28px", fontWeight: 700, color: "#2563eb" }}>
+          <div style={{ fontSize: "28px", fontWeight: 700, color: "#1a73e8" }}>
             {sessions?.todayHours.toFixed(1) ?? "—"}<span style={{ fontSize: "14px", color: "#64748b", marginLeft: "4px" }}>hrs</span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
@@ -298,7 +298,7 @@ export default function WorkPage() {
           onClick={() => setShowForm(f => !f)}
           style={{
             padding: "7px 14px", borderRadius: "7px", border: "none",
-            background: showForm ? "#f1f5f9" : "#2563eb", color: showForm ? "#475569" : "#fff",
+            background: showForm ? "#f1f5f9" : "#1a73e8", color: showForm ? "#475569" : "#fff",
             fontSize: "12px", fontWeight: 600, cursor: "pointer",
           }}
         >
@@ -324,7 +324,7 @@ export default function WorkPage() {
           <input type="number" min="0.5" step="0.5" value={formH} onChange={e => setFormH(e.target.value)}
             placeholder="Estimated hours" style={inputStyle} />
           <button type="submit" disabled={formSaving || !formTitle.trim()} style={{
-            padding: "9px 16px", background: "#2563eb", color: "#fff",
+            padding: "9px 16px", background: "#1a73e8", color: "#fff",
             border: "none", borderRadius: "7px", fontWeight: 600,
             fontSize: "13px", cursor: "pointer", opacity: formSaving ? 0.7 : 1,
           }}>

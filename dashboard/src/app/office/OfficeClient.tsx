@@ -131,7 +131,7 @@ export default function OfficeClient({ connected, userName }: Props) {
         <div style={{ display: "flex", gap: 10 }}>
           {!connected ? (
             <a href="/api/auth/google" style={{
-              background: "#2563eb", color: "#fff", padding: "8px 16px",
+              background: "#1a73e8", color: "#fff", padding: "8px 16px",
               borderRadius: 8, textDecoration: "none", fontSize: 14, fontWeight: 600,
             }}>
               Connect Google Account
@@ -169,7 +169,7 @@ export default function OfficeClient({ connected, userName }: Props) {
             Calendar events, Gmail inbox, and meeting prep notes will appear here once connected.
           </p>
           <a href="/api/auth/google" style={{
-            display: "inline-block", background: "#2563eb", color: "#fff",
+            display: "inline-block", background: "#1a73e8", color: "#fff",
             padding: "10px 24px", borderRadius: 8, textDecoration: "none", fontWeight: 600,
           }}>
             Connect Google Account
@@ -190,7 +190,7 @@ export default function OfficeClient({ connected, userName }: Props) {
             )}
             {todayEvents.map(e => (
               <div key={e.id} style={{
-                borderLeft: "3px solid #2563eb", paddingLeft: 12, marginBottom: 14,
+                borderLeft: "3px solid #1a73e8", paddingLeft: 12, marginBottom: 14,
                 cursor: "pointer",
               }} onClick={() => getPrep(e)}>
                 <div style={{ fontWeight: 600, fontSize: 14 }}>{e.summary}</div>
@@ -323,7 +323,7 @@ export default function OfficeClient({ connected, userName }: Props) {
               <button onClick={() => sendEmail(true)} style={{ background: "#1e293b", color: "#60a5fa", border: "1px solid #3b82f6", padding: "8px 16px", borderRadius: 6, cursor: "pointer" }}>
                 Save Draft
               </button>
-              <button onClick={() => sendEmail(false)} style={{ background: "#2563eb", color: "#fff", border: "none", padding: "8px 20px", borderRadius: 6, cursor: "pointer", fontWeight: 600 }}>
+              <button onClick={() => sendEmail(false)} style={{ background: "#1a73e8", color: "#fff", border: "none", padding: "8px 20px", borderRadius: 6, cursor: "pointer", fontWeight: 600 }}>
                 Send
               </button>
             </div>

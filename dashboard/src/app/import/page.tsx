@@ -74,7 +74,7 @@ const S = {
     cursor:       "pointer",
     fontSize:     14,
     fontWeight:   600,
-    background:   variant === "primary" ? "#2563eb" : variant === "danger" ? "#dc2626" : "#334155",
+    background:   variant === "primary" ? "#1a73e8" : variant === "danger" ? "#dc2626" : "#334155",
     color:        "#fff",
   } as React.CSSProperties),
 }
@@ -203,7 +203,7 @@ export default function ImportPage() {
             flex:         1,
             height:       4,
             borderRadius: 2,
-            background:   step > i ? "#2563eb" : step === i + 1 ? "#60a5fa" : "#1e293b",
+            background:   step > i ? "#1a73e8" : step === i + 1 ? "#60a5fa" : "#1e293b",
           }} />
         ))}
       </div>
@@ -219,7 +219,7 @@ export default function ImportPage() {
                 onClick={() => { setModule(m.id); setStep(2) }}
                 style={{
                   background:   module === m.id ? "#1d4ed8" : "#0f172a",
-                  border:       `1px solid ${module === m.id ? "#2563eb" : "#334155"}`,
+                  border:       `1px solid ${module === m.id ? "#1a73e8" : "#334155"}`,
                   borderRadius: 8,
                   padding:      "14px 16px",
                   cursor:       "pointer",
@@ -312,7 +312,7 @@ export default function ImportPage() {
               onDrop={e => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files[0]; if (f) handleFile(f) }}
               onClick={() => fileRef.current?.click()}
               style={{
-                border:       `2px dashed ${dragging ? "#2563eb" : "#334155"}`,
+                border:       `2px dashed ${dragging ? "#1a73e8" : "#334155"}`,
                 borderRadius: 10,
                 padding:      "40px",
                 textAlign:    "center",

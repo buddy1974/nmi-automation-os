@@ -89,7 +89,7 @@ export default async function EmailPage() {
       {total === 0 ? (
         <div style={{ textAlign: "center", padding: "60px 0", color: "#9ca3af" }}>
           No emails classified yet.{" "}
-          <Link href="/email/compose" style={{ color: "#2563eb" }}>Test the classifier →</Link>
+          <Link href="/email/compose" style={{ color: "#1a73e8" }}>Test the classifier →</Link>
         </div>
       ) : (
         <EmailTable emails={emails.map(e => ({ ...e, createdAt: e.createdAt.toISOString() }))} />

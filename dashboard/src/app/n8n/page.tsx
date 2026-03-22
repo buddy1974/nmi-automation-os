@@ -26,7 +26,7 @@ function maskSecret(s: string) {
 
 function typeBadge(type: string) {
   const known: Record<string, { bg: string; color: string; label: string }> = {
-    n8n_email_classify: { bg: "#eff6ff", color: "#2563eb",  label: "email_classify"  },
+    n8n_email_classify: { bg: "#eff6ff", color: "#1a73e8",  label: "email_classify"  },
     n8n_daily_briefing: { bg: "#f0fdf4", color: "#16a34a",  label: "daily_briefing"  },
     low_stock_alert:    { bg: "#fff7ed", color: "#ea580c",  label: "stock_alert"     },
     royalty_reminder:   { bg: "#fdf4ff", color: "#9333ea",  label: "royalty_check"   },

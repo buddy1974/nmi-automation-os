@@ -38,7 +38,7 @@ const s = StyleSheet.create({
     justifyContent: "space-between",
     alignItems:     "flex-start",
     marginBottom:   32,
-    borderBottom:   "2px solid #2563eb",
+    borderBottom:   "2px solid #1a73e8",
     paddingBottom:  16,
   },
   brand: { flexDirection: "column", gap: 2 },
@@ -47,7 +47,7 @@ const s = StyleSheet.create({
   invoiceLabel: {
     fontSize:    22,
     fontFamily:  "Helvetica-Bold",
-    color:       "#2563eb",
+    color:       "#1a73e8",
     letterSpacing: 1,
   },
 
@@ -98,7 +98,7 @@ const s = StyleSheet.create({
   totalLabel:     { fontSize: 10, color: "#64748b" },
   totalValue:     { fontSize: 10, color: "#334155" },
   grandLabel:     { fontSize: 12, fontFamily: "Helvetica-Bold", color: "#1e293b" },
-  grandValue:     { fontSize: 12, fontFamily: "Helvetica-Bold", color: "#2563eb" },
+  grandValue:     { fontSize: 12, fontFamily: "Helvetica-Bold", color: "#1a73e8" },
   balanceDue:     { fontSize: 10, fontFamily: "Helvetica-Bold", color: "#ef4444" },
   balancePaid:    { fontSize: 10, fontFamily: "Helvetica-Bold", color: "#16a34a" },
 

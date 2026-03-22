@@ -25,7 +25,7 @@ interface Alert {
 const LEVEL_STYLE: Record<AlertLevel, { bg: string; border: string; text: string; badge: string }> = {
   high:   { bg: "#fef2f2", border: "#fecaca", text: "#7f1d1d", badge: "#dc2626" },
   medium: { bg: "#fffbeb", border: "#fde68a", text: "#78350f", badge: "#d97706" },
-  low:    { bg: "#eff6ff", border: "#bfdbfe", text: "#1e3a5f", badge: "#2563eb" },
+  low:    { bg: "#eff6ff", border: "#bfdbfe", text: "#1e3a5f", badge: "#1a73e8" },
 }
 
 const TYPE_ICON: Record<AlertType, string> = {

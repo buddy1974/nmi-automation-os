@@ -6,7 +6,7 @@ export const C = {
   bg:         "#f4f6f9",
   white:      "#ffffff",
   sidebar:    "#1a1a2e",
-  accent:     "#2563eb",
+  accent:     "#1a73e8",
   textPri:    "#1e293b",
   textSec:    "#64748b",
   border:     "#e2e8f0",
@@ -144,7 +144,7 @@ export const S = {
   alertBlue: {
     padding:      "12px 16px",
     borderRadius: "8px",
-    borderLeft:   "4px solid #2563eb",
+    borderLeft:   "4px solid #1a73e8",
     background:   "#dbeafe",
     color:        "#1d4ed8",
     fontSize:     "14px",

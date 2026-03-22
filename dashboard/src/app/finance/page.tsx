@@ -54,7 +54,7 @@ export default async function FinancePage() {
           <div style={S.statLabel}>Outstanding — {countUnpaid} unpaid, {countPartial} partial</div>
         </div>
         <div style={S.statCard}>
-          <div style={{ ...S.statValue, color: overdueList.length > 0 ? "#ef4444" : "#2563eb" }}>{overdueList.length}</div>
+          <div style={{ ...S.statValue, color: overdueList.length > 0 ? "#ef4444" : "#1a73e8" }}>{overdueList.length}</div>
           <div style={S.statLabel}>Overdue</div>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default async function FinancePage() {
 
                 return (
                   <tr key={inv.id} style={overdue ? { ...row(i), background: "#fff5f5" } : row(i)}>
-                    <td style={{ ...S.td, fontWeight: 600, color: "#2563eb" }}>{inv.number}</td>
+                    <td style={{ ...S.td, fontWeight: 600, color: "#1a73e8" }}>{inv.number}</td>
                     <td style={S.td}>{inv.customerName || "—"}</td>
                     <td style={S.td}>{total.toLocaleString()}</td>
                     <td style={{ ...S.td, color: paid > 0 ? "#16a34a" : undefined }}>{paid.toLocaleString()}</td>

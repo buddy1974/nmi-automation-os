@@ -170,7 +170,7 @@ export default function OrderForm({
                   </tr>
                 ) : filtered.map((p, i) => (
                   <tr key={p.id} style={{ background: i % 2 === 0 ? "#fff" : "#f8fafc" }}>
-                    <td style={{ padding: "10px 14px", fontSize: 13, color: "#2563eb", fontWeight: 600, borderBottom: "1px solid #f1f5f9" }}>
+                    <td style={{ padding: "10px 14px", fontSize: 13, color: "#1a73e8", fontWeight: 600, borderBottom: "1px solid #f1f5f9" }}>
                       {p.code}
                     </td>
                     <td style={{ padding: "10px 14px", fontSize: 13, color: "#1e293b", borderBottom: "1px solid #f1f5f9" }}>
@@ -192,7 +192,7 @@ export default function OrderForm({
                         onClick={() => addToCart(p.code)}
                         disabled={p.stock === 0}
                         style={{
-                          background:   p.stock === 0 ? "#f1f5f9" : "#2563eb",
+                          background:   p.stock === 0 ? "#f1f5f9" : "#1a73e8",
                           color:        p.stock === 0 ? "#9ca3af"  : "#fff",
                           border:       "none",
                           borderRadius: "6px",
@@ -237,7 +237,7 @@ export default function OrderForm({
           {cart.length > 0 && (
             <span style={{
               marginLeft:   8,
-              background:   "#2563eb",
+              background:   "#1a73e8",
               color:        "#fff",
               borderRadius: "999px",
               padding:      "1px 8px",

@@ -8,7 +8,7 @@ const OWNER_ROLES = ["admin", "owner", "manager"]
 
 const ROLE_COLORS: Record<string, { bg: string; color: string }> = {
   owner:   { bg: "#fdf4ff", color: "#9333ea" },
-  admin:   { bg: "#eff6ff", color: "#2563eb" },
+  admin:   { bg: "#eff6ff", color: "#1a73e8" },
   manager: { bg: "#fff7ed", color: "#ea580c" },
   hr:      { bg: "#f0fdfa", color: "#0d9488" },
   staff:   { bg: "#f9fafb", color: "#6b7280" },

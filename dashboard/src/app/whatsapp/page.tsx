@@ -25,7 +25,7 @@ function detectLang(text: string): "French" | "English" | "Other" {
 
 function statusBadge(status: string) {
   const map: Record<string, { bg: string; color: string }> = {
-    received:  { bg: "#eff6ff", color: "#2563eb" },
+    received:  { bg: "#eff6ff", color: "#1a73e8" },
     replied:   { bg: "#f0fdf4", color: "#16a34a" },
     escalated: { bg: "#fff7ed", color: "#ea580c" },
     handled:   { bg: "#f9fafb", color: "#6b7280" },
@@ -86,7 +86,7 @@ export default async function WhatsAppPage() {
         {[
           { label: "Total Messages", value: total,      color: "#374151" },
           { label: "Unhandled",      value: unhandled,  color: unhandled > 0 ? "#d97706" : "#16a34a" },
-          { label: "Today",          value: todayCount, color: "#2563eb" },
+          { label: "Today",          value: todayCount, color: "#1a73e8" },
           { label: "AI Replied",     value: aiReplied,  color: "#16a34a" },
         ].map(s => (
           <div key={s.label} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 10, padding: "16px 20px" }}>

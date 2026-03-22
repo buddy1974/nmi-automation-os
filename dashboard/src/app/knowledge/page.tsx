@@ -14,7 +14,7 @@ const CATEGORIES = ["All", "HR", "Finance", "Editorial", "Sales", "Distribution"
 const CAT_COLORS: Record<string, { bg: string; color: string }> = {
   HR:           { bg: "#fdf4ff", color: "#9333ea" },
   Finance:      { bg: "#fffbeb", color: "#d97706" },
-  Editorial:    { bg: "#eff6ff", color: "#2563eb" },
+  Editorial:    { bg: "#eff6ff", color: "#1a73e8" },
   Sales:        { bg: "#f0fdf4", color: "#16a34a" },
   Distribution: { bg: "#f0f9ff", color: "#0284c7" },
   Printing:     { bg: "#fff7ed", color: "#ea580c" },
@@ -70,7 +70,7 @@ export default async function KnowledgePage({
         <div style={{ display: "flex", gap: 10 }}>
           <Link
             href="/knowledge/ask"
-            style={{ background: "#2563eb", color: "#fff", padding: "10px 18px", borderRadius: 8, fontSize: 14, fontWeight: 600, textDecoration: "none" }}
+            style={{ background: "#1a73e8", color: "#fff", padding: "10px 18px", borderRadius: 8, fontSize: 14, fontWeight: 600, textDecoration: "none" }}
           >
             ✦ Ask AI
           </Link>
@@ -89,7 +89,7 @@ export default async function KnowledgePage({
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginBottom: 24 }}>
         {[
           { label: "Total Docs",  value: allDocs.length,               color: "#374151" },
-          { label: "Categories",  value: Object.keys(catCounts).length, color: "#2563eb" },
+          { label: "Categories",  value: Object.keys(catCounts).length, color: "#1a73e8" },
           { label: "This View",   value: docs.length,                   color: "#374151" },
           { label: "Last Added",  value: docs[0] ? docs[0].createdAt.toISOString().slice(0, 10) : "—", color: "#6b7280" },
         ].map(s => (
@@ -154,7 +154,7 @@ export default async function KnowledgePage({
                   <td style={{ padding: "12px 14px" }}>
                     <Link
                       href={`/knowledge/ask?q=${encodeURIComponent(doc.title)}`}
-                      style={{ fontSize: 12, color: "#2563eb", textDecoration: "none", fontWeight: 600 }}
+                      style={{ fontSize: 12, color: "#1a73e8", textDecoration: "none", fontWeight: 600 }}
                     >
                       Ask →
                     </Link>

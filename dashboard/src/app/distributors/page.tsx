@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 
 const REGION_FLAG: Record<string, string> = {
   "Adamawa":   "#f97316",
-  "Centre":    "#2563eb",
+  "Centre":    "#1a73e8",
   "East":      "#16a34a",
   "Far North": "#ef4444",
   "Littoral":  "#0891b2",
@@ -29,7 +29,7 @@ export default async function DistributorsPage() {
           <h1 style={S.heading}>Distributors</h1>
           <p style={S.subtitle}>Regional distribution network across Cameroon — {distributors.length} partners</p>
         </div>
-        <a href="/import?module=distributors" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+        <a href="/import?module=distributors" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
 
       {/* ── Stats ──────────────────────────────────────────────────────────── */}
@@ -81,7 +81,7 @@ export default async function DistributorsPage() {
 
                 {/* Email */}
                 {d.email && (
-                  <div style={{ fontSize: "12px", color: "#2563eb" }}>✉ {d.email}</div>
+                  <div style={{ fontSize: "12px", color: "#1a73e8" }}>✉ {d.email}</div>
                 )}
 
                 {/* Address */}

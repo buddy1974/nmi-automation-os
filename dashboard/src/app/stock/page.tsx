@@ -20,7 +20,7 @@ export default async function StockPage() {
           <h1 style={S.heading}>Stock</h1>
           <p style={S.subtitle}>Book inventory across all titles — live from DB</p>
         </div>
-        <a href="/import?module=products" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+        <a href="/import?module=products" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
 
       <div style={S.statBar}>
@@ -38,7 +38,7 @@ export default async function StockPage() {
           <tbody>
             {products.map((p, i) => (
               <tr key={p.id} style={row(i)}>
-                <td style={{ ...S.td, fontWeight: 600, color: "#2563eb" }}>{p.code}</td>
+                <td style={{ ...S.td, fontWeight: 600, color: "#1a73e8" }}>{p.code}</td>
                 <td style={S.td}>{p.title}</td>
                 <td style={S.td}>{p.subject || "—"}</td>
                 <td style={S.td}>{p.level}</td>

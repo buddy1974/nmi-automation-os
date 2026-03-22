@@ -86,7 +86,7 @@ export default async function DashboardPage() {
         {[["Orders","/orders"],["Stock","/stock"],["Manuscripts","/manuscripts"],["Printing","/printing"],["Accounting","/accounting"],["HR","/hr"],["Finance","/finance"],["Royalties","/royalties"]].map(([label, href]) => (
           <Link key={href} href={href} style={{
             background: "#fff", border: "1px solid #e2e8f0", borderRadius: "6px",
-            padding: "8px 16px", fontSize: "14px", color: "#2563eb", fontWeight: 600,
+            padding: "8px 16px", fontSize: "14px", color: "#1a73e8", fontWeight: 600,
             textDecoration: "none",
           }}>{label}</Link>
         ))}

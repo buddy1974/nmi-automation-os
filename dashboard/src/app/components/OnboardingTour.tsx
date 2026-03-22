@@ -98,7 +98,7 @@ export default function OnboardingTour() {
                 width:        i === step ? 20 : 8,
                 height:       8,
                 borderRadius: 999,
-                background:   i === step ? "#2563eb" : "#e2e8f0",
+                background:   i === step ? "#1a73e8" : "#e2e8f0",
                 transition:   "width 0.2s ease, background 0.2s ease",
               }}
             />

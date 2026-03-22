@@ -27,7 +27,7 @@ function priorityStyle(p: string): React.CSSProperties {
   switch (p) {
     case "urgent": return { background: "#fef2f2", color: "#dc2626", padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }
     case "high":   return { background: "#fff7ed", color: "#ea580c", padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }
-    case "normal": return { background: "#eff6ff", color: "#2563eb", padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }
+    case "normal": return { background: "#eff6ff", color: "#1a73e8", padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }
     default:       return { background: "#f9fafb", color: "#6b7280", padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }
   }
 }
@@ -36,7 +36,7 @@ function categoryStyle(c: string): React.CSSProperties {
   const map: Record<string, React.CSSProperties> = {
     sales:      { background: "#f0fdf4", color: "#16a34a" },
     hr:         { background: "#fdf4ff", color: "#9333ea" },
-    editorial:  { background: "#eff6ff", color: "#2563eb" },
+    editorial:  { background: "#eff6ff", color: "#1a73e8" },
     accounting: { background: "#fffbeb", color: "#d97706" },
     support:    { background: "#f0f9ff", color: "#0284c7" },
     ceo:        { background: "#1a1a2e", color: "#ffffff" },

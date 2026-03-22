@@ -45,7 +45,7 @@ const btn = (variant: "primary" | "secondary"): React.CSSProperties => ({
   cursor:       "pointer",
   fontSize:     14,
   fontWeight:   700,
-  background:   variant === "primary" ? "#2563eb" : "#334155",
+  background:   variant === "primary" ? "#1a73e8" : "#334155",
   color:        "#fff",
 })
 
@@ -150,7 +150,7 @@ export default function SetupPage() {
               cursor:       "pointer",
               fontSize:     12,
               fontWeight:   step === i + 1 ? 700 : 400,
-              background:   step === i + 1 ? "#2563eb" : "#1e293b",
+              background:   step === i + 1 ? "#1a73e8" : "#1e293b",
               color:        step === i + 1 ? "#fff" : "#64748b",
             }}
           >
@@ -222,7 +222,7 @@ export default function SetupPage() {
                 <span style={{ fontSize: 14 }}>{label}</span>
                 {count !== undefined && <span style={{ color: "#64748b", fontSize: 12 }}>({count} records)</span>}
               </div>
-              <a href={href} style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "5px 12px", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+              <a href={href} style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "5px 12px", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
                 ↑ Import
               </a>
             </div>
@@ -256,7 +256,7 @@ export default function SetupPage() {
             <h3 style={{ margin: "0 0 12px", fontSize: 14, color: "#94a3b8" }}>GOOGLE CALENDAR & GMAIL</h3>
             <Check ok={!!health?.googleConnected} label="Google account connected (GoogleToken exists)" />
             {!health?.googleConnected && (
-              <a href="/api/auth/google" style={{ display: "inline-block", marginTop: 10, border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+              <a href="/api/auth/google" style={{ display: "inline-block", marginTop: 10, border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
                 Connect Google Account →
               </a>
             )}
@@ -296,7 +296,7 @@ export default function SetupPage() {
                 <div style={{ fontSize: 36, marginBottom: 10 }}>🚀</div>
                 <div style={{ fontWeight: 700, fontSize: 18, color: "#22c55e", marginBottom: 6 }}>Your NMI Automation OS is ready!</div>
                 <p style={{ color: "#94a3b8", fontSize: 13, margin: "0 0 16px" }}>All systems operational. You can now hand over to the NMI team.</p>
-                <a href="/dashboard" style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "10px 28px", borderRadius: 8, textDecoration: "none", fontWeight: 700 }}>
+                <a href="/dashboard" style={{ display: "inline-block", background: "#1a73e8", color: "#fff", padding: "10px 28px", borderRadius: 8, textDecoration: "none", fontWeight: 700 }}>
                   Go to Dashboard →
                 </a>
               </>

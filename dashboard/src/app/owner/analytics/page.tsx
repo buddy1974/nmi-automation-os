@@ -10,7 +10,7 @@ const ALLOWED = ["admin", "owner", "manager", "hr"]
 
 function scoreColor(avg: number): string {
   if (avg > 400) return "#16a34a"
-  if (avg > 300) return "#2563eb"
+  if (avg > 300) return "#1a73e8"
   if (avg > 250) return "#d97706"
   return "#dc2626"
 }
@@ -110,7 +110,7 @@ function AnalyticsTable({
                   <td style={{ padding: "10px 14px", fontWeight: 600, color: row.totalBonus > 0 ? "#16a34a" : "#aaa" }}>
                     {row.totalBonus > 0 ? fmt(row.totalBonus) : "—"}
                   </td>
-                  <td style={{ padding: "10px 14px", fontWeight: 600, color: row.totalIncrease > 0 ? "#2563eb" : "#aaa" }}>
+                  <td style={{ padding: "10px 14px", fontWeight: 600, color: row.totalIncrease > 0 ? "#1a73e8" : "#aaa" }}>
                     {row.totalIncrease > 0 ? `+${fmt(row.totalIncrease)}` : "—"}
                   </td>
                 </tr>
@@ -125,7 +125,7 @@ function AnalyticsTable({
               <td style={{ padding: "10px 14px", color: "#16a34a" }}>{rows.reduce((s, r) => s + r.topCount, 0)}</td>
               <td style={{ padding: "10px 14px", color: "#dc2626" }}>{rows.reduce((s, r) => s + r.riskCount, 0)}</td>
               <td style={{ padding: "10px 14px", color: "#16a34a" }}>{fmt(rows.reduce((s, r) => s + r.totalBonus, 0))}</td>
-              <td style={{ padding: "10px 14px", color: "#2563eb" }}>+{fmt(rows.reduce((s, r) => s + r.totalIncrease, 0))}</td>
+              <td style={{ padding: "10px 14px", color: "#1a73e8" }}>+{fmt(rows.reduce((s, r) => s + r.totalIncrease, 0))}</td>
             </tr>
           </tfoot>
         </table>
@@ -209,7 +209,7 @@ export default async function AnalyticsPage() {
         <Card label="Workers Evaluated"     value={String(totalWorkers)}            sub="performance records"      color="#7c3aed" />
         <Card label="Departments"           value={String(deptCount)}               sub="tracked"                  color="#0891b2" />
         <Card label="Total Bonus Suggested" value={`${totalBonus.toLocaleString()} XAF`}    sub="combined"        color="#16a34a" />
-        <Card label="Total Salary Increase" value={`${totalIncrease.toLocaleString()} XAF`} sub="recommended"     color="#2563eb" />
+        <Card label="Total Salary Increase" value={`${totalIncrease.toLocaleString()} XAF`} sub="recommended"     color="#1a73e8" />
       </div>
 
       {totalWorkers === 0 ? (

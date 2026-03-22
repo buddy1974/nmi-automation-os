@@ -40,7 +40,7 @@ function calcLive(vals: Record<string, number>) {
 
 function getRatingColor(score: number) {
   if (score >= 90) return "#16a34a"
-  if (score >= 75) return "#2563eb"
+  if (score >= 75) return "#1a73e8"
   if (score >= 60) return "#d97706"
   if (score >= 45) return "#ea580c"
   return "#dc2626"
@@ -212,7 +212,7 @@ export default function EvalForm({ workers }: Props) {
 
           <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 8 }}>
             <ScoreBar label="Scrum Values" value={live.scrumScore} color="#7c3aed" />
-            <ScoreBar label="Task Perf."   value={live.taskScore}  color="#2563eb" />
+            <ScoreBar label="Task Perf."   value={live.taskScore}  color="#1a73e8" />
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#dc2626" }}>
               <span>Behavioral penalty</span>
               <span>-{live.behavioralPenalty.toFixed(1)}</span>

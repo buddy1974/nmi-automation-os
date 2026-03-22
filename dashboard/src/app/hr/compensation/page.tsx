@@ -32,7 +32,7 @@ function recommendation(score: number): string {
 
 function scoreColor(score: number) {
   if (score >= 90) return "#16a34a"
-  if (score >= 75) return "#2563eb"
+  if (score >= 75) return "#1a73e8"
   if (score >= 60) return "#d97706"
   if (score >= 45) return "#ea580c"
   return "#dc2626"
@@ -109,7 +109,7 @@ export default async function CompensationPage() {
       {/* KPI strip */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 28 }}>
         <KpiCard label="Workers"         value={String(workers.length)} sub="on payroll" color="#374151" />
-        <KpiCard label="Evaluated"       value={String(evaluated)}      sub={`of ${workers.length} have scores`} color="#2563eb" />
+        <KpiCard label="Evaluated"       value={String(evaluated)}      sub={`of ${workers.length} have scores`} color="#1a73e8" />
         <KpiCard label="Current Payroll" value={fmtXAF(totalBase)}      sub="total base salaries" color="#374151" />
         <KpiCard label="Suggested Payroll" value={fmtXAF(totalSuggest)} sub={`+${fmtXAF(totalSuggest - totalBase)} projected`} color={totalSuggest > totalBase ? "#16a34a" : "#374151"} />
       </div>

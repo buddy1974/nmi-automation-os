@@ -62,7 +62,7 @@ export default function DashboardLive({ name }: { name: string }) {
 
       {/* Welcome banner */}
       <div style={{
-        background:   "linear-gradient(135deg, #1a1a2e 0%, #2563eb 100%)",
+        background:   "linear-gradient(135deg, #1a1a2e 0%, #1a73e8 100%)",
         borderRadius: 12,
         padding:      "20px 24px",
         marginBottom: 20,
@@ -91,10 +91,10 @@ export default function DashboardLive({ name }: { name: string }) {
       {/* Live KPI row */}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         {[
-          { label: "Orders",          value: stats.orderCount,         color: "#2563eb" },
+          { label: "Orders",          value: stats.orderCount,         color: "#1a73e8" },
           { label: "Revenue (XAF)",   value: stats.totalRevenue.toLocaleString(), color: "#16a34a" },
           { label: "Active Workers",  value: stats.activeWorkers,      color: "#7c3aed" },
-          { label: "Pending Invoices",value: stats.pendingInvoices,    color: stats.pendingInvoices > 0 ? "#f97316" : "#2563eb" },
+          { label: "Pending Invoices",value: stats.pendingInvoices,    color: stats.pendingInvoices > 0 ? "#f97316" : "#1a73e8" },
           { label: "Low Stock",       value: stats.lowStockCount,      color: stats.lowStockCount > 0 ? "#ef4444" : "#6b7280" },
           { label: "Print Ready",     value: stats.printReadyCount,    color: stats.printReadyCount > 0 ? "#7c3aed" : "#6b7280" },
         ].map(k => (

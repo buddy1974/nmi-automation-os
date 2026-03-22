@@ -32,7 +32,7 @@ function timeAgo(iso: string | null): string {
 function statusDot(status: string) {
   const map: Record<string, [string, string]> = {
     completed: ["#dcfce7", "#16a34a"],
-    running:   ["#dbeafe", "#2563eb"],
+    running:   ["#dbeafe", "#1a73e8"],
     failed:    ["#fee2e2", "#dc2626"],
   }
   const [bg, color] = map[status] ?? ["#f1f5f9", "#64748b"]
@@ -196,7 +196,7 @@ export default async function AgentsPage() {
             <tbody>
               {recentRuns.map((r, i) => (
                 <tr key={r.id} style={row(i)}>
-                  <td style={{ ...S.td, fontWeight: 600, color: "#2563eb" }}>
+                  <td style={{ ...S.td, fontWeight: 600, color: "#1a73e8" }}>
                     {r.agentId.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
                   </td>
                   <td style={S.td}>{statusDot(r.status)}</td>

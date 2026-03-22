@@ -28,7 +28,7 @@ export default async function InvoicesPage() {
 
       <div style={S.statBar}>
         <div style={S.statCard}><div style={S.statValue}>{invoices.length}</div><div style={S.statLabel}>Total Invoices</div></div>
-        <div style={S.statCard}><div style={{ ...S.statValue, color: "#2563eb" }}>{totalAmount.toLocaleString()}</div><div style={S.statLabel}>Total Amount (XAF)</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#1a73e8" }}>{totalAmount.toLocaleString()}</div><div style={S.statLabel}>Total Amount (XAF)</div></div>
         <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{totalPaid.toLocaleString()}</div><div style={S.statLabel}>Collected (XAF)</div></div>
         <div style={S.statCard}><div style={{ ...S.statValue, color: "#f97316" }}>{unpaidCount}</div><div style={S.statLabel}>Outstanding</div></div>
       </div>
@@ -49,7 +49,7 @@ export default async function InvoicesPage() {
                 return (
                   <tr key={inv.id} style={row(i)}>
                     <td style={{ ...S.td, fontWeight: 600 }}>
-                      <Link href={`/invoices/${inv.id}`} style={{ color: "#2563eb", textDecoration: "none" }}>
+                      <Link href={`/invoices/${inv.id}`} style={{ color: "#1a73e8", textDecoration: "none" }}>
                         {inv.number}
                       </Link>
                     </td>
@@ -72,7 +72,7 @@ export default async function InvoicesPage() {
                           fontWeight:    600,
                           borderRadius:  "6px",
                           background:    "#f1f5f9",
-                          color:         "#2563eb",
+                          color:         "#1a73e8",
                           textDecoration:"none",
                           border:        "1px solid #e2e8f0",
                           whiteSpace:    "nowrap",

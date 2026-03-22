@@ -10,7 +10,7 @@ interface Props {
 
 const STATUS_COLOR: Record<string, string> = {
   draft:     "#888",
-  issued:    "#2563eb",
+  issued:    "#1a73e8",
   partial:   "#d97706",
   paid:      "#16a34a",
   cancelled: "#dc2626",

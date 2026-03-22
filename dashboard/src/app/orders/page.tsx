@@ -47,7 +47,7 @@ export default async function OrdersPage() {
           </p>
         </div>
         <div style={{ display: "flex", gap: 10 }}>
-          <a href="/import?module=orders" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>↑ Import</a>
+          <a href="/import?module=orders" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>↑ Import</a>
           <a
             href="#new-order"
             style={{
@@ -82,7 +82,7 @@ export default async function OrdersPage() {
               ...S.statValue,
               color: status === "delivered" ? "#16a34a"
                    : status === "cancelled"  ? "#ef4444"
-                   : status === "confirmed"  ? "#2563eb"
+                   : status === "confirmed"  ? "#1a73e8"
                    : status === "shipped"    ? "#7c3aed"
                    : "#f97316",
             }}>
@@ -122,7 +122,7 @@ export default async function OrdersPage() {
             <tbody>
               {savedOrders.map((o, i) => (
                 <tr key={o.id} style={row(i)}>
-                  <td style={{ ...S.td, fontWeight: 700, color: "#2563eb" }}>
+                  <td style={{ ...S.td, fontWeight: 700, color: "#1a73e8" }}>
                     {o.number}
                   </td>
                   <td style={{ ...S.td, fontWeight: 500 }}>

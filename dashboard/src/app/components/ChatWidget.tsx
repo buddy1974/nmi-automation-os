@@ -137,7 +137,7 @@ export default function ChatWidget() {
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <div style={{
-                width: 32, height: 32, background: "#2563eb",
+                width: 32, height: 32, background: "#1a73e8",
                 borderRadius: "9px", display: "flex",
                 alignItems: "center", justifyContent: "center",
                 fontSize: "15px", flexShrink: 0,
@@ -224,7 +224,7 @@ export default function ChatWidget() {
                   borderRadius: m.role === "user"
                     ? "14px 14px 3px 14px"
                     : "14px 14px 14px 3px",
-                  background:   m.role === "user" ? "#2563eb" : "#fff",
+                  background:   m.role === "user" ? "#1a73e8" : "#fff",
                   color:        m.role === "user" ? "#fff"    : "#1e293b",
                   fontSize:     "13px",
                   lineHeight:   1.55,
@@ -286,7 +286,7 @@ export default function ChatWidget() {
                 color:        "#1e293b",
                 minWidth:     0,
               }}
-              onFocus={e => { e.target.style.borderColor = "#2563eb" }}
+              onFocus={e => { e.target.style.borderColor = "#1a73e8" }}
               onBlur={e  => { e.target.style.borderColor = "#e2e8f0" }}
             />
             <button
@@ -295,7 +295,7 @@ export default function ChatWidget() {
               className="w-send"
               style={{
                 padding:      "9px 16px",
-                background:   input.trim() && !loading ? "#2563eb" : "#e2e8f0",
+                background:   input.trim() && !loading ? "#1a73e8" : "#e2e8f0",
                 color:        input.trim() && !loading ? "#fff"    : "#94a3b8",
                 border:       "none",
                 borderRadius: "8px",
@@ -325,7 +325,7 @@ export default function ChatWidget() {
           height:         48,
           padding:        "0 20px",
           borderRadius:   "999px",
-          background:     "#2563eb",
+          background:     "#1a73e8",
           border:         "none",
           cursor:         "pointer",
           display:        "flex",
@@ -335,7 +335,7 @@ export default function ChatWidget() {
           fontSize:       "13px",
           fontWeight:     700,
           color:          "#fff",
-          boxShadow:      "0 4px 16px rgba(37,99,235,0.5)",
+          boxShadow:      "0 4px 16px rgba(26,115,232,0.5)",
           transition:     "all .2s",
           whiteSpace:     "nowrap",
         }}

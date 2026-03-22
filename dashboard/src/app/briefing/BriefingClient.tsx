@@ -196,7 +196,7 @@ export default function BriefingClient() {
             fontSize:    14,
             lineHeight:  1.8,
             color:       "#cbd5e1",
-            borderLeft:  "3px solid #2563eb",
+            borderLeft:  "3px solid #1a73e8",
             paddingLeft: 16,
             marginBottom: data ? 24 : 0,
           }}>

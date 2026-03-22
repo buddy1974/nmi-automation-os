@@ -10,7 +10,7 @@ const ALLOWED = ["admin", "hr", "manager"]
 
 function barColor(pct: number): string {
   if (pct > 80) return "#16a34a"
-  if (pct > 60) return "#2563eb"
+  if (pct > 60) return "#1a73e8"
   if (pct > 40) return "#d97706"
   return "#dc2626"
 }
@@ -18,7 +18,7 @@ function barColor(pct: number): string {
 function ratingColor(rating: string | null): string {
   switch (rating) {
     case "Outstanding":       return "#16a34a"
-    case "Excellent":         return "#2563eb"
+    case "Excellent":         return "#1a73e8"
     case "Very Good":         return "#7c3aed"
     case "Good":              return "#d97706"
     case "Needs Improvement": return "#ea580c"
@@ -188,7 +188,7 @@ export default async function PerformancePage() {
                       {r.salaryIncrease != null && (
                         <div style={{ background: (r.salaryIncrease ?? 0) > 0 ? "#eff6ff" : "#f9fafb", borderRadius: "8px", padding: "10px 14px", border: (r.salaryIncrease ?? 0) > 0 ? "1px solid #bfdbfe" : "none" }}>
                           <div style={{ fontSize: "10px", color: "#888", marginBottom: "2px" }}>Salary Increase</div>
-                          <div style={{ fontWeight: 700, fontSize: "14px", color: (r.salaryIncrease ?? 0) > 0 ? "#2563eb" : "#111" }}>
+                          <div style={{ fontWeight: 700, fontSize: "14px", color: (r.salaryIncrease ?? 0) > 0 ? "#1a73e8" : "#111" }}>
                             +{(r.salaryIncrease ?? 0).toLocaleString()} XAF
                           </div>
                         </div>

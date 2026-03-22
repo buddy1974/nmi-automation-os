@@ -19,7 +19,7 @@ export default async function PrintingPage() {
         <div style={S.statCard}><div style={S.statValue}>{jobs.length}</div><div style={S.statLabel}>Total Jobs</div></div>
         <div style={S.statCard}><div style={S.statValue}>{totalUnits.toLocaleString()}</div><div style={S.statLabel}>Total Units</div></div>
         <div style={S.statCard}><div style={{ ...S.statValue, color: "#ef4444" }}>{totalCost.toLocaleString()}</div><div style={S.statLabel}>Total Cost (XAF)</div></div>
-        <div style={S.statCard}><div style={{ ...S.statValue, color: "#2563eb" }}>{inProgressCount}</div><div style={S.statLabel}>In Progress</div></div>
+        <div style={S.statCard}><div style={{ ...S.statValue, color: "#1a73e8" }}>{inProgressCount}</div><div style={S.statLabel}>In Progress</div></div>
       </div>
 
       {jobs.length === 0 ? (

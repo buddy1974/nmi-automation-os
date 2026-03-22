@@ -136,7 +136,7 @@ export default async function OwnerPage() {
       {/* ── KPI Row ──────────────────────────────────────────────────────────── */}
       <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "36px" }}>
         <KpiCard label="Total Revenue"    value={`${fmt(totalRevenue)} XAF`} sub="all companies, all time" accent="#16a34a" />
-        <KpiCard label="Total Orders"     value={fmt(orderCount)}            sub="all companies"           accent="#2563eb" />
+        <KpiCard label="Total Orders"     value={fmt(orderCount)}            sub="all companies"           accent="#1a73e8" />
         <KpiCard label="Active Workers"   value={fmt(activeWorkerCount)}     sub="status = active"         accent="#7c3aed" />
         <KpiCard label="Active Companies" value={fmt(activeCompanyCount)}    sub="in the system"           accent="#f97316" />
       </div>
@@ -157,7 +157,7 @@ export default async function OwnerPage() {
               gap:          "12px",
               background:   "#fff",
               border:       "1px solid #e2e8f0",
-              borderLeft:   `4px solid ${d.severity === "high" ? "#ef4444" : d.severity === "medium" ? "#f97316" : "#2563eb"}`,
+              borderLeft:   `4px solid ${d.severity === "high" ? "#ef4444" : d.severity === "medium" ? "#f97316" : "#1a73e8"}`,
               borderRadius: "6px",
               padding:      "10px 14px",
               marginBottom: "6px",
@@ -209,7 +209,7 @@ export default async function OwnerPage() {
           <h2 style={S.sectionTitle}>Performance Intel</h2>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             {[
-              { label: "Evaluations",     value: performanceRecords.length,                                                                                          accent: "#2563eb" },
+              { label: "Evaluations",     value: performanceRecords.length,                                                                                          accent: "#1a73e8" },
               { label: "Low performers",  value: lowPerformers.length,                                                                                              accent: "#ef4444" },
               { label: "Avg score",       value: `${Math.round(performanceRecords.reduce((s, r) => s + r.scorePercent, 0) / performanceRecords.length)}%`,           accent: "#7c3aed" },
               { label: "High performers", value: performanceRecords.filter(r => r.scorePercent >= 80).length,                                                        accent: "#16a34a" },

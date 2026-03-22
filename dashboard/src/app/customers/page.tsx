@@ -25,7 +25,7 @@ export default async function CustomersPage() {
           <h1 style={S.heading}>Customers</h1>
           <p style={S.subtitle}>All customers — filtered by company via order history</p>
         </div>
-        <a href="/import?module=customers" style={{ border: "1px solid #2563eb", color: "#2563eb", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
+        <a href="/import?module=customers" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
 
       <div style={S.statBar}>

@@ -217,7 +217,7 @@ export default function OwnerCharts({ companies, monthlyRevenue }: Props) {
         gap: "20px",
         marginBottom: "20px",
       }}>
-        <BarChart data={revenueData} color="#2563eb" title="Revenue per Company (XAF)" />
+        <BarChart data={revenueData} color="#1a73e8" title="Revenue per Company (XAF)" />
         <BarChart data={ordersData}  color="#7c3aed" title="Orders per Company" />
       </div>
 

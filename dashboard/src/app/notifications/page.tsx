@@ -52,7 +52,7 @@ export default async function NotificationsPage() {
   const sections = [
     { label: "High Priority", color: "#ef4444", bg: "#fef2f2", items: high },
     { label: "Medium",        color: "#f97316", bg: "#fff7ed", items: medium },
-    { label: "Info",          color: "#2563eb", bg: "#eff6ff", items: info },
+    { label: "Info",          color: "#1a73e8", bg: "#eff6ff", items: info },
   ].filter(s => s.items.length > 0)
 
   return (

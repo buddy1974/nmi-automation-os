@@ -24,7 +24,7 @@ const QUICK_QUESTIONS = [
 const CAT_COLORS: Record<string, string> = {
   HR:           "#9333ea",
   Finance:      "#d97706",
-  Editorial:    "#2563eb",
+  Editorial:    "#1a73e8",
   Sales:        "#16a34a",
   Distribution: "#0284c7",
   Printing:     "#ea580c",
@@ -198,7 +198,7 @@ export default function AskKBPage() {
             flex: 1, padding: "10px 14px", borderRadius: 8, border: "1.5px solid #e2e8f0",
             fontSize: 14, outline: "none", background: loading ? "#f8fafc" : "#fff", color: "#1e293b",
           }}
-          onFocus={e  => { e.target.style.borderColor = "#2563eb" }}
+          onFocus={e  => { e.target.style.borderColor = "#1a73e8" }}
           onBlur={e   => { e.target.style.borderColor = "#e2e8f0" }}
           autoFocus
         />
@@ -206,7 +206,7 @@ export default function AskKBPage() {
           onClick={() => ask()}
           disabled={loading || !question.trim()}
           style={{
-            padding: "10px 20px", background: question.trim() && !loading ? "#2563eb" : "#e5e7eb",
+            padding: "10px 20px", background: question.trim() && !loading ? "#1a73e8" : "#e5e7eb",
             color: question.trim() && !loading ? "#fff" : "#9ca3af",
             border: "none", borderRadius: 8, fontSize: 13, fontWeight: 700,
             cursor: question.trim() && !loading ? "pointer" : "not-allowed",

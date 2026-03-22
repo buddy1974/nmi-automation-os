@@ -11,7 +11,7 @@ const ALLOWED = ["owner", "admin", "manager", "hr"]
 
 function scoreColor(score: number) {
   if (score >= 90) return "#16a34a"
-  if (score >= 75) return "#2563eb"
+  if (score >= 75) return "#1a73e8"
   if (score >= 60) return "#d97706"
   if (score >= 45) return "#ea580c"
   return "#dc2626"
@@ -20,7 +20,7 @@ function scoreColor(score: number) {
 function ratingBg(rating: string): { bg: string; color: string } {
   switch (rating) {
     case "Exceptional":       return { bg: "#f0fdf4", color: "#16a34a" }
-    case "Strong":            return { bg: "#eff6ff", color: "#2563eb" }
+    case "Strong":            return { bg: "#eff6ff", color: "#1a73e8" }
     case "Satisfactory":      return { bg: "#fffbeb", color: "#d97706" }
     case "Needs Improvement": return { bg: "#fff7ed", color: "#ea580c" }
     default:                  return { bg: "#fef2f2", color: "#dc2626" }
@@ -70,7 +70,7 @@ export default async function EvaluationsPage() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 28 }}>
           <KpiCard label="Avg Score"   value={`${avgScore.toFixed(1)}`} sub="across all evaluations" color={scoreColor(avgScore)} />
           <KpiCard label="Total Evals" value={String(evals.length)}     sub="evaluation sessions" color="#6b7280" />
-          <KpiCard label="Top Rating"  value={Object.entries(ratingCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "—"} sub="most common rating" color="#2563eb" />
+          <KpiCard label="Top Rating"  value={Object.entries(ratingCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "—"} sub="most common rating" color="#1a73e8" />
         </div>
       )}
 
@@ -78,7 +78,7 @@ export default async function EvaluationsPage() {
       {evals.length === 0 ? (
         <div style={{ textAlign: "center", padding: "60px 0", color: "#9ca3af" }}>
           No evaluations yet.{" "}
-          <Link href="/hr/evaluate" style={{ color: "#2563eb" }}>Run first evaluation →</Link>
+          <Link href="/hr/evaluate" style={{ color: "#1a73e8" }}>Run first evaluation →</Link>
         </div>
       ) : (
         <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 10, overflow: "hidden" }}>
@@ -101,7 +101,7 @@ export default async function EvaluationsPage() {
                     <td style={{ padding: "12px 14px", fontSize: 13, color: "#374151" }}>{ev.period}</td>
                     <td style={{ padding: "12px 14px", fontSize: 12, color: "#6b7280", textTransform: "capitalize" }}>{ev.type}</td>
                     <td style={{ padding: "12px 14px", fontSize: 14, fontWeight: 600, color: "#7c3aed" }}>{scrumAvg}</td>
-                    <td style={{ padding: "12px 14px", fontSize: 14, fontWeight: 600, color: "#2563eb" }}>{taskAvg}</td>
+                    <td style={{ padding: "12px 14px", fontSize: 14, fontWeight: 600, color: "#1a73e8" }}>{taskAvg}</td>
                     <td style={{ padding: "12px 14px" }}>
                       <span style={{ fontSize: 16, fontWeight: 700, color: scoreColor(ev.totalScore) }}>{ev.totalScore.toFixed(1)}</span>
                     </td>

@@ -116,7 +116,7 @@ export default function AIPage() {
           <div style={{ padding: "20px 16px 12px", borderBottom: "1px solid #1e293b" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <div style={{
-                width: 32, height: 32, background: "#2563eb",
+                width: 32, height: 32, background: "#1a73e8",
                 borderRadius: "8px", display: "flex", alignItems: "center",
                 justifyContent: "center", fontSize: "16px", flexShrink: 0,
               }}>✦</div>
@@ -297,7 +297,7 @@ export default function AIPage() {
                   borderRadius: m.role === "user"
                     ? "18px 18px 4px 18px"
                     : "18px 18px 18px 4px",
-                  background:   m.role === "user" ? "#2563eb" : "#fff",
+                  background:   m.role === "user" ? "#1a73e8" : "#fff",
                   color:        m.role === "user" ? "#fff"    : "#1e293b",
                   fontSize:     "14px",
                   lineHeight:   1.65,
@@ -380,7 +380,7 @@ export default function AIPage() {
                 color:        "#1e293b",
                 transition:   "border-color 0.15s",
               }}
-              onFocus={e  => { e.target.style.borderColor = "#2563eb" }}
+              onFocus={e  => { e.target.style.borderColor = "#1a73e8" }}
               onBlur={e   => { e.target.style.borderColor = "#e2e8f0" }}
             />
             <button
@@ -389,7 +389,7 @@ export default function AIPage() {
               className="nmi-send"
               style={{
                 padding:      "12px 22px",
-                background:   input.trim() && !loading ? "#2563eb" : "#e2e8f0",
+                background:   input.trim() && !loading ? "#1a73e8" : "#e2e8f0",
                 color:        input.trim() && !loading ? "#fff"    : "#94a3b8",
                 border:       "none",
                 borderRadius: "10px",

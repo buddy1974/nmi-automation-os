@@ -19,7 +19,7 @@ type Tab = typeof TABS[number]
 
 function statusStyle(s: string): React.CSSProperties {
   const map: Record<string, React.CSSProperties> = {
-    received:  { background: "#eff6ff", color: "#2563eb" },
+    received:  { background: "#eff6ff", color: "#1a73e8" },
     replied:   { background: "#f0fdf4", color: "#16a34a" },
     escalated: { background: "#fff7ed", color: "#ea580c" },
     handled:   { background: "#f9fafb", color: "#6b7280" },
@@ -95,7 +95,7 @@ export default function WATable({ messages }: { messages: WAMsg[] }) {
                     <span style={{
                       fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 10,
                       background: m.lang === "French" ? "#eff6ff" : m.lang === "English" ? "#f0fdf4" : "#f3f4f6",
-                      color:      m.lang === "French" ? "#2563eb" : m.lang === "English" ? "#16a34a" : "#6b7280",
+                      color:      m.lang === "French" ? "#1a73e8" : m.lang === "English" ? "#16a34a" : "#6b7280",
                     }}>
                       {m.lang}
                     </span>
