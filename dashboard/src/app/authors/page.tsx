@@ -1,5 +1,6 @@
-import { prisma } from "@/lib/db"
-import { S, row } from "@/lib/ui"
+import { prisma }          from "@/lib/db"
+import { S, row }          from "@/lib/ui"
+import DocumentScanner     from "@/app/components/DocumentScanner"
 
 export const dynamic = "force-dynamic"
 
@@ -15,6 +16,9 @@ export default async function AuthorsPage() {
         </div>
         <a href="/import?module=authors" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
+
+      {/* OCR Scanner — photograph an author submission form to extract details */}
+      <DocumentScanner defaultType="author_submission" />
 
       <div style={S.statBar}>
         <div style={S.statCard}><div style={S.statLabel}>Total Authors</div><div style={S.statValue}>{authors.length}</div></div>

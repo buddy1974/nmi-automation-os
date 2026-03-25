@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import Link         from "next/link"
+import { useState }  from "react"
+import Link          from "next/link"
+import AIWriteButton from "@/app/components/AIWriteButton"
 
 const QUICK_MESSAGES = [
   { label: "FR — Prix livre",      from: "+237691234567", name: "Marie Nguemo",   msg: "Bonjour, combien coûte le livre de Maths CM2?" },
@@ -98,11 +99,19 @@ export default function WASimulatePage() {
             </div>
 
             <div>
-              <label style={labelStyle}>MESSAGE</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
+                <label style={{ ...labelStyle, marginBottom: 0 }}>MESSAGE</label>
+                <AIWriteButton
+                  value={msg}
+                  field="general"
+                  language="auto"
+                  onWrite={text => setMsg(text)}
+                />
+              </div>
               <textarea
                 value={msg}
                 onChange={e => setMsg(e.target.value)}
-                placeholder="Type a customer message (French or English)…"
+                placeholder="Type a customer message (French or English)… or type keywords and use AI Write"
                 rows={5}
                 style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit" }}
                 required

@@ -1,5 +1,6 @@
-import { prisma }      from "@/lib/db"
+import { prisma }             from "@/lib/db"
 import { S, row, statusBadge } from "@/lib/ui"
+import DocumentScanner        from "@/app/components/DocumentScanner"
 
 export const dynamic = "force-dynamic"
 
@@ -15,6 +16,9 @@ export default async function ManuscriptsPage() {
     <div style={S.page}>
       <h1 style={S.heading}>Manuscripts</h1>
       <p style={S.subtitle}>Editorial pipeline — all manuscripts and print queue</p>
+
+      {/* OCR Scanner — photograph a printed manuscript submission form to extract details */}
+      <DocumentScanner defaultType="author_submission" />
 
       <div style={S.statBar}>
         {([

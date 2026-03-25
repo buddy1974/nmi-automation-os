@@ -3,6 +3,7 @@ import { prisma }     from "@/lib/db"
 import { getSession } from "@/lib/auth"
 import { resolveCompany } from "@/lib/companyFilter"
 import { S, row, statusBadge } from "@/lib/ui"
+import CitySearch     from "@/app/components/CitySearch"
 
 export const dynamic = "force-dynamic"
 
@@ -28,6 +29,7 @@ export default async function CustomersPage() {
         <a href="/import?module=customers" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
 
+      <CitySearch />
       <div style={S.statBar}>
         <div style={S.statCard}><div style={S.statValue}>{customers.length}</div><div style={S.statLabel}>Total Customers</div></div>
         <div style={S.statCard}><div style={{ ...S.statValue, color: "#16a34a" }}>{activeCount}</div><div style={S.statLabel}>Active</div></div>

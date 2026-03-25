@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import Link         from "next/link"
+import { useState }    from "react"
+import Link            from "next/link"
+import AIWriteButton   from "@/app/components/AIWriteButton"
 
 interface Classification {
   category:   string
@@ -107,11 +108,18 @@ export default function ComposeTestPage() {
             </div>
 
             <div>
-              <label style={labelStyle}>BODY (optional)</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                <label style={{ ...labelStyle, marginBottom: 0 }}>BODY (optional)</label>
+                <AIWriteButton
+                  value={body}
+                  field="general"
+                  onWrite={text => setBody(text)}
+                />
+              </div>
               <textarea
                 value={body}
                 onChange={e => setBody(e.target.value)}
-                placeholder="Paste the email body here for more accurate classification…"
+                placeholder="Type keywords or paste the email body… use AI Write to generate professional text"
                 rows={8}
                 style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit" }}
               />

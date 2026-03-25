@@ -1,5 +1,6 @@
-import { prisma } from "@/lib/db"
+import { prisma }     from "@/lib/db"
 import { S, row, badge } from "@/lib/ui"
+import CitySearch    from "@/app/components/CitySearch"
 
 export const dynamic = "force-dynamic"
 
@@ -31,6 +32,9 @@ export default async function DistributorsPage() {
         </div>
         <a href="/import?module=distributors" style={{ border: "1px solid #1a73e8", color: "#1a73e8", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, textDecoration: "none", flexShrink: 0, marginTop: 4 }}>↑ Import</a>
       </div>
+
+      {/* Cameroon city search */}
+      <CitySearch />
 
       {/* ── Stats ──────────────────────────────────────────────────────────── */}
       <div style={S.statBar}>

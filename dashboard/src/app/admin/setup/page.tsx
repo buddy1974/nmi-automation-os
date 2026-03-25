@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useCallback } from "react"
+import CameroonAddressInput from "@/app/components/CameroonAddressInput"
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -169,7 +170,13 @@ export default function SetupPage() {
             </div>
           ) : null}
           <input style={input} placeholder="Company name *" value={coName} onChange={e => setCoName(e.target.value)} />
-          <input style={input} placeholder="City (e.g. Yaoundé)" value={coCity} onChange={e => setCoCity(e.target.value)} />
+          <CameroonAddressInput
+            value={coCity}
+            onChange={setCoCity}
+            onSelect={s => setCoCity(s.city || s.display)}
+            placeholder="City (e.g. Yaoundé)"
+            inputStyle={{ ...input, marginBottom: 12, padding: "10px 14px 10px 36px" }}
+          />
           {msg && <div style={{ color: msg.includes("!") ? "#22c55e" : "#f87171", fontSize: 13, marginBottom: 10 }}>{msg}</div>}
           <div style={{ display: "flex", gap: 10 }}>
             <button onClick={handleCompany} disabled={saving} style={btn("primary")}>{saving ? "Saving…" : "Create Company"}</button>

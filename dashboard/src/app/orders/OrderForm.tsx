@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { saveOrder } from "./actions"
+import { useState }           from "react"
+import { saveOrder }          from "./actions"
+import CameroonAddressInput   from "@/app/components/CameroonAddressInput"
 
 type ProductRow = { id: number; code: string; title: string; price: number; stock: number }
 type CustomerRow = { id: number; name: string }
@@ -37,12 +38,13 @@ export default function OrderForm({
   products:  ProductRow[]
   customers: CustomerRow[]
 }) {
-  const [products,    setProducts]    = useState(initialProducts)
-  const [cart,        setCart]        = useState<CartItem[]>([])
-  const [customerId,  setCustomerId]  = useState<number>(customers[0]?.id ?? 0)
-  const [saving,      setSaving]      = useState(false)
-  const [search,      setSearch]      = useState("")
-  const [saved,       setSaved]       = useState(false)
+  const [products,      setProducts]      = useState(initialProducts)
+  const [cart,          setCart]          = useState<CartItem[]>([])
+  const [customerId,    setCustomerId]    = useState<number>(customers[0]?.id ?? 0)
+  const [saving,        setSaving]        = useState(false)
+  const [search,        setSearch]        = useState("")
+  const [saved,         setSaved]         = useState(false)
+  const [deliveryCity,  setDeliveryCity]  = useState("")
 
   const filtered = products.filter(p =>
     p.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -113,6 +115,17 @@ export default function OrderForm({
               {customers.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           )}
+        </div>
+
+        {/* Delivery city */}
+        <div>
+          <label style={F.label}>Delivery City</label>
+          <CameroonAddressInput
+            value={deliveryCity}
+            onChange={setDeliveryCity}
+            onSelect={s => setDeliveryCity(s.city || s.display)}
+            placeholder="Search delivery city in Cameroon..."
+          />
         </div>
 
         {/* Product search */}

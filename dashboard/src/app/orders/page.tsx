@@ -4,6 +4,7 @@ import { getSession }        from "@/lib/auth"
 import { resolveCompany, directFilter } from "@/lib/companyFilter"
 import { S, row, statusBadge } from "@/lib/ui"
 import OrderForm             from "./OrderForm"
+import DocumentScanner       from "@/app/components/DocumentScanner"
 import type { Metadata }     from "next"
 
 export const dynamic = "force-dynamic"
@@ -165,6 +166,8 @@ export default async function OrdersPage() {
           borderRadius: "10px",
           padding:      "24px",
         }}>
+          {/* OCR Scanner — photograph a handwritten school order to extract data */}
+          <DocumentScanner defaultType="school_order" />
           <OrderForm products={products} customers={customers} />
         </div>
       </div>

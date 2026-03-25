@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { S, badge } from "@/lib/ui"
+import AIWriteButton from "@/app/components/AIWriteButton"
 
 type Worker = { id: number; name: string; department: string; role: string }
 
@@ -67,6 +68,7 @@ export default function EvalForm({ workers }: Props) {
   const [period, setPeriod]       = useState("")
   const [type, setType]           = useState("quarterly")
   const [vals, setVals]           = useState<Record<string, number>>(DEFAULT_VALS)
+  const [managerNote, setManagerNote] = useState("")
   const [loading, setLoading]     = useState(false)
   const [error, setError]         = useState("")
   const [result, setResult]       = useState<{
@@ -188,6 +190,35 @@ export default function EvalForm({ workers }: Props) {
             <NumInput label="Sick days" value={vals.sickDaysCount} onChange={v => setVal("sickDaysCount", v)} min={0} />
             <NumInput label="Avg task hours" value={vals.avgTaskHours} onChange={v => setVal("avgTaskHours", v)} min={0} step={0.5} />
           </div>
+        </div>
+
+        {/* Manager Notes */}
+        <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 10, padding: 20 }}>
+          <div style={{ fontWeight: 600, marginBottom: 4, color: "#111" }}>
+            Manager Notes
+            <span style={{ fontWeight: 400, color: "#6b7280", fontSize: 13 }}> — optional evaluation summary</span>
+          </div>
+          <div style={{ fontSize: 12, color: "#9ca3af", marginBottom: 10 }}>
+            Type keywords or observations, then use AI Write to generate professional text.
+          </div>
+          <textarea
+            value={managerNote}
+            onChange={e => setManagerNote(e.target.value)}
+            placeholder="e.g. exceeded targets, strong collaboration, needs improvement on deadlines..."
+            rows={4}
+            style={{
+              width: "100%", padding: "9px 12px",
+              border: "1px solid #d1d5db", borderRadius: 6,
+              fontSize: 14, resize: "vertical" as const,
+              fontFamily: "inherit", boxSizing: "border-box" as const,
+              marginBottom: 10,
+            }}
+          />
+          <AIWriteButton
+            value={managerNote}
+            field="performance_evaluation"
+            onWrite={text => setManagerNote(text)}
+          />
         </div>
 
         {error && <div style={{ color: "#dc2626", fontSize: 13 }}>{error}</div>}
