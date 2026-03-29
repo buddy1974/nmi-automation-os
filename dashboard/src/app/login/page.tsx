@@ -1,11 +1,26 @@
 "use client"
 
-import { useActionState } from "react"
-import { loginAction }    from "./actions"
+import { useActionState, useRef, useState } from "react"
+import { loginAction } from "./actions"
+
+const QUICK_ACCESS = [
+  { name: "Rogers Nforgwei", role: "Owner",   email: "rogers@nmi.cm",  password: "nmi2025"    },
+  { name: "Admin NMI",       role: "Admin",   email: "admin@nmi.cm",   password: "Admin2024!" },
+  { name: "Sales Manager",   role: "Manager", email: "sales@nmi.cm",   password: "nmi2025"    },
+  { name: "HR Officer",      role: "Staff",   email: "hr@nmi.cm",      password: "nmi2025"    },
+]
 
 export default function LoginPage() {
-
   const [state, action, pending] = useActionState(loginAction, null)
+  const [email, setEmail]       = useState("")
+  const [password, setPassword] = useState("")
+  const submitRef               = useRef<HTMLButtonElement>(null)
+
+  function fillCredentials(e: string, p: string) {
+    setEmail(e)
+    setPassword(p)
+    setTimeout(() => submitRef.current?.focus(), 0)
+  }
 
   return (
     <div style={{
@@ -77,6 +92,8 @@ export default function LoginPage() {
               required
               autoComplete="email"
               placeholder="you@nmieducation.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               style={inputStyle}
             />
           </div>
@@ -91,11 +108,14 @@ export default function LoginPage() {
               required
               autoComplete="current-password"
               placeholder="••••••••"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               style={inputStyle}
             />
           </div>
 
           <button
+            ref={submitRef}
             type="submit"
             disabled={pending}
             style={{
@@ -113,10 +133,93 @@ export default function LoginPage() {
             {pending ? "Signing in…" : "Sign in"}
           </button>
 
+          {/* Divider */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            margin: "8px 0 0",
+          }}>
+            <hr style={{ flex: 1, border: "none", borderTop: "1px solid #e2e8f0", margin: 0 }} />
+            <span style={{ fontSize: "11px", color: "#475569", whiteSpace: "nowrap" }}>
+              Quick access — click to fill
+            </span>
+            <hr style={{ flex: 1, border: "none", borderTop: "1px solid #e2e8f0", margin: 0 }} />
+          </div>
+
+          {/* Quick access pills */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "8px",
+          }}>
+            {QUICK_ACCESS.map(account => (
+              <QuickPill
+                key={account.email}
+                {...account}
+                onFill={() => fillCredentials(account.email, account.password)}
+              />
+            ))}
+          </div>
+
         </form>
 
       </div>
     </div>
+  )
+}
+
+function QuickPill({
+  name, role, onFill,
+}: {
+  name: string
+  role: string
+  onFill: () => void
+}) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <button
+      type="button"
+      onClick={onFill}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "6px 14px",
+        background: hovered ? "#1a73e8" : "#1a1a2e",
+        border: "1px solid #1a73e8",
+        borderRadius: "999px",
+        cursor: "pointer",
+        transition: "all 0.15s",
+        textAlign: "left",
+      }}
+    >
+      <span style={{
+        fontSize: "13px",
+        fontWeight: 600,
+        color: hovered ? "white" : "#e2e8f0",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        minWidth: 0,
+      }}>
+        {name}
+      </span>
+      <span style={{
+        fontSize: "10px",
+        fontFamily: "monospace",
+        background: hovered ? "rgba(255,255,255,0.2)" : "rgba(26,115,232,0.15)",
+        color: hovered ? "white" : "#1a73e8",
+        borderRadius: "4px",
+        padding: "1px 6px",
+        flexShrink: 0,
+      }}>
+        {role}
+      </span>
+    </button>
   )
 }
 
