@@ -27,7 +27,7 @@ export async function loginAction(
   const emailErr = validateEmail(rawEmail)
   if (emailErr) return { error: emailErr }
 
-  const passwordErr = validatePassword(rawPassword, 8)
+  const passwordErr = validatePassword(rawPassword, 6)
   if (passwordErr) return { error: passwordErr }
 
   const email    = sanitizeString(rawEmail).toLowerCase()

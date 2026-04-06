@@ -9,7 +9,7 @@ export function validateEmail(email: unknown): string | null {
   return null
 }
 
-export function validatePassword(password: unknown, minLength = 8): string | null {
+export function validatePassword(password: unknown, minLength = 6): string | null {
   if (typeof password !== "string" || password.length < minLength) {
     return `Password must be at least ${minLength} characters`
   }
